@@ -1,35 +1,45 @@
-# React + TypeScript + Vite
+# Codetopia Academy
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+The public site for Codetopia Academy — the education division delivering structured programs, courses, and certifications for the next generation of technologists.
 
-Currently, two official plugins are available:
+A [codetopia.org](https://codetopia.org) initiative. Currently a coming-soon landing page.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Stack
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Vite · React 19 · TypeScript · Tailwind CSS v4 · Oxlint · pnpm
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+---
 
-## Expanding the Oxlint configuration
+## Project structure
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```
+src/
+  App.tsx       # the coming-soon page
+  index.css     # Tailwind import + global styles
+  main.tsx      # entry point
+  assets/       # images (logo, etc.)
+public/
+  favicon.png   # site favicon
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+---
+
+## Fonts
+
+- **Inter** — body/supporting text
+- **Space Grotesk** — display text (headline word, background wordmark)
+
+Both loaded via Google Fonts in `index.html`, matching the pairing used on [codetopia.org](https://codetopia.org).
+
+---
+
+## Commands
+
+```bash
+pnpm dev       # start dev server
+pnpm build     # type-check and build for production
+pnpm preview   # preview the production build locally
+pnpm lint      # run oxlint
+```
