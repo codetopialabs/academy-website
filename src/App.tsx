@@ -1,90 +1,36 @@
-import { useEffect, useState } from 'react'
-import logo from './assets/Codetopia Academy - Logo Variant 1.png'
-
-const words = ['Educate.', 'Empower.', 'Build.', 'Grow.', 'Inspire.']
-const sentence = words.join(' ')
-
-function useReducedMotion() {
-  const [reduced, setReduced] = useState(false)
-
-  useEffect(() => {
-    const query = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setReduced(query.matches)
-    const onChange = () => setReduced(query.matches)
-    query.addEventListener('change', onChange)
-    return () => query.removeEventListener('change', onChange)
-  }, [])
-
-  return reduced
-}
-
-function RotatingWord() {
-  const [index, setIndex] = useState(0)
-  const reducedMotion = useReducedMotion()
-
-  useEffect(() => {
-    if (reducedMotion) return
-    const id = setInterval(() => {
-      setIndex((i) => (i + 1) % words.length)
-    }, 4500)
-    return () => clearInterval(id)
-  }, [reducedMotion])
-
-  return (
-    <span className="inline-grid align-bottom" aria-hidden="true">
-      {words.map((word, i) => (
-        <span
-          key={word}
-          className={`col-start-1 row-start-1 font-display font-bold transition-opacity duration-500 ${
-            i === index ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          {word}
-        </span>
-      ))}
-    </span>
-  )
-}
+import logo from './assets/Codetopia Academy - Logo Black.png'
+import { Footer } from './Footer'
 
 function App() {
   return (
-    <main className="relative flex min-h-svh flex-col items-center justify-center gap-6 overflow-hidden bg-black px-6 text-center">
-      <img
-        src={logo}
-        alt="Codetopia Academy"
-        className="relative z-10 w-[26rem] sm:w-[34rem] md:w-[42rem] lg:w-[52rem]"
-      />
-      <h1
-        className="relative z-10 text-4xl text-white sm:text-6xl md:text-7xl"
-        aria-label={sentence}
+    <>
+      <main
+        className="relative flex min-h-svh flex-col items-center justify-center gap-6 overflow-hidden bg-white px-6 text-center text-black"
+        style={{
+          backgroundImage: 'radial-gradient(#d4d4d8 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+        }}
       >
-        <RotatingWord />
-      </h1>
-      <p className="relative z-10 text-sm tracking-[0.3em] text-zinc-500 uppercase sm:text-base">
-        Coming soon
-      </p>
-
-      <p className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-sm text-zinc-500">
-        A{' '}
-        <a
-          href="https://codetopia.org"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-white underline hover:opacity-80"
-        >
-          codetopia.org
-        </a>{' '}
-        Initiative
-      </p>
-
-      <p
-        aria-hidden="true"
-        className="font-display pointer-events-none absolute inset-x-0 bottom-0 z-0 text-center leading-none font-bold tracking-tight text-white/10 uppercase select-none"
-        style={{ fontSize: '19vw' }}
-      >
-        Academy
-      </p>
-    </main>
+        <img
+          src={logo}
+          alt="Codetopia Academy"
+          className="relative z-10 w-[20rem] sm:w-[28rem] md:w-[34rem]"
+        />
+        <h1 className="font-display relative z-10 text-6xl font-bold tracking-tight sm:text-8xl md:text-9xl">
+          <span className="relative inline-block">
+            <span
+              aria-hidden="true"
+              className="absolute inset-x-[-0.1em] bottom-[0.08em] h-[0.42em] bg-sky-300"
+            />
+            <span className="relative">Anticipate.</span>
+          </span>
+        </h1>
+        <p className="relative z-10 font-mono text-xl tracking-[0.2em] text-zinc-500 sm:text-3xl">
+          THINK. BUILD. <span className="font-bold text-black">SOLVE.</span>
+        </p>
+      </main>
+      <Footer />
+    </>
   )
 }
 
