@@ -2,10 +2,11 @@
 
 @theme {
   --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
 }
 
 :root {
-  --sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: 'Space Grotesk', system-ui, 'Segoe UI', Roboto, sans-serif;
 
   font-family: var(--sans);
   letter-spacing: 0.18px;
