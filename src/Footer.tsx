@@ -36,7 +36,7 @@ const socialIcons = [
   { icon: FaGithub, href: 'https://github.com/codetopiaacademy', label: 'GitHub' },
 ]
 
-const linkClass = 'text-sm text-zinc-500 transition-colors hover:text-black'
+const linkClass = 'font-inter text-sm text-zinc-500 transition-colors hover:text-black'
 
 function Wordmark() {
   const ref = useRef<HTMLParagraphElement>(null)
@@ -107,7 +107,7 @@ export function Footer() {
             <a href={`mailto:${email}`} className={linkClass}>
               {email}
             </a>
-            <span className="text-sm text-zinc-500">Accra, Ghana</span>
+            <span className="font-inter text-sm text-zinc-500">Accra, Ghana</span>
           </div>
           <div className="flex flex-col gap-3">
             <p className="mb-2 text-xs font-black tracking-tight uppercase">Codetopia</p>
@@ -133,7 +133,7 @@ export function Footer() {
 
       <div>
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 md:flex-row md:items-center md:justify-between">
-          <p className="text-xs text-zinc-500">
+          <p className="font-inter text-xs text-zinc-500">
             &copy; {new Date().getFullYear()} Codetopia Academy. All rights reserved.
           </p>
           <p className="text-xs font-black tracking-widest text-zinc-500 uppercase">
