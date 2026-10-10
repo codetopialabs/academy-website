@@ -103,14 +103,14 @@ export function Footer() {
 
         <div className="flex flex-col gap-12 sm:flex-row sm:gap-24">
           <div className="flex flex-col gap-3">
-            <p className="mb-2 text-xs font-black tracking-tight uppercase">Contact</p>
+            <p className="mb-2 text-sm font-black tracking-tight uppercase">Contact</p>
             <a href={`mailto:${email}`} className={linkClass}>
               {email}
             </a>
             <span className="font-inter text-sm text-zinc-500">Accra, Ghana</span>
           </div>
           <div className="flex flex-col gap-3">
-            <p className="mb-2 text-xs font-black tracking-tight uppercase">Codetopia</p>
+            <p className="mb-2 text-sm font-black tracking-tight uppercase">Codetopia</p>
             <a
               href="https://codetopia.org"
               target="_blank"
