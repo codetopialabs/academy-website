@@ -133,7 +133,7 @@ export function Footer() {
 
       <div>
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 md:flex-row md:items-center md:justify-between">
-          <p className="text-xs text-zinc-500">
+          <p className="font-inter text-xs text-zinc-500">
             &copy; {new Date().getFullYear()} Codetopia Academy. All rights reserved.
           </p>
           <p className="text-xs font-black tracking-widest text-zinc-500 uppercase">
