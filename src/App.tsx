@@ -92,7 +92,7 @@ function App() {
               <span aria-hidden="true">⚠</span> Warning
             </p>
             <h1 className="font-display mt-6 text-5xl leading-[1.02] font-bold tracking-tight sm:text-6xl lg:text-7xl">
-              They might start asking how <Marker>everything</Marker> works.
+              They might start fixing <Marker>everything.</Marker>
             </h1>
             <p className="font-inter mt-8 max-w-xl text-lg text-zinc-700">
               Small live classes online for ages 6 to 20, every Saturday and Sunday. Taught by real
