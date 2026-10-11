@@ -85,9 +85,9 @@ export type Idea = keyof typeof ideaPaths
 
 export function IdeaIcon({ name, className }: { name: Idea; className: string }) {
   return (
-    <svg viewBox="0 0 40 40" aria-hidden="true" className={`pointer-events-none absolute text-zinc-200 ${className}`}>
+    <svg viewBox="0 0 40 40" aria-hidden="true" className={`pointer-events-none ${className}`}>
       {ideaPaths[name].map((d) => (
-        <path key={d} {...stroke} strokeWidth={2.5} vectorEffect="non-scaling-stroke" d={d} />
+        <path key={d} {...stroke} strokeWidth={3} vectorEffect="non-scaling-stroke" d={d} />
       ))}
     </svg>
   )

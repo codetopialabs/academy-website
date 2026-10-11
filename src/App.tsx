@@ -6,21 +6,31 @@ import { AgePicker } from './Explorer'
 import { Footer } from './Footer'
 import { button } from './styles'
 
-type Icon = { name: Idea; className: string }
+type Icon = { name: Idea; color: string }
 
-function Section({ title, icons = [], children }: { title: string; icons?: Icon[]; children: ReactNode }) {
+// Icon sits in the empty space beside or under the title, never over content
+function SectionTitle({ title, icon }: { title: string; icon?: Icon }) {
   return (
-    <div className="relative overflow-hidden">
-      {icons.map((icon) => (
-        <IdeaIcon key={icon.name} name={icon.name} className={icon.className} />
-      ))}
-      <section className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
-        <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
-          <h2 className="font-display text-3xl font-bold tracking-tight">{title}</h2>
-          <div>{children}</div>
-        </div>
-      </section>
+    <div className="relative">
+      <h2 className="font-display pr-16 text-3xl font-bold tracking-tight md:pr-0">{title}</h2>
+      {icon && (
+        <IdeaIcon
+          name={icon.name}
+          className={`absolute top-0 right-0 h-12 w-12 -rotate-6 md:static md:mt-10 md:h-28 md:w-28 ${icon.color}`}
+        />
+      )}
     </div>
+  )
+}
+
+function Section({ title, icon, children }: { title: string; icon?: Icon; children: ReactNode }) {
+  return (
+    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+      <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
+        <SectionTitle title={title} icon={icon} />
+        <div>{children}</div>
+      </div>
+    </section>
   )
 }
 
@@ -56,12 +66,6 @@ function App() {
 
       <main>
         <div className="relative overflow-hidden">
-          <IdeaIcon name="blocks" className="-top-4 -right-6 h-40 w-40 rotate-12 md:right-[2%] md:h-64 md:w-64" />
-          <IdeaIcon name="controller" className="top-2 left-[38%] hidden h-40 w-40 md:block" />
-          <IdeaIcon name="bug" className="right-[40%] -bottom-8 hidden h-44 w-44 -rotate-12 md:block" />
-          <IdeaIcon name="robot" className="-bottom-10 -left-10 h-32 w-32 rotate-6 md:h-52 md:w-52" />
-          <IdeaIcon name="cursor" className="top-[48%] -right-8 hidden h-36 w-36 -rotate-6 lg:block" />
-          <IdeaIcon name="braces" className="top-20 -left-8 hidden h-28 w-28 md:block" />
         <section className="relative mx-auto grid max-w-6xl gap-12 px-4 pt-20 pb-16 sm:px-6 md:grid-cols-[3fr_2fr] md:items-end md:pt-28">
           <div>
             <h1 className="font-display text-4xl leading-[1.05] font-bold tracking-tight sm:text-6xl">
@@ -91,17 +95,17 @@ function App() {
               Questions? Message us on WhatsApp ›
             </a>
           </div>
-          <PhotoSpace label="Photo: a learner showing their project" className="aspect-[4/5]" />
+          <div className="relative mx-4 md:mx-0">
+            <PhotoSpace label="Photo: a learner showing their project" className="aspect-[4/5]" />
+            <IdeaIcon name="controller" className="absolute -top-8 -left-8 h-20 w-20 -rotate-12 text-sky-400" />
+            <IdeaIcon name="bulb" className="absolute -top-10 right-4 h-16 w-16 rotate-12 text-yellow-400" />
+            <IdeaIcon name="robot" className="absolute -right-8 -bottom-8 h-24 w-24 rotate-6 text-orange-400" />
+            <IdeaIcon name="bug" className="absolute -bottom-6 -left-6 h-16 w-16 -rotate-12 text-emerald-400" />
+          </div>
         </section>
         </div>
 
-        <Section
-          title="How it works"
-          icons={[
-            { name: 'laptop', className: 'bottom-4 -left-10 h-32 w-32 md:left-[4%] md:h-44 md:w-44' },
-            { name: 'ifelse', className: '-right-8 top-16 hidden h-40 w-40 rotate-12 md:block' },
-          ]}
-        >
+        <Section title="How it works" icon={{ name: 'laptop', color: 'text-sky-400' }}>
           <div className="font-inter max-w-2xl space-y-5 text-lg text-zinc-700">
             <p>
               Every class is live on video, cameras on, with a tutor who knows each child by name.
@@ -114,29 +118,20 @@ function App() {
           </div>
         </Section>
 
-        <div className="relative overflow-hidden">
-          <IdeaIcon name="binary" className="-top-4 -right-10 h-32 w-32 -rotate-12 md:right-[3%] md:h-44 md:w-44" />
-        <section className="relative mx-auto max-w-6xl px-4 pt-8 sm:px-6">
+        <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
           <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
-            <h2 className="font-display text-3xl font-bold tracking-tight">Find your child's group</h2>
+            <SectionTitle title="Find your child's group" icon={{ name: 'binary', color: 'text-emerald-400' }} />
             <p className="font-inter max-w-2xl text-lg text-zinc-700">
               Children are grouped by age, so everyone learns with others at their level. Tap a group
               name to see what it means.
             </p>
           </div>
         </section>
-        </div>
         <div className="mt-10">
           <AgePicker />
         </div>
 
-        <Section
-          title="What they learn"
-          icons={[
-            { name: 'loop', className: 'bottom-10 -left-8 h-28 w-28 md:left-[6%] md:h-40 md:w-40' },
-            { name: 'bulb', className: '-top-6 -right-12 hidden h-48 w-48 -rotate-12 md:block' },
-          ]}
-        >
+        <Section title="What they learn" icon={{ name: 'blocks', color: 'text-orange-400' }}>
           <p className="font-inter text-lg text-zinc-700">
             Six areas. Every learner gets to try them all.
           </p>
@@ -151,13 +146,7 @@ function App() {
           </ul>
         </Section>
 
-        <Section
-          title="Who teaches"
-          icons={[
-            { name: 'blocks', className: 'bottom-6 -left-10 hidden h-44 w-44 rotate-6 md:block md:left-[3%]' },
-            { name: 'bug', className: '-top-2 -right-8 h-32 w-32 rotate-12 md:right-[2%] md:h-44 md:w-44' },
-          ]}
-        >
+        <Section title="Who teaches" icon={{ name: 'bulb', color: 'text-yellow-400' }}>
           <p className="font-inter max-w-2xl text-lg text-zinc-700">
             We choose and train our own tutors, and check every one before they teach.
           </p>
@@ -172,13 +161,7 @@ function App() {
           </ul>
         </Section>
 
-        <Section
-          title="For parents"
-          icons={[
-            { name: 'braces', className: 'bottom-8 -left-10 h-32 w-32 md:left-[4%] md:h-44 md:w-44' },
-            { name: 'robot', className: 'top-10 -right-10 hidden h-40 w-40 md:block' },
-          ]}
-        >
+        <Section title="For parents" icon={{ name: 'braces', color: 'text-emerald-400' }}>
           <h3 className="font-bold">Keeping your child safe</h3>
           <ul className="font-inter mt-4 list-disc space-y-2 pl-5 text-zinc-700 marker:text-zinc-400">
             {forParents.map((line) => (
