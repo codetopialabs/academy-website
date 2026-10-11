@@ -9,8 +9,8 @@ export const registerUrl = '#register'
 export const registerLabel = 'Register'
 
 export const email = 'codetopiaacademy@gmail.com'
-// DUMMY: WhatsApp number in international format, no plus sign
-export const whatsapp = '233000000000'
+// WhatsApp number in international format, no plus sign (+233 50 710 5617)
+export const whatsapp = '233507105617'
 
 export const fees = 'Fees are shared after you register.'
 
