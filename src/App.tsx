@@ -76,24 +76,31 @@ function PhotoSpace({ label, className = '' }: { label: string; className?: stri
   )
 }
 
-// Photo card: name and the group they teach show on hover, keyboard focus or tap
+// Big portrait card like the community site: photo goes from grey to colour on hover,
+// and the name and group slide up on hover, keyboard focus or tap
 function TutorCard({ tutor }: { tutor: (typeof tutors)[number] }) {
   const group = groups.find((g) => g.id === tutor.group)
   return (
     <li>
-      <div
-        tabIndex={0}
-        className="group relative aspect-square cursor-pointer overflow-hidden rounded-lg outline-offset-4"
-      >
+      <div tabIndex={0} className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-2xl bg-zinc-100 outline-offset-4">
         {tutor.photo ? (
-          <img src={tutor.photo} alt="" className="h-full w-full object-cover" />
+          <img
+            src={tutor.photo}
+            alt=""
+            className="h-full w-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0 group-focus:scale-105 group-focus:grayscale-0"
+          />
         ) : (
-          <PhotoSpace label="Tutor photo" className="h-full" />
+          <div className="font-inter flex h-full w-full items-center justify-center border border-dashed border-zinc-300 text-sm text-zinc-400 transition duration-700 group-hover:scale-105">
+            Tutor photo
+          </div>
         )}
-        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 translate-y-full bg-black/85 p-4 text-white transition-transform duration-200 group-hover:translate-y-0 group-focus:translate-y-0">
-          <p className="font-bold">{tutor.name}</p>
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 translate-y-full bg-black/85 p-5 text-white transition-transform duration-300 group-hover:translate-y-0 group-focus:translate-y-0"
+        >
+          <p className="font-display text-2xl leading-tight font-bold tracking-tight">{tutor.name}</p>
           {group && (
-            <p className="font-inter mt-1 flex items-center gap-2 text-sm text-zinc-300">
+            <p className="font-inter mt-2 flex items-center gap-2 text-sm text-zinc-300">
               <SketchShape shape={group.shape} color={group.color} className="h-4 w-4" />
               Teaches {group.name}, ages {group.ages}
             </p>
@@ -205,16 +212,18 @@ function App() {
           </ul>
         </Section>
 
-        <Section title="Who teaches" icons={[{ name: 'star', color: 'text-yellow-400' }, { name: 'search', color: 'text-sky-400' }, { name: 'chat', color: 'text-orange-400' }]}>
+        <Section title="Who teaches" icons={[{ name: 'star', color: 'text-yellow-400' }, { name: 'search', color: 'text-sky-400' }]}>
           <p className="font-inter max-w-2xl text-lg text-zinc-700">
             We choose and train our own tutors, and check every one before they teach.
           </p>
-          <ul className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3">
+        </Section>
+        <div className="mx-auto -mt-6 max-w-6xl px-4 pb-16 sm:px-6 md:-mt-10 md:pb-24">
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6">
             {tutors.map((tutor, i) => (
               <TutorCard key={i} tutor={tutor} />
             ))}
           </ul>
-        </Section>
+        </div>
 
         <Section title="For parents" icons={[{ name: 'shield', color: 'text-emerald-400' }, { name: 'lock', color: 'text-sky-400' }, { name: 'heart', color: 'text-orange-400' }]}>
           <h3 className="font-bold">Keeping your child safe</h3>
