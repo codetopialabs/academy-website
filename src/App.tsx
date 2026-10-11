@@ -2,7 +2,7 @@ import { Ending, Header, Marker } from './components'
 import { email, faq, forParents, priceAmount, pricePer, registerLabel, registerUrl, startDate, startLine, classStarted, whatsapp } from './content'
 import { IdeaIcon, type Idea } from './doodles'
 import { AgePicker } from './Explorer'
-import { AreaCards, PhotoSpace, PriceTag, Questions, Section, SectionTitle, TutorCarousel } from './sections'
+import { AreaCards, PriceTag, Questions, Section, SectionTitle, TutorCarousel } from './sections'
 import { Footer } from './Footer'
 import { button } from './styles'
 
@@ -59,7 +59,12 @@ function App() {
             </a>
           </div>
           <div className="relative mx-4 md:mx-0">
-            <PhotoSpace label="Photo: a learner showing their project" className="aspect-[4/5]" />
+            {/* DUMMY photo from Unsplash (free licence), by Vitaly Gariev (qPl8Qy8NPyY). Swap for a real class photo */}
+            <img
+              src="/hero/kids.jpg"
+              alt="A boy working on a laptop at a desk"
+              className="aspect-[4/5] w-full rounded-2xl object-cover object-[68%_40%]"
+            />
             <IdeaIcon name="controller" className="absolute -top-12 -right-6 h-20 w-20 -rotate-12 text-sky-400" />
             <IdeaIcon name="robot" className="absolute -right-8 -bottom-8 h-24 w-24 rotate-6 text-orange-400" />
             <IdeaIcon name="flag" className="absolute -bottom-6 -left-6 h-16 w-16 -rotate-12 text-emerald-400" />

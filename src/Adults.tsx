@@ -16,7 +16,7 @@ import {
   whatsapp,
 } from './content'
 import { Footer } from './Footer'
-import { AreaCards, PhotoSpace, PriceTag, Questions, Section, TutorCarousel } from './sections'
+import { AreaCards, PriceTag, Questions, Section, TutorCarousel } from './sections'
 import { button } from './styles'
 
 // Same layout and feel as the children's page, without the kids' doodles
@@ -54,7 +54,12 @@ export function Adults() {
               Questions? Message us on WhatsApp ›
             </a>
           </div>
-          <PhotoSpace label="Photo: an adult learner at work" className="mx-4 aspect-[4/5] md:mx-0" />
+          {/* DUMMY photo from Unsplash (free licence), by Vitaly Gariev (s3hlZ-gdfdQ). Swap for a real class photo */}
+          <img
+            src="/hero/adults.jpg"
+            alt="A woman smiling while working on her laptop"
+            className="mx-4 aspect-[4/5] rounded-2xl object-cover object-[58%_50%] md:mx-0"
+          />
         </section>
 
         <Section title="How it works">
