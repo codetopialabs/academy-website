@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { Ending, Header, Marker } from './components'
 import { categories, email, faq, forParents, priceAmount, pricePer, registerLabel, registerUrl, startDate, tutors, whatsapp } from './content'
+import { CategoryIcon } from './doodles'
 import { AgePicker } from './Explorer'
 import { Footer } from './Footer'
 import { button } from './styles'
@@ -106,18 +107,15 @@ function App() {
         </div>
 
         <Section title="What they learn">
-          <p className="font-inter max-w-2xl text-lg text-zinc-700">
-            Every group works through the same six areas, one after another. What changes with age is
-            how deep they go.
-          </p>
-          <ol className="mt-10 grid gap-x-12 gap-y-8 sm:grid-cols-2">
+          <p className="font-inter text-lg text-zinc-700">Six areas, in order. Deeper as they grow.</p>
+          <ol className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
             {categories.map((category, i) => (
-              <li key={category.id} className="flex gap-4">
-                <span className="font-display text-lg text-zinc-400">{i + 1}</span>
-                <div>
-                  <p className="font-bold">{category.name}</p>
-                  <p className="font-inter mt-1 text-zinc-600">{category.about}</p>
-                </div>
+              <li key={category.id} className="flex flex-col gap-6 rounded-xl border border-zinc-200 p-5">
+                <span className="flex items-start justify-between">
+                  <CategoryIcon id={category.id} className="h-9 w-9" />
+                  <span className="font-display text-sm text-zinc-400">{i + 1}</span>
+                </span>
+                <span className="leading-tight font-bold">{category.name}</span>
               </li>
             ))}
           </ol>
