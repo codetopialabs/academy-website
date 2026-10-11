@@ -56,13 +56,14 @@ function App() {
               Small live classes online for ages 6 to 20, every Saturday and Sunday. Taught by real
               tutors, in groups of about five.
             </p>
-            <div className="mt-10 flex items-center gap-5">
-              <a href={registerUrl} className={button('kids')}>
+            <div className="mt-10 flex items-center gap-4 sm:gap-5">
+              <a href={registerUrl} className={`${button('kids')} shrink-0 whitespace-nowrap`}>
                 {registerLabel} ›
               </a>
               <p className="-rotate-2 rounded-lg bg-yellow-300 px-4 py-2 whitespace-nowrap shadow-[3px_3px_0_0_#000]">
-                <span className="font-display text-3xl font-bold tracking-tight sm:text-4xl">{priceAmount}</span>
-                <span className="font-inter ml-1.5 text-sm font-medium">{pricePer}</span>
+                {/* both parts big so the whole price reads at a glance */}
+                <span className="font-display text-2xl font-bold tracking-tight sm:text-4xl">{priceAmount}</span>
+                <span className="font-display ml-1.5 text-lg font-bold tracking-tight sm:ml-2 sm:text-2xl">{pricePer}</span>
               </p>
             </div>
             <p className="font-inter mt-6 text-zinc-700">First classes {startDate}.</p>
