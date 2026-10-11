@@ -2,7 +2,16 @@ import { useEffect, useState } from 'react'
 import { registerLabel, registerUrl, registrationOpen, registrationSoon } from './content'
 
 // Register button. While registration is closed it stays on the page and shows a short note when clicked
-export function RegisterButton({ className, notePlacement = 'above' }: { className: string; notePlacement?: 'above' | 'below' }) {
+// fullOnMobile: stretches the button across the screen on phones, like the button next to it
+export function RegisterButton({
+  className,
+  notePlacement = 'above',
+  fullOnMobile = false,
+}: {
+  className: string
+  notePlacement?: 'above' | 'below'
+  fullOnMobile?: boolean
+}) {
   const [showNote, setShowNote] = useState(false)
 
   useEffect(() => {
@@ -13,15 +22,20 @@ export function RegisterButton({ className, notePlacement = 'above' }: { classNa
 
   if (registrationOpen) {
     return (
-      <a href={registerUrl} className={className}>
+      <a href={registerUrl} className={`${className} ${fullOnMobile ? 'w-full sm:w-auto' : ''}`}>
         {registerLabel}
       </a>
     )
   }
 
   return (
-    <span className="relative inline-flex">
-      <button type="button" aria-disabled="true" onClick={() => setShowNote(true)} className={className}>
+    <span className={`relative ${fullOnMobile ? 'flex w-full sm:inline-flex sm:w-auto' : 'inline-flex'}`}>
+      <button
+        type="button"
+        aria-disabled="true"
+        onClick={() => setShowNote(true)}
+        className={`${className} ${fullOnMobile ? 'w-full sm:w-auto' : ''}`}
+      >
         {registerLabel}
       </button>
       <span
