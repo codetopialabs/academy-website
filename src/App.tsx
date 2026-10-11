@@ -1,19 +1,26 @@
 import type { ReactNode } from 'react'
 import { Ending, Header, Marker } from './components'
 import { categories, email, faq, forParents, priceAmount, pricePer, registerLabel, registerUrl, startDate, startLine, classStarted, tutors, whatsapp } from './content'
-import { CategoryIcon, IdeaIcon } from './doodles'
+import { CategoryIcon, IdeaIcon, type Idea } from './doodles'
 import { AgePicker } from './Explorer'
 import { Footer } from './Footer'
 import { button } from './styles'
 
-function Section({ title, children }: { title: string; children: ReactNode }) {
+type Icon = { name: Idea; className: string }
+
+function Section({ title, icons = [], children }: { title: string; icons?: Icon[]; children: ReactNode }) {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
-      <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
-        <h2 className="font-display text-3xl font-bold tracking-tight">{title}</h2>
-        <div>{children}</div>
-      </div>
-    </section>
+    <div className="relative overflow-hidden">
+      {icons.map((icon) => (
+        <IdeaIcon key={icon.name} name={icon.name} className={icon.className} />
+      ))}
+      <section className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+        <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
+          <h2 className="font-display text-3xl font-bold tracking-tight">{title}</h2>
+          <div>{children}</div>
+        </div>
+      </section>
+    </div>
   )
 }
 
@@ -88,7 +95,13 @@ function App() {
         </section>
         </div>
 
-        <Section title="How it works">
+        <Section
+          title="How it works"
+          icons={[
+            { name: 'think', className: 'bottom-4 -left-10 h-32 w-32 md:left-[4%] md:h-44 md:w-44' },
+            { name: 'cursor', className: '-right-8 top-16 hidden h-40 w-40 rotate-12 md:block' },
+          ]}
+        >
           <div className="font-inter max-w-2xl space-y-5 text-lg text-zinc-700">
             <p>
               Every class is live on video, cameras on, with a tutor who knows each child by name.
@@ -101,7 +114,9 @@ function App() {
           </div>
         </Section>
 
-        <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
+        <div className="relative overflow-hidden">
+          <IdeaIcon name="puzzle" className="-top-4 -right-10 h-32 w-32 -rotate-12 md:right-[3%] md:h-44 md:w-44" />
+        <section className="relative mx-auto max-w-6xl px-4 pt-8 sm:px-6">
           <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
             <h2 className="font-display text-3xl font-bold tracking-tight">Find your child's group</h2>
             <p className="font-inter max-w-2xl text-lg text-zinc-700">
@@ -110,11 +125,18 @@ function App() {
             </p>
           </div>
         </section>
+        </div>
         <div className="mt-10">
           <AgePicker />
         </div>
 
-        <Section title="What they learn">
+        <Section
+          title="What they learn"
+          icons={[
+            { name: 'spark', className: 'bottom-10 -left-8 h-28 w-28 md:left-[6%] md:h-40 md:w-40' },
+            { name: 'bulb', className: '-top-6 -right-12 hidden h-48 w-48 -rotate-12 md:block' },
+          ]}
+        >
           <p className="font-inter text-lg text-zinc-700">
             Six areas. Every learner gets to try them all.
           </p>
@@ -129,7 +151,13 @@ function App() {
           </ul>
         </Section>
 
-        <Section title="Who teaches">
+        <Section
+          title="Who teaches"
+          icons={[
+            { name: 'pencil', className: 'bottom-6 -left-10 hidden h-44 w-44 rotate-6 md:block md:left-[3%]' },
+            { name: 'question', className: '-top-2 -right-8 h-32 w-32 rotate-12 md:right-[2%] md:h-44 md:w-44' },
+          ]}
+        >
           <p className="font-inter max-w-2xl text-lg text-zinc-700">
             We choose and train our own tutors, and check every one before they teach.
           </p>
@@ -144,7 +172,13 @@ function App() {
           </ul>
         </Section>
 
-        <Section title="For parents">
+        <Section
+          title="For parents"
+          icons={[
+            { name: 'code', className: 'bottom-8 -left-10 h-32 w-32 md:left-[4%] md:h-44 md:w-44' },
+            { name: 'think', className: 'top-10 -right-10 hidden h-40 w-40 md:block' },
+          ]}
+        >
           <h3 className="font-bold">Keeping your child safe</h3>
           <ul className="font-inter mt-4 list-disc space-y-2 pl-5 text-zinc-700 marker:text-zinc-400">
             {forParents.map((line) => (
