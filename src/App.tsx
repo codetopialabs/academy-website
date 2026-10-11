@@ -128,18 +128,13 @@ function App() {
           </div>
         </Section>
 
-        <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
-          <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
-            <SectionTitle title="Find your child's group" icon={{ name: 'puzzle', color: 'text-emerald-400' }} />
-            <p className="font-inter max-w-2xl text-lg text-zinc-700">
-              Children are grouped by age, so everyone learns with others at their level. Tap a group
-              name to see what it means.
-            </p>
-          </div>
-        </section>
-        <div className="mt-10">
-          <AgePicker />
-        </div>
+        <AgePicker>
+          <SectionTitle title="Find your child's group" icon={{ name: 'puzzle', color: 'text-emerald-500' }} />
+          <p className="font-inter max-w-2xl text-lg text-zinc-700">
+            Children are grouped by age, so everyone learns with others at their level. Tap a group name
+            to see what it means.
+          </p>
+        </AgePicker>
 
         <Section title="What they learn" icons={[{ name: 'brush', color: 'text-orange-400' }, { name: 'chip', color: 'text-sky-400' }, { name: 'music', color: 'text-emerald-400' }]}>
           <p className="font-inter text-lg text-zinc-700">

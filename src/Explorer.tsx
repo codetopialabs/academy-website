@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { NameWithMeaning } from './components'
 import { adultMeaning, adultName, groups, startLine } from './content'
 import { SketchShape } from './doodles'
@@ -7,7 +7,8 @@ const minAge = 6
 const adultAge = 21
 
 // Pick an age, see the group it belongs to
-export function AgePicker() {
+// The heading and intro come in as children and sit at the top of the same coloured band
+export function AgePicker({ children }: { children?: ReactNode }) {
   const [age, setAge] = useState(9)
   const group = groups.find((g) => age >= g.min && age <= g.max)
 
@@ -16,7 +17,12 @@ export function AgePicker() {
 
   return (
     <div className={`transition-colors ${group ? group.tint : 'bg-zinc-100'}`}>
-      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 md:py-20">
+      {children && (
+        <div className="mx-auto grid max-w-6xl gap-6 px-4 pt-16 sm:px-6 md:grid-cols-[1fr_2fr] md:gap-12 md:pt-20 [&_svg]:md:mt-6 [&_svg]:md:h-20 [&_svg]:md:w-20">
+          {children}
+        </div>
+      )}
+      <div className={`mx-auto grid max-w-6xl gap-12 px-4 pb-16 sm:px-6 md:grid-cols-2 md:pb-20 ${children ? 'pt-6 md:pt-8' : 'pt-16 md:pt-20'}`}>
         <div>
           <p className="font-inter text-zinc-600">How old is your child?</p>
           <div className="mt-4 flex items-center gap-6">
