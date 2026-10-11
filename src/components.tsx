@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
 import { FaWhatsapp } from 'react-icons/fa6'
 import logo from './assets/Codetopia Academy - Logo Black.png'
-import { email, registerLabel, registerUrl, whatsapp, type Meaning, type Shape } from './content'
+import { email, whatsapp, type Meaning, type Shape } from './content'
+import { RegisterButton } from './RegisterButton'
 import { IdeaIcon } from './doodles'
 import { button, type Look } from './styles'
 
@@ -71,9 +72,7 @@ export function Header({ look }: { look: Look }) {
             <span className="sm:hidden">{other.short}</span>
             <span className="hidden sm:inline">{other.text}</span>
           </a>
-          <a href={registerUrl} className={`${button(look)} !py-2`}>
-            {registerLabel}
-          </a>
+          <RegisterButton className={`${button(look)} !py-2`} notePlacement="below" />
         </nav>
       </div>
     </header>
@@ -96,9 +95,7 @@ export function Ending({ look, title, shapes = false, band = '' }: { look: Look;
       )}
       <h2 className="font-display relative text-4xl font-bold tracking-tight sm:text-6xl">{title}</h2>
       <div className="relative mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-        <a href={registerUrl} className={button(look)}>
-          {registerLabel}
-        </a>
+        <RegisterButton className={button(look)} />
         <a
           href={`https://wa.me/${whatsapp}`}
           target="_blank"

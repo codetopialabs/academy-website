@@ -9,13 +9,12 @@ import {
   classStarted,
   email,
   pricePer,
-  registerLabel,
-  registerUrl,
   startDate,
   startLine,
   whatsapp,
 } from './content'
 import { Footer } from './Footer'
+import { RegisterButton } from './RegisterButton'
 import { AreaCards, PriceTag, Questions, Section, TutorCarousel } from './sections'
 import { button } from './styles'
 
@@ -39,9 +38,7 @@ export function Adults() {
               trained tutors, in groups of about five.
             </p>
             <div className="mt-10 flex items-center gap-4 sm:gap-5">
-              <a href={registerUrl} className={`${button('adults')} shrink-0 whitespace-nowrap`}>
-                {registerLabel}
-              </a>
+              <RegisterButton className={`${button('adults')} shrink-0 whitespace-nowrap`} />
               <PriceTag amount={adultPriceAmount} per={pricePer} />
             </div>
             <p className="font-inter mt-6 text-zinc-700">{startLine}</p>

@@ -1,7 +1,8 @@
 import { Ending, Header, Marker } from './components'
-import { email, faq, forParents, priceAmount, pricePer, registerLabel, registerUrl, startDate, startLine, classStarted, whatsapp } from './content'
+import { email, faq, forParents, priceAmount, pricePer, startDate, startLine, classStarted, whatsapp } from './content'
 import { IdeaIcon, type Idea } from './doodles'
 import { AgePicker } from './Explorer'
+import { RegisterButton } from './RegisterButton'
 import { endIntro } from './motion'
 import { AreaCards, PriceTag, Questions, Section, SectionTitle, TutorCarousel } from './sections'
 import { Footer } from './Footer'
@@ -82,9 +83,7 @@ function App() {
               by trained tutors who know every learner by name.
             </p>
             <div className="mt-10 flex items-center gap-4 sm:gap-5">
-              <a href={registerUrl} className={`${button('kids')} shrink-0 whitespace-nowrap`}>
-                {registerLabel}
-              </a>
+              <RegisterButton className={`${button('kids')} shrink-0 whitespace-nowrap`} />
               <PriceTag amount={priceAmount} per={pricePer} intro />
             </div>
             <p className="font-inter mt-6 text-zinc-700">{startLine}</p>

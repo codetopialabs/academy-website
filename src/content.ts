@@ -8,6 +8,10 @@ export const registerUrl = '#register'
 // DUMMY: label may become 'Book a free taster'
 export const registerLabel = 'Register'
 
+// false: Register buttons show a 'registration opens soon' note instead of going to the form
+export const registrationOpen = false
+export const registrationSoon = "Registration opens soon. Message us on WhatsApp and we'll keep you posted."
+
 export const email = 'codetopiaacademy@gmail.com'
 // WhatsApp number in international format, no plus sign (+233 50 710 5617)
 export const whatsapp = '233507105617'
