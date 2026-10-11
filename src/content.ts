@@ -13,7 +13,8 @@ export const whatsapp = '233000000000'
 
 export const fees = 'Fees are shared after you register.'
 
-export const price = 'GHS 500 a month'
+export const priceAmount = 'GHS 500'
+export const pricePer = 'a month'
 
 export type Shape = 'circle' | 'square' | 'triangle' | 'diamond'
 export type Meaning = { origin: string; means: string; why: string }

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { Ending, Header, Marker } from './components'
-import { categories, email, faq, forParents, price, registerLabel, registerUrl, startDate, tutors, whatsapp } from './content'
+import { categories, email, faq, forParents, priceAmount, pricePer, registerLabel, registerUrl, startDate, tutors, whatsapp } from './content'
 import { AgePicker } from './Explorer'
 import { Footer } from './Footer'
 import { button } from './styles'
@@ -60,7 +60,10 @@ function App() {
               <a href={registerUrl} className={button('kids')}>
                 {registerLabel} ›
               </a>
-              <p className="font-display text-2xl font-bold tracking-tight whitespace-nowrap sm:text-3xl">{price}</p>
+              <p className="-rotate-2 rounded-lg bg-yellow-300 px-4 py-2 whitespace-nowrap shadow-[3px_3px_0_0_#000]">
+                <span className="font-display text-3xl font-bold tracking-tight sm:text-4xl">{priceAmount}</span>
+                <span className="font-inter ml-1.5 text-sm font-medium">{pricePer}</span>
+              </p>
             </div>
             <p className="font-inter mt-6 text-zinc-700">First classes {startDate}.</p>
             <a
