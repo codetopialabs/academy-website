@@ -85,7 +85,7 @@ export function AgePicker() {
             </div>
             <p className="mt-3 font-mono text-sm text-zinc-500">/ {adultMeaning.say} /</p>
             <p className="font-inter mt-2 text-zinc-600">Ages 21+</p>
-            <p className="font-inter mt-6 max-w-md text-xl">Classes for adults, with their own page.</p>
+            <p className="font-inter mt-6 max-w-md text-xl">Classes for adults.</p>
             <a href="/adults/" className="font-inter mt-6 inline-block text-sm font-bold underline underline-offset-4">
               See adult classes ›
             </a>
