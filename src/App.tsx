@@ -87,11 +87,7 @@ function App() {
               </a>
               <PriceTag amount={priceAmount} per={pricePer} intro />
             </div>
-            <p className="font-inter mt-6 flex items-center gap-2 font-medium">
-              <IdeaIcon name="gift" className="h-6 w-6 shrink-0 text-orange-500" />
-              Every new learner gets a welcome pack.
-            </p>
-            <p className="font-inter mt-2 text-zinc-700">{startLine}</p>
+            <p className="font-inter mt-6 text-zinc-700">{startLine}</p>
             <a
               href={`https://wa.me/${whatsapp}`}
               target="_blank"
@@ -125,6 +121,21 @@ function App() {
             </p>
           </div>
         </Section>
+
+        {/* Welcome pack: its own banner so the hero stays calm */}
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="sticker flex -rotate-1 flex-col items-center gap-5 rounded-3xl border-2 border-black bg-orange-300 p-6 text-center shadow-[5px_5px_0_0_#000] sm:flex-row sm:p-8 sm:text-left">
+            <span className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-2 border-black bg-white">
+              <IdeaIcon name="gift" className="gift-bounce h-12 w-12 text-black" />
+            </span>
+            <div>
+              <p className="font-display text-2xl leading-tight font-bold tracking-tight sm:text-3xl">
+                Every new learner gets a welcome pack!
+              </p>
+              <p className="font-inter mt-2 text-zinc-800">Our way of saying welcome to the Academy.</p>
+            </div>
+          </div>
+        </div>
 
         <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
           <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
