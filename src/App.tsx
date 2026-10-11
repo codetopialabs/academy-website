@@ -56,12 +56,12 @@ function App() {
 
       <main>
         <div className="relative overflow-hidden">
-          <IdeaIcon name="bulb" className="-top-4 -right-6 h-40 w-40 rotate-12 md:right-[2%] md:h-64 md:w-64" />
-          <IdeaIcon name="think" className="top-2 left-[38%] hidden h-40 w-40 md:block" />
-          <IdeaIcon name="question" className="right-[40%] -bottom-8 hidden h-44 w-44 -rotate-12 md:block" />
-          <IdeaIcon name="puzzle" className="-bottom-10 -left-10 h-32 w-32 rotate-6 md:h-52 md:w-52" />
+          <IdeaIcon name="blocks" className="-top-4 -right-6 h-40 w-40 rotate-12 md:right-[2%] md:h-64 md:w-64" />
+          <IdeaIcon name="controller" className="top-2 left-[38%] hidden h-40 w-40 md:block" />
+          <IdeaIcon name="bug" className="right-[40%] -bottom-8 hidden h-44 w-44 -rotate-12 md:block" />
+          <IdeaIcon name="robot" className="-bottom-10 -left-10 h-32 w-32 rotate-6 md:h-52 md:w-52" />
           <IdeaIcon name="cursor" className="top-[48%] -right-8 hidden h-36 w-36 -rotate-6 lg:block" />
-          <IdeaIcon name="spark" className="top-20 -left-8 hidden h-28 w-28 md:block" />
+          <IdeaIcon name="braces" className="top-20 -left-8 hidden h-28 w-28 md:block" />
         <section className="relative mx-auto grid max-w-6xl gap-12 px-4 pt-20 pb-16 sm:px-6 md:grid-cols-[3fr_2fr] md:items-end md:pt-28">
           <div>
             <h1 className="font-display text-4xl leading-[1.05] font-bold tracking-tight sm:text-6xl">
@@ -98,8 +98,8 @@ function App() {
         <Section
           title="How it works"
           icons={[
-            { name: 'think', className: 'bottom-4 -left-10 h-32 w-32 md:left-[4%] md:h-44 md:w-44' },
-            { name: 'cursor', className: '-right-8 top-16 hidden h-40 w-40 rotate-12 md:block' },
+            { name: 'laptop', className: 'bottom-4 -left-10 h-32 w-32 md:left-[4%] md:h-44 md:w-44' },
+            { name: 'ifelse', className: '-right-8 top-16 hidden h-40 w-40 rotate-12 md:block' },
           ]}
         >
           <div className="font-inter max-w-2xl space-y-5 text-lg text-zinc-700">
@@ -115,7 +115,7 @@ function App() {
         </Section>
 
         <div className="relative overflow-hidden">
-          <IdeaIcon name="puzzle" className="-top-4 -right-10 h-32 w-32 -rotate-12 md:right-[3%] md:h-44 md:w-44" />
+          <IdeaIcon name="binary" className="-top-4 -right-10 h-32 w-32 -rotate-12 md:right-[3%] md:h-44 md:w-44" />
         <section className="relative mx-auto max-w-6xl px-4 pt-8 sm:px-6">
           <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
             <h2 className="font-display text-3xl font-bold tracking-tight">Find your child's group</h2>
@@ -133,7 +133,7 @@ function App() {
         <Section
           title="What they learn"
           icons={[
-            { name: 'spark', className: 'bottom-10 -left-8 h-28 w-28 md:left-[6%] md:h-40 md:w-40' },
+            { name: 'loop', className: 'bottom-10 -left-8 h-28 w-28 md:left-[6%] md:h-40 md:w-40' },
             { name: 'bulb', className: '-top-6 -right-12 hidden h-48 w-48 -rotate-12 md:block' },
           ]}
         >
@@ -154,8 +154,8 @@ function App() {
         <Section
           title="Who teaches"
           icons={[
-            { name: 'pencil', className: 'bottom-6 -left-10 hidden h-44 w-44 rotate-6 md:block md:left-[3%]' },
-            { name: 'question', className: '-top-2 -right-8 h-32 w-32 rotate-12 md:right-[2%] md:h-44 md:w-44' },
+            { name: 'blocks', className: 'bottom-6 -left-10 hidden h-44 w-44 rotate-6 md:block md:left-[3%]' },
+            { name: 'bug', className: '-top-2 -right-8 h-32 w-32 rotate-12 md:right-[2%] md:h-44 md:w-44' },
           ]}
         >
           <p className="font-inter max-w-2xl text-lg text-zinc-700">
@@ -175,8 +175,8 @@ function App() {
         <Section
           title="For parents"
           icons={[
-            { name: 'code', className: 'bottom-8 -left-10 h-32 w-32 md:left-[4%] md:h-44 md:w-44' },
-            { name: 'think', className: 'top-10 -right-10 hidden h-40 w-40 md:block' },
+            { name: 'braces', className: 'bottom-8 -left-10 h-32 w-32 md:left-[4%] md:h-44 md:w-44' },
+            { name: 'robot', className: 'top-10 -right-10 hidden h-40 w-40 md:block' },
           ]}
         >
           <h3 className="font-bold">Keeping your child safe</h3>
