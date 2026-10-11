@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { Ending, Header, Marker } from './components'
-import { categories, email, faq, forParents, priceAmount, pricePer, registerLabel, registerUrl, startDate, tutors, whatsapp } from './content'
+import { categories, email, faq, forParents, priceAmount, pricePer, registerLabel, registerUrl, startDate, startLine, classStarted, tutors, whatsapp } from './content'
 import { CategoryIcon } from './doodles'
 import { AgePicker } from './Explorer'
 import { Footer } from './Footer'
@@ -67,7 +67,7 @@ function App() {
                 <span className="font-display ml-1.5 text-lg font-bold tracking-tight sm:ml-2 sm:text-2xl">{pricePer}</span>
               </p>
             </div>
-            <p className="font-inter mt-6 text-zinc-700">Next class starts on {startDate}.</p>
+            <p className="font-inter mt-6 text-zinc-700">{startLine}</p>
             <a
               href={`https://wa.me/${whatsapp}`}
               target="_blank"
@@ -164,7 +164,15 @@ function App() {
           look="kids"
           title={
             <>
-              Next class starts on <Marker>{startDate}.</Marker>
+              {classStarted ? (
+                <>
+                  You can still join <Marker>this week.</Marker>
+                </>
+              ) : (
+                <>
+                  Next class starts on <Marker>{startDate}.</Marker>
+                </>
+              )}
             </>
           }
         />

@@ -33,4 +33,12 @@ export function formatClassDate(date: Date) {
   return date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })
 }
 
-export const startDate = formatClassDate(nextClassDate())
+const today = new Date()
+const shown = nextClassDate(today)
+
+export const startDate = formatClassDate(shown)
+// true during the extra days after a start date, when people can still join
+export const classStarted = new Date(today.getFullYear(), today.getMonth(), today.getDate()) > shown
+export const startLine = classStarted
+  ? `Classes started ${startDate}. You can still join this week.`
+  : `Next class starts on ${startDate}.`

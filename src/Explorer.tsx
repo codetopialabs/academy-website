@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { NameWithMeaning } from './components'
-import { adultMeaning, adultName, groups, startDate } from './content'
+import { adultMeaning, adultName, groups, startLine } from './content'
 import { SketchShape } from './doodles'
 
 const minAge = 6
@@ -71,7 +71,7 @@ export function AgePicker() {
             <p className="font-inter mt-1 text-zinc-600">Ages {group.ages}</p>
             <p className="font-inter mt-6 max-w-md text-xl">{group.about}</p>
             <p className="font-inter mt-6 text-sm text-zinc-600">
-              {group.open ? `Next class starts on ${startDate}.` : 'Opening soon. Register and we will tell you first.'}
+              {group.open ? startLine : 'Opening soon. Register and we will tell you first.'}
             </p>
           </div>
         ) : (
