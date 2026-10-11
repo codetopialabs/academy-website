@@ -47,7 +47,8 @@ body {
 }
 
 .marquee-wrap:hover .marquee,
-.marquee-wrap:focus-within .marquee {
+.marquee-wrap:focus-within .marquee,
+.marquee-wrap.paused .marquee {
   animation-play-state: paused;
 }
 

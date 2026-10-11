@@ -1,8 +1,9 @@
-import type { ReactNode } from 'react'
+import { useCallback, useState, type ReactNode } from 'react'
 import { Ending, Header, Marker } from './components'
-import { categories, email, faq, forParents, priceAmount, pricePer, registerLabel, registerUrl, startDate, startLine, classStarted, tutors, whatsapp } from './content'
+import { categories, email, faq, forParents, priceAmount, pricePer, registerLabel, registerUrl, startDate, startLine, classStarted, tutors, type Tutor, whatsapp } from './content'
 import { CategoryIcon, IdeaIcon, type Idea } from './doodles'
 import { AgePicker } from './Explorer'
+import { TutorModal } from './TutorModal'
 import { Footer } from './Footer'
 import { button } from './styles'
 
@@ -78,10 +79,21 @@ function PhotoSpace({ label, className = '' }: { label: string; className?: stri
 
 // Big portrait card like the community site: photo goes from grey to colour on hover,
 // and the name slides up on hover, keyboard focus or tap
-function TutorCard({ tutor, copy = false }: { tutor: (typeof tutors)[number]; copy?: boolean }) {
+function TutorCard({ tutor, copy = false, onOpen }: { tutor: Tutor; copy?: boolean; onOpen: (tutor: Tutor) => void }) {
   return (
     <li className="w-64 shrink-0 sm:w-72" aria-hidden={copy || undefined}>
-      <div tabIndex={copy ? -1 : 0} className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-2xl bg-zinc-100 outline-offset-4">
+      <div
+        role="button"
+        tabIndex={copy ? -1 : 0}
+        aria-label={`Open ${tutor.name}'s profile`}
+        onClick={() => onOpen(tutor)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            onOpen(tutor)
+          }
+        }}
+        className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-2xl bg-zinc-100 outline-offset-4">
         {tutor.photo ? (
           <img
             src={tutor.photo}
@@ -99,7 +111,6 @@ function TutorCard({ tutor, copy = false }: { tutor: (typeof tutors)[number]; co
         >
           <p className="font-display text-2xl leading-tight font-bold tracking-tight">{tutor.name}</p>
         </div>
-        <span className="sr-only">{tutor.name}</span>
       </div>
     </li>
   )
@@ -110,6 +121,9 @@ const tutorSet = Array.from({ length: Math.max(1, Math.ceil(8 / tutors.length)) 
 const carousel = [...tutorSet, ...tutorSet]
 
 function App() {
+  const [openTutor, setOpenTutor] = useState<Tutor | null>(null)
+  const closeTutor = useCallback(() => setOpenTutor(null), [])
+
   return (
     <div className="overflow-x-clip bg-white text-black">
       <Header look="kids" />
@@ -212,10 +226,10 @@ function App() {
           </p>
         </Section>
         {/* Carousel: moves left to right in a loop, stops while hovered or tapped */}
-        <div className="marquee-wrap -mt-6 overflow-hidden pb-16 md:-mt-10 md:pb-24">
+        <div className={`marquee-wrap -mt-6 overflow-hidden pb-16 md:-mt-10 md:pb-24 ${openTutor ? 'paused' : ''}`}>
           <ul className="marquee flex gap-4 md:gap-6">
             {carousel.map((tutor, i) => (
-              <TutorCard key={i} tutor={tutor} copy={i >= tutors.length} />
+              <TutorCard key={i} tutor={tutor} copy={i >= tutors.length} onOpen={setOpenTutor} />
             ))}
           </ul>
         </div>
@@ -264,6 +278,7 @@ function App() {
       </main>
 
       <Footer />
+      {openTutor && <TutorModal tutor={openTutor} onClose={closeTutor} />}
     </div>
   )
 }

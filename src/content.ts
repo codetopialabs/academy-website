@@ -183,13 +183,40 @@ export const faq = [
   { q: 'What do we need at home?', a: 'A laptop or desktop with a keyboard and mouse, and an internet connection. A phone is not enough.' },
 ]
 
-// DUMMY: real tutors and photos. group is the id of the age group they teach
-export const tutors: { name: string; group: string; photo?: string }[] = [
+// DUMMY: real tutors and photos. group is the id of the age group they teach.
+// socials: add only the ones a tutor wants shown
+export type Tutor = {
+  name: string
+  group: string
+  photo?: string
+  bio?: string
+  socials?: { linkedin?: string; x?: string; instagram?: string; github?: string; website?: string }
+}
+
+export const tutors: Tutor[] = [
   // DUMMY photos from Unsplash (free licence), for preview only. Replace with the real tutors before launch.
   // dummy-1: Gabriel Ogulu (AZ1Bqm1GJQ0), dummy-2: Vitaly Gariev (TOuMSV0Nqjk), dummy-3: Adewale Shobaloju (4kDtZ_rJMS4)
-  { name: 'Tutor name', group: 'nova', photo: '/tutors/dummy-1.jpg' },
-  { name: 'Tutor name', group: 'orion', photo: '/tutors/dummy-2.jpg' },
-  { name: 'Tutor name', group: 'nyota', photo: '/tutors/dummy-3.jpg' },
+  {
+    name: 'Tutor name',
+    group: 'nova',
+    photo: '/tutors/dummy-1.jpg',
+    bio: 'A short bio: who they are, what they love building, and why they teach.',
+    socials: { linkedin: '#', instagram: '#' },
+  },
+  {
+    name: 'Tutor name',
+    group: 'orion',
+    photo: '/tutors/dummy-2.jpg',
+    bio: 'A short bio: who they are, what they love building, and why they teach.',
+    socials: { linkedin: '#', x: '#', website: '#' },
+  },
+  {
+    name: 'Tutor name',
+    group: 'nyota',
+    photo: '/tutors/dummy-3.jpg',
+    bio: 'A short bio: who they are, what they love building, and why they teach.',
+    socials: { linkedin: '#', github: '#' },
+  },
 ]
 
 export const forParents = [
