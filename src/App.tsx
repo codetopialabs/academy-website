@@ -88,8 +88,14 @@ function App() {
         <div className="relative overflow-hidden">
         <section className="relative mx-auto grid max-w-6xl gap-12 px-4 pt-20 pb-16 sm:px-6 md:grid-cols-[3fr_2fr] md:items-end md:pt-28">
           <div>
-            <h1 className="font-display text-4xl leading-[1.05] font-bold tracking-tight sm:text-6xl">
-              Your child already uses technology. Here, they learn to <Marker>build with it.</Marker>
+            <p className="font-mono text-sm tracking-[0.2em] text-zinc-500 uppercase">
+              Think. Build. <span className="font-bold text-black">Solve.</span>
+            </p>
+            <h1 className="font-display mt-5 text-6xl leading-[0.95] font-bold tracking-tight sm:text-7xl lg:text-8xl">
+              <span className="block text-zinc-400">Curious in.</span>
+              <span className="block">
+                <Marker>Creator out.</Marker>
+              </span>
             </h1>
             <p className="font-inter mt-8 max-w-xl text-lg text-zinc-700">
               Small live classes online for ages 6 to 20, every Saturday and Sunday. Taught by real
