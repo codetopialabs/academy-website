@@ -116,22 +116,13 @@ function App() {
             </p>
             <p>
               Each month, your child finishes a small project. Every four months they finish a bigger
-              one and present it at our showcase. Family and friends are welcome. And every new learner
-              starts with a welcome pack from us.
+              one and present it at our showcase. Family and friends are welcome.
+            </p>
+            <p>
+              And when your child joins, we send a little welcome pack their way.
             </p>
           </div>
         </Section>
-
-        {/* Welcome pack: its own banner so the hero stays calm */}
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="flex items-center gap-4 rounded-2xl border border-orange-200 bg-orange-50 p-5 sm:p-6">
-            <IdeaIcon name="gift" className="h-10 w-10 shrink-0 text-orange-500" />
-            <div>
-              <p className="font-display text-lg leading-tight font-bold sm:text-xl">Every new learner gets a welcome pack.</p>
-              <p className="font-inter mt-1 text-zinc-700">Our way of saying welcome to the Academy.</p>
-            </div>
-          </div>
-        </div>
 
         <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
           <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
