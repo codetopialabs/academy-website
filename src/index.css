@@ -92,6 +92,10 @@ body {
   .answer { animation: fade-up 250ms ease-out; }
   .sticker:hover { animation: wiggle 400ms ease-in-out; }
 
+  /* on arrival the stickers wiggle twice to catch the eye: warning first, then the price */
+  .intro-wiggle { animation: wiggle 400ms ease-in-out 700ms 2; }
+  .intro-wiggle-2 { animation-delay: 1100ms; }
+
   /* sections fade up the first time they scroll into view */
   .reveal { opacity: 0; transform: translateY(16px); transition: opacity 600ms ease-out, transform 600ms ease-out; }
   .reveal.is-visible { opacity: 1; transform: none; }
