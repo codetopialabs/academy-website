@@ -64,7 +64,7 @@ export const groups: Group[] = [
     meaning: {
       origin: 'Greek',
       means: 'One of the brightest groups of stars in the sky.',
-      why: 'Orion is easy to spot because it shines so brightly. Ages 9 to 11 is when learners start to stand out with their first projects.',
+      why: 'Orion is easy to spot because it shines so brightly. Ages 9 to 11 is when learners stand out more with their projects.',
     },
     ages: '9 to 11',
     about: 'First steps in coding, through games and animation.',
