@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { FaWhatsapp } from 'react-icons/fa6'
 import logo from './assets/Codetopia Academy - Logo Black.png'
 import { categories, email, registerLabel, registerUrl, whatsapp, type Meaning, type Shape } from './content'
-import { BigShape } from './doodles'
+import { IdeaIcon } from './doodles'
 import { button, dots, type Look } from './styles'
 
 export function Marker({ children }: { children: ReactNode }) {
@@ -83,7 +83,7 @@ export function Categories() {
 export function Header({ look }: { look: Look }) {
   const other = look === 'kids' ? { href: '/adults/', short: 'Adults', text: 'Classes for adults' } : { href: '/', short: 'Children', text: 'Classes for children' }
   return (
-    <header className="sticky top-0 z-20 border-b border-zinc-200 bg-paper/90 backdrop-blur">
+    <header className="sticky top-0 z-20 border-b border-zinc-200 bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <a href="/">
           <img src={logo} alt="Codetopia Academy" className="h-auto w-32 sm:w-44" />
@@ -111,8 +111,10 @@ export function Ending({ look, title, shapes = false }: { look: Look; title: Rea
     >
       {shapes && (
         <>
-          <BigShape shape="triangle" className="-bottom-16 -left-20 h-72 w-72 -rotate-12 fill-emerald-200" />
-          <BigShape shape="diamond" className="-top-20 -right-16 h-64 w-64 fill-orange-200" />
+          <IdeaIcon name="pencil" className="bottom-10 left-[8%] h-14 w-14 -rotate-6" />
+          <IdeaIcon name="code" className="top-12 right-[10%] h-14 w-14" />
+          <IdeaIcon name="bulb" className="top-10 left-[14%] hidden h-12 w-12 -rotate-12 sm:block" />
+          <IdeaIcon name="think" className="right-[16%] bottom-8 hidden h-14 w-14 sm:block" />
         </>
       )}
       <h2 className="font-display relative text-4xl font-bold tracking-tight sm:text-6xl">{title}</h2>

@@ -74,7 +74,7 @@ function Wordmark() {
 
 export function Footer() {
   return (
-    <footer className="overflow-hidden bg-paper text-black">
+    <footer className="overflow-hidden bg-white text-black">
       <div className="pt-16">
         <Wordmark />
       </div>

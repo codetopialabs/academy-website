@@ -27,11 +27,34 @@ export function SketchShape({ shape, color, className = 'h-10 w-10' }: { shape: 
   )
 }
 
-// Large flat brand shape for backgrounds, no outline
-export function BigShape({ shape, className }: { shape: Shape; className: string }) {
+// Faint line icons for backgrounds: ideas, thinking, questions, making
+const ideaPaths: Record<string, string[]> = {
+  bulb: [
+    'M20 5 C 12 5, 9 12, 11 18 C 12 22, 15 24, 15 28 L 25 28 C 25 24, 28 22, 29 18 C 31 12, 28 5, 20 5 Z',
+    'M16 32 L24 32',
+    'M17.5 35.5 L22.5 35.5',
+  ],
+  think: [
+    'M9 21 C 4 21, 4 13, 10 13 C 10 7, 19 5, 22 10 C 27 6, 35 10, 32 16 C 37 18, 35 25, 29 24 C 27 28, 17 28, 16 24 C 13 26, 9 25, 9 21 Z',
+    'M8 30 L8.5 30.5',
+    'M4 35 L4.3 35.3',
+  ],
+  question: ['M14 13 C 14 6, 27 6, 26 13 C 25.5 18, 20 18, 20 24', 'M20 31 L20 31.5'],
+  puzzle: ['M6 12 L15 12 C 13 7, 22 7, 20 12 L29 12 L29 20 C 34 18.5, 34 27, 29 25 L29 33 L6 33 Z'],
+  pencil: ['M8 33 L10 25 L28 7 L34 13 L16 31 Z', 'M10 25 L16 31'],
+  code: ['M13 10 L5 20 L13 30', 'M27 10 L35 20 L27 30'],
+  cursor: ['M11 5 L11 30 L17 24 L22 34 L26 32 L21 22 L29 22 Z'],
+  spark: ['M20 4 Q 21.5 18 36 20 Q 21.5 22 20 36 Q 18.5 22 4 20 Q 18.5 18 20 4 Z'],
+}
+
+export type Idea = keyof typeof ideaPaths
+
+export function IdeaIcon({ name, className }: { name: Idea; className: string }) {
   return (
-    <svg viewBox="0 0 37 37" aria-hidden="true" className={`pointer-events-none absolute ${className}`}>
-      <path d={shapePaths[shape]} />
+    <svg viewBox="0 0 40 40" aria-hidden="true" className={`pointer-events-none absolute text-zinc-200 ${className}`}>
+      {ideaPaths[name].map((d) => (
+        <path key={d} {...stroke} strokeWidth={1.8} d={d} />
+      ))}
     </svg>
   )
 }

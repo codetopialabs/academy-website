@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { Ending, Header, Marker } from './components'
 import { categories, email, faq, forParents, priceAmount, pricePer, registerLabel, registerUrl, startDate, startLine, classStarted, tutors, whatsapp } from './content'
-import { BigShape, CategoryIcon } from './doodles'
+import { CategoryIcon, IdeaIcon } from './doodles'
 import { AgePicker } from './Explorer'
 import { Footer } from './Footer'
 import { button } from './styles'
@@ -35,7 +35,7 @@ function Question({ q, children }: { q: string; children: ReactNode }) {
 function PhotoSpace({ label, className = '' }: { label: string; className?: string }) {
   return (
     <div
-      className={`font-inter flex items-center justify-center rounded-lg border border-dashed border-zinc-300 bg-white/80 p-6 text-center text-sm text-zinc-400 ${className}`}
+      className={`font-inter flex items-center justify-center rounded-lg border border-dashed border-zinc-300 bg-zinc-50/90 p-6 text-center text-sm text-zinc-400 ${className}`}
     >
       {label}
     </div>
@@ -44,13 +44,17 @@ function PhotoSpace({ label, className = '' }: { label: string; className?: stri
 
 function App() {
   return (
-    <div className="bg-paper text-black">
+    <div className="bg-white text-black">
       <Header look="kids" />
 
       <main>
         <div className="relative overflow-hidden">
-          <BigShape shape="circle" className="-top-14 -right-14 h-36 w-36 fill-yellow-300 md:-top-28 md:-right-40 md:h-[38rem] md:w-[38rem]" />
-          <BigShape shape="square" className="-bottom-24 -left-24 h-72 w-72 rotate-12 fill-sky-200" />
+          <IdeaIcon name="bulb" className="top-10 right-[6%] h-16 w-16 rotate-12" />
+          <IdeaIcon name="think" className="top-6 left-[46%] hidden h-14 w-14 md:block" />
+          <IdeaIcon name="question" className="right-[40%] bottom-10 hidden h-12 w-12 -rotate-12 md:block" />
+          <IdeaIcon name="puzzle" className="bottom-8 left-[3%] h-12 w-12 rotate-6" />
+          <IdeaIcon name="cursor" className="top-[42%] right-[2%] hidden h-10 w-10 -rotate-6 lg:block" />
+          <IdeaIcon name="spark" className="top-24 left-[2%] hidden h-8 w-8 md:block" />
         <section className="relative mx-auto grid max-w-6xl gap-12 px-4 pt-20 pb-16 sm:px-6 md:grid-cols-[3fr_2fr] md:items-end md:pt-28">
           <div>
             <h1 className="font-display text-4xl leading-[1.05] font-bold tracking-tight sm:text-6xl">
