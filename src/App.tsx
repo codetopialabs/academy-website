@@ -49,12 +49,12 @@ function App() {
 
       <main>
         <div className="relative overflow-hidden">
-          <IdeaIcon name="bulb" className="top-10 right-[6%] h-16 w-16 rotate-12" />
-          <IdeaIcon name="think" className="top-6 left-[46%] hidden h-14 w-14 md:block" />
-          <IdeaIcon name="question" className="right-[40%] bottom-10 hidden h-12 w-12 -rotate-12 md:block" />
-          <IdeaIcon name="puzzle" className="bottom-8 left-[3%] h-12 w-12 rotate-6" />
-          <IdeaIcon name="cursor" className="top-[42%] right-[2%] hidden h-10 w-10 -rotate-6 lg:block" />
-          <IdeaIcon name="spark" className="top-24 left-[2%] hidden h-8 w-8 md:block" />
+          <IdeaIcon name="bulb" className="-top-4 -right-6 h-40 w-40 rotate-12 md:right-[2%] md:h-64 md:w-64" />
+          <IdeaIcon name="think" className="top-2 left-[38%] hidden h-40 w-40 md:block" />
+          <IdeaIcon name="question" className="right-[40%] -bottom-8 hidden h-44 w-44 -rotate-12 md:block" />
+          <IdeaIcon name="puzzle" className="-bottom-10 -left-10 h-32 w-32 rotate-6 md:h-52 md:w-52" />
+          <IdeaIcon name="cursor" className="top-[48%] -right-8 hidden h-36 w-36 -rotate-6 lg:block" />
+          <IdeaIcon name="spark" className="top-20 -left-8 hidden h-28 w-28 md:block" />
         <section className="relative mx-auto grid max-w-6xl gap-12 px-4 pt-20 pb-16 sm:px-6 md:grid-cols-[3fr_2fr] md:items-end md:pt-28">
           <div>
             <h1 className="font-display text-4xl leading-[1.05] font-bold tracking-tight sm:text-6xl">

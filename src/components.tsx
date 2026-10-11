@@ -111,10 +111,10 @@ export function Ending({ look, title, shapes = false }: { look: Look; title: Rea
     >
       {shapes && (
         <>
-          <IdeaIcon name="pencil" className="bottom-10 left-[8%] h-14 w-14 -rotate-6" />
-          <IdeaIcon name="code" className="top-12 right-[10%] h-14 w-14" />
-          <IdeaIcon name="bulb" className="top-10 left-[14%] hidden h-12 w-12 -rotate-12 sm:block" />
-          <IdeaIcon name="think" className="right-[16%] bottom-8 hidden h-14 w-14 sm:block" />
+          <IdeaIcon name="pencil" className="-bottom-10 -left-6 h-36 w-36 -rotate-6 sm:left-[4%] sm:h-48 sm:w-48" />
+          <IdeaIcon name="code" className="-top-6 -right-6 h-36 w-36 sm:right-[5%] sm:h-48 sm:w-48" />
+          <IdeaIcon name="bulb" className="top-4 left-[18%] hidden h-32 w-32 -rotate-12 md:block" />
+          <IdeaIcon name="think" className="right-[20%] -bottom-6 hidden h-36 w-36 md:block" />
         </>
       )}
       <h2 className="font-display relative text-4xl font-bold tracking-tight sm:text-6xl">{title}</h2>
