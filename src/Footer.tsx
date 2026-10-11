@@ -15,6 +15,8 @@ import logo from './assets/Codetopia Academy - Logo Black.png'
 import labsLogo from './assets/codetopia-labs.png'
 
 const email = 'codetopiaacademy@gmail.com'
+// DUMMY: swap for the Labs website if there is one
+const labsUrl = 'https://github.com/codetopialabs'
 
 const socialIcons = [
   { icon: FaYoutube, href: 'https://www.youtube.com/@codetopiaacademy', label: 'YouTube' },
@@ -140,26 +142,35 @@ export function Footer() {
               Privacy
             </a>
           </p>
-          <p className="font-inter flex items-center gap-2 text-xs text-zinc-600">
-            Developed with{' '}
-            <span aria-label="love" role="img" className="text-red-500">
-              ♥
-            </span>{' '}
-            by
-            <img src={labsLogo} alt="Codetopia Labs" className="h-8 w-auto" />
-          </p>
-          <p className="text-xs font-black tracking-widest text-zinc-600 uppercase">
-            A{' '}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+            {/* builder's credit: quiet grey, full colour on hover */}
             <a
-              href="https://codetopia.org"
+              href={labsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors hover:text-black"
+              aria-label="Developed with love by Codetopia Labs"
+              className="font-inter group flex items-center gap-1.5 text-xs text-zinc-600 transition-colors hover:text-black"
             >
-              Codetopia
-            </a>{' '}
-            Initiative
-          </p>
+              Developed with love by
+              <img
+                src={labsLogo}
+                alt=""
+                className="h-6 w-auto opacity-60 grayscale transition group-hover:opacity-100 group-hover:grayscale-0"
+              />
+            </a>
+            <p className="text-xs font-black tracking-widest text-zinc-600 uppercase">
+              A{' '}
+              <a
+                href="https://codetopia.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-black"
+              >
+                Codetopia
+              </a>{' '}
+              Initiative
+            </p>
+          </div>
         </div>
       </div>
     </footer>
