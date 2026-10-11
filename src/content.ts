@@ -18,7 +18,8 @@ export const priceAmount = 'GHS 500'
 export const pricePer = 'a month'
 
 export type Shape = 'circle' | 'square' | 'triangle' | 'diamond' | 'hexagon'
-export type Meaning = { origin: string; means: string; why: string }
+// say: easy written pronunciation. speak: what the browser voice reads out
+export type Meaning = { origin: string; means: string; why: string; say: string; speak: string }
 export type Group = {
   id: string
   name: string
@@ -42,6 +43,8 @@ export const groups: Group[] = [
     id: 'nova',
     name: 'Nova',
     meaning: {
+      say: 'NOH-vuh',
+      speak: 'Nova',
       origin: 'Latin',
       means: 'A new star that suddenly lights up.',
       why: 'A new star is just starting to shine. Ages 6 to 8 are where every learner first lights up.',
@@ -62,6 +65,8 @@ export const groups: Group[] = [
     id: 'orion',
     name: 'Orion',
     meaning: {
+      say: 'oh-RYE-un',
+      speak: 'Orion',
       origin: 'Greek',
       means: 'One of the brightest groups of stars in the sky.',
       why: 'Orion is easy to spot because it shines so brightly. Ages 9 to 11 is when learners stand out more with their projects.',
@@ -82,6 +87,8 @@ export const groups: Group[] = [
     id: 'nyota',
     name: 'Nyota',
     meaning: {
+      say: 'NYOH-tah',
+      speak: 'nyoh-tah',
       origin: 'Swahili',
       means: 'Star.',
       why: 'A star gives off its own light. Ages 12 to 15 shine on their own, with their own code and projects.',
@@ -102,6 +109,8 @@ export const groups: Group[] = [
     id: 'zenith',
     name: 'Zenith',
     meaning: {
+      say: 'ZEN-ith',
+      speak: 'Zenith',
       origin: 'Arabic, via Latin',
       means: 'The highest point in the sky.',
       why: 'Nothing sits higher in the sky. Ages 16 to 20 are our top group, getting ready for university and work.',
@@ -202,6 +211,8 @@ export const forParents = [
 
 export const adultName = 'Atlas'
 export const adultMeaning = {
+  say: 'AT-lus',
+  speak: 'Atlas',
   origin: 'Greek',
   means: 'The titan who holds up the sky.',
   why: 'Adults carry a lot, from work to family. Our adult classes give you skills that make the load lighter.',

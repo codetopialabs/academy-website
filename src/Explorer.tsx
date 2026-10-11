@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NameWithMeaning } from './components'
+import { NameWithMeaning, SayIt } from './components'
 import { adultMeaning, adultName, groups, startLine } from './content'
 import { SketchShape } from './doodles'
 
@@ -65,10 +65,14 @@ export function AgePicker() {
         {group ? (
           <div>
             <SketchShape shape={group.shape} color={group.color} className="h-12 w-12" />
-            <p className="font-display mt-4 text-5xl font-bold tracking-tight">
-              <NameWithMeaning name={group.name} meaning={group.meaning} />
-            </p>
-            <p className="font-inter mt-1 text-zinc-600">Ages {group.ages}</p>
+            <div className="mt-4 flex items-center gap-3">
+              <p className="font-display text-5xl font-bold tracking-tight">
+                <NameWithMeaning name={group.name} meaning={group.meaning} />
+              </p>
+              <SayIt name={group.name} meaning={group.meaning} />
+            </div>
+            <p className="mt-3 font-mono text-sm text-zinc-500">/ {group.meaning.say} /</p>
+            <p className="font-inter mt-2 text-zinc-600">Ages {group.ages}</p>
             <p className="font-inter mt-6 max-w-md text-xl">{group.about}</p>
             <p className="font-inter mt-6 text-sm text-zinc-600">
               {group.open ? startLine : 'Opening soon. Register and we will tell you first.'}
@@ -77,10 +81,14 @@ export function AgePicker() {
         ) : (
           <div>
             <SketchShape shape="hexagon" color="fill-zinc-300" className="h-12 w-12" />
-            <p className="font-display mt-4 text-5xl font-bold tracking-tight">
-              <NameWithMeaning name={adultName} meaning={adultMeaning} />
-            </p>
-            <p className="font-inter mt-1 text-zinc-600">Ages 21+</p>
+            <div className="mt-4 flex items-center gap-3">
+              <p className="font-display text-5xl font-bold tracking-tight">
+                <NameWithMeaning name={adultName} meaning={adultMeaning} />
+              </p>
+              <SayIt name={adultName} meaning={adultMeaning} />
+            </div>
+            <p className="mt-3 font-mono text-sm text-zinc-500">/ {adultMeaning.say} /</p>
+            <p className="font-inter mt-2 text-zinc-600">Ages 21+</p>
             <p className="font-inter mt-6 max-w-md text-xl">Classes for adults, with their own page.</p>
             <a href="/adults/" className="font-inter mt-6 inline-block text-sm font-bold underline underline-offset-4">
               See adult classes ›
