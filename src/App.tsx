@@ -88,15 +88,15 @@ function App() {
         <div className="relative overflow-hidden">
         <section className="relative mx-auto grid max-w-6xl gap-12 px-4 pt-20 pb-16 sm:px-6 md:grid-cols-[3fr_2fr] md:items-end md:pt-28">
           <div>
-            <p className="inline-flex -rotate-2 items-center gap-2 rounded-md border-2 border-black bg-yellow-300 px-3 py-1 font-mono text-sm font-bold tracking-[0.15em] uppercase">
-              <span aria-hidden="true">⚠</span> Warning
+            <p className="inline-flex -rotate-2 items-center gap-2 rounded-md border-2 border-black bg-yellow-300 px-3 py-1 font-mono text-xs font-bold tracking-wide sm:text-sm">
+              <span aria-hidden="true">⚠</span> Warning: they might start fixing everything.
             </p>
-            <h1 className="font-display mt-6 text-5xl leading-[1.02] font-bold tracking-tight sm:text-6xl lg:text-7xl">
-              They might start fixing <Marker>everything.</Marker>
+            <h1 className="font-display mt-6 text-[2.6rem] leading-[1.02] font-bold tracking-tight sm:text-6xl lg:text-7xl">
+              Live tech classes where your child builds <Marker>real things.</Marker>
             </h1>
             <p className="font-inter mt-8 max-w-xl text-lg text-zinc-700">
-              Small live classes online for ages 6 to 20, every Saturday and Sunday. Taught by real
-              tutors, in groups of about five.
+              Online, in small groups of about five, every Saturday and Sunday. For ages 6 to 20,
+              taught by real tutors.
             </p>
             <div className="mt-10 flex items-center gap-4 sm:gap-5">
               <a href={registerUrl} className={`${button('kids')} shrink-0 whitespace-nowrap`}>
