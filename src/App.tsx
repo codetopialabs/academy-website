@@ -87,7 +87,11 @@ function App() {
               </a>
               <PriceTag amount={priceAmount} per={pricePer} intro />
             </div>
-            <p className="font-inter mt-6 text-zinc-700">{startLine}</p>
+            <p className="font-inter mt-6 flex items-center gap-2 font-medium">
+              <IdeaIcon name="gift" className="h-6 w-6 shrink-0 text-orange-500" />
+              Every new learner gets a welcome pack.
+            </p>
+            <p className="font-inter mt-2 text-zinc-700">{startLine}</p>
             <a
               href={`https://wa.me/${whatsapp}`}
               target="_blank"
@@ -116,7 +120,8 @@ function App() {
             </p>
             <p>
               Each month, your child finishes a small project. Every four months they finish a bigger
-              one and present it at our showcase. Family and friends are welcome.
+              one and present it at our showcase. Family and friends are welcome. And every new learner
+              starts with a welcome pack from us.
             </p>
           </div>
         </Section>

@@ -135,6 +135,13 @@ const ideaPaths: Record<string, string[]> = {
     'M32 26 C 32 29, 26 30, 26 27 C 26 24, 31 23, 32 26 Z',
   ],
   puzzle: ['M6 12 L15 12 C 13 7, 22 7, 20 12 L29 12 L29 20 C 34 18.5, 34 27, 29 25 L29 33 L6 33 Z'],
+  gift: [
+    'M7 17 L33 17 L33 35 L7 35 Z',
+    'M5 11 L35 11 L35 17 L5 17 Z',
+    'M20 11 L20 35',
+    'M20 11 C 14 3, 7 8, 13 11',
+    'M20 11 C 26 3, 33 8, 27 11',
+  ],
 }
 
 export type Idea = keyof typeof ideaPaths
