@@ -210,7 +210,7 @@ export function GiftBox({ className }: { className: string }) {
             d={c.d}
             strokeWidth={4}
             className={`gift-bit ${c.color}`}
-            style={{ '--x': `${c.x}px`, '--y': `${c.y}px`, animationDelay: `${i * 30}ms` } as CSSProperties}
+            style={{ '--x': `${c.x}px`, '--y': `${c.y}px`, animationDelay: `${600 + i * 30}ms` } as CSSProperties}
           />
         ))}
         <path d="M7 17 L33 17 L33 35 L7 35 Z" vectorEffect="non-scaling-stroke" />
