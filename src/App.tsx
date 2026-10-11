@@ -60,7 +60,7 @@ function App() {
               <a href={registerUrl} className={`${button('kids')} shrink-0 whitespace-nowrap`}>
                 {registerLabel} ›
               </a>
-              <p className="-rotate-2 rounded-lg bg-orange-400 px-4 py-2 whitespace-nowrap shadow-[3px_3px_0_0_#000]">
+              <p className="-rotate-2 rounded-lg bg-yellow-300 px-4 py-2 whitespace-nowrap shadow-[3px_3px_0_0_#000]">
                 {/* both parts big so the whole price reads at a glance */}
                 <span className="font-display text-2xl font-bold tracking-tight sm:text-4xl">{priceAmount}</span>
                 <span className="font-display ml-1.5 text-lg font-bold tracking-tight sm:ml-2 sm:text-2xl">{pricePer}</span>
