@@ -12,6 +12,7 @@ import {
 } from 'react-icons/fa6'
 import { SiBluesky } from 'react-icons/si'
 import logo from './assets/Codetopia Academy - Logo Black.png'
+import labsLogo from './assets/codetopia-labs.png'
 
 const email = 'codetopiaacademy@gmail.com'
 
@@ -138,6 +139,14 @@ export function Footer() {
             <a href="/privacy/" className="underline transition-colors hover:text-black">
               Privacy
             </a>
+          </p>
+          <p className="font-inter flex items-center gap-2 text-xs text-zinc-600">
+            Developed with{' '}
+            <span aria-label="love" role="img" className="text-red-500">
+              ♥
+            </span>{' '}
+            by
+            <img src={labsLogo} alt="Codetopia Labs" className="h-8 w-auto" />
           </p>
           <p className="text-xs font-black tracking-widest text-zinc-600 uppercase">
             A{' '}
