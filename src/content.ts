@@ -64,10 +64,10 @@ export const groups: Group[] = [
     meaning: {
       origin: 'Greek',
       means: 'One of the brightest groups of stars in the sky.',
-      why: 'This is where learners start to shine and build their first real things.',
+      why: 'This is where learners start to shine and build their first projects.',
     },
     ages: '9 to 11',
-    about: 'First real steps in coding, through games and animation.',
+    about: 'First steps in coding, through games and animation.',
     open: true,
     min: 9,
     max: 11,
@@ -84,15 +84,15 @@ export const groups: Group[] = [
     meaning: {
       origin: 'Swahili',
       means: 'Star.',
-      why: 'Learners now shine on their own, with real code and real projects.',
+      why: 'Learners now shine on their own, with their own code and their own projects.',
     },
     ages: '12 to 15',
-    about: 'Real programming and real projects.',
+    about: 'Proper programming and bigger projects.',
     open: false,
     min: 12,
     max: 15,
     level: 3,
-    pace: 'Real code',
+    pace: 'Proper code',
     shape: 'triangle',
     color: 'fill-emerald-300',
     tint: 'bg-emerald-50',
@@ -223,7 +223,7 @@ export const adultHow = [
 export const adultWho = [
   { who: 'Beginners', why: 'Get comfortable with computers, the internet and AI.' },
   { who: 'Students', why: 'Build skills and projects school does not cover.' },
-  { who: 'Career switchers', why: 'Take a first real step into tech.' },
+  { who: 'Career switchers', why: 'Take a first step into tech.' },
   { who: 'Working professionals', why: 'Save time at work with the right tools.' },
 ]
 
