@@ -100,3 +100,24 @@ body {
   .reveal { opacity: 0; transform: translateY(16px); transition: opacity 600ms ease-out, transform 600ms ease-out; }
   .reveal.is-visible { opacity: 1; transform: none; }
 }
+
+/* Hero photo columns: left scrolls up, right scrolls down, pause on hover.
+   The soft fade at the top and bottom edges is a mask, not a colour gradient */
+.photo-columns {
+  mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes column-up {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
+  }
+  @keyframes column-down {
+    from { transform: translateY(-50%); }
+    to { transform: translateY(0); }
+  }
+  .scroll-up { animation: column-up 32s linear infinite; }
+  .scroll-down { animation: column-down 32s linear infinite; }
+  .photo-columns:hover .scroll-up,
+  .photo-columns:hover .scroll-down { animation-play-state: paused; }
+}

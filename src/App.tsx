@@ -19,27 +19,41 @@ const edgeIcons: { name: Idea; top: string; side: string; color: string }[] = [
 ]
 
 // DUMMY photos from Unsplash (free licence). Swap for real class photos (with parents' consent).
-// kids-1 Ben Mullins (je240KkJIuA), kids-2 Theo (5keTNEWfdMM), kids-3 Mpumelelo Macu (9p-DsBtSygA), kids-4 Muhammad Rizqi (N-lCdqdAdes)
-const heroPhotos = [
-  { src: '/hero/kids-1.jpg', alt: 'A smiling girl wearing headphones in a classroom', tile: 'col-start-1 row-span-3 row-start-1', focus: 'object-[50%_35%]' },
-  { src: '/hero/kids-2.jpg', alt: 'A vintage toy robot', tile: 'col-start-2 row-span-2 row-start-1', focus: 'object-[50%_18%]' },
-  { src: '/hero/kids-3.jpg', alt: 'A boy listening to music on headphones', tile: 'col-start-2 row-span-4 row-start-3', focus: 'object-[60%_25%]' },
-  { src: '/hero/kids-4.jpg', alt: 'A girl smiling while working on her laptop', tile: 'col-start-1 row-span-3 row-start-4', focus: 'object-[35%_50%]' },
+// kids-1 Ben Mullins (je240KkJIuA), kids-2 Theo (5keTNEWfdMM), kids-3 Mpumelelo Macu (9p-DsBtSygA),
+// kids-4 Muhammad Rizqi (N-lCdqdAdes), kids-5 (8I0-dsJYg1g), kids-6 Graphic Node (odCQKEVFSdE)
+type HeroPhoto = { src: string; alt: string; height: string; focus: string }
+const leftPhotos: HeroPhoto[] = [
+  { src: '/hero/kids-1.jpg', alt: 'A smiling girl wearing headphones in a classroom', height: 'h-72', focus: 'object-[50%_35%]' },
+  { src: '/hero/kids-4.jpg', alt: 'A girl smiling while working on her laptop', height: 'h-56', focus: 'object-[35%_50%]' },
+  { src: '/hero/kids-5.jpg', alt: 'A smiling girl in a yellow top', height: 'h-64', focus: 'object-[50%_30%]' },
+]
+const rightPhotos: HeroPhoto[] = [
+  { src: '/hero/kids-2.jpg', alt: 'A vintage toy robot', height: 'h-52', focus: 'object-[50%_18%]' },
+  { src: '/hero/kids-3.jpg', alt: 'A boy listening to music on headphones', height: 'h-72', focus: 'object-[60%_25%]' },
+  { src: '/hero/kids-6.jpg', alt: 'A smiling boy in a green shirt', height: 'h-56', focus: 'object-[50%_40%]' },
 ]
 
-// Mosaic of photos in the hero: two columns of tiles in different heights
+// One column of photos, repeated twice so the loop is seamless
+function PhotoColumn({ photos, direction }: { photos: HeroPhoto[]; direction: 'up' | 'down' }) {
+  return (
+    <div className="overflow-hidden">
+      <div className={direction === 'up' ? 'scroll-up' : 'scroll-down'}>
+        {[...photos, ...photos].map((photo, i) => (
+          <div key={i} aria-hidden={i >= photos.length || undefined} className={`mb-3 overflow-hidden rounded-2xl ${photo.height}`}>
+            <img src={photo.src} alt={i >= photos.length ? '' : photo.alt} className={`h-full w-full object-cover ${photo.focus}`} />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// Two columns of photos in the hero: the left scrolls up, the right scrolls down
 function HeroGrid() {
   return (
-    <div className="grid aspect-[4/5] grid-cols-2 grid-rows-6 gap-3">
-      {heroPhotos.map((photo) => (
-        <div key={photo.src} className={`overflow-hidden rounded-2xl ${photo.tile}`}>
-          <img
-            src={photo.src}
-            alt={photo.alt}
-            className={`h-full w-full object-cover transition duration-500 motion-safe:hover:scale-105 ${photo.focus}`}
-          />
-        </div>
-      ))}
+    <div className="photo-columns grid aspect-[4/5] grid-cols-2 gap-3 overflow-hidden rounded-2xl">
+      <PhotoColumn photos={leftPhotos} direction="up" />
+      <PhotoColumn photos={rightPhotos} direction="down" />
     </div>
   )
 }
