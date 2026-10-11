@@ -142,35 +142,35 @@ export function Footer() {
               Privacy
             </a>
           </p>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
-            {/* builder's credit: quiet grey, full colour on hover */}
+          <p className="text-xs font-black tracking-widest text-zinc-600 uppercase">
+            A{' '}
             <a
-              href={labsUrl}
+              href="https://codetopia.org"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Developed with love by Codetopia Labs"
-              className="font-inter group flex items-center gap-1.5 text-xs text-zinc-600 transition-colors hover:text-black"
+              className="transition-colors hover:text-black"
             >
-              Developed with love by
-              <img
-                src={labsLogo}
-                alt=""
-                className="h-6 w-auto opacity-60 grayscale transition group-hover:opacity-100 group-hover:grayscale-0"
-              />
-            </a>
-            <p className="text-xs font-black tracking-widest text-zinc-600 uppercase">
-              A{' '}
-              <a
-                href="https://codetopia.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-black"
-              >
-                Codetopia
-              </a>{' '}
-              Initiative
-            </p>
-          </div>
+              Codetopia
+            </a>{' '}
+            Initiative
+          </p>
+        </div>
+        <div className="mx-auto flex max-w-6xl justify-center border-t border-zinc-200 px-6 py-6">
+          {/* builder's credit: quiet grey, full colour on hover */}
+          <a
+            href={labsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Developed with love by Codetopia Labs"
+            className="font-inter group flex items-center gap-1.5 text-xs text-zinc-600 transition-colors hover:text-black"
+          >
+            Developed with love by
+            <img
+              src={labsLogo}
+              alt=""
+              className="h-6 w-auto opacity-60 grayscale transition group-hover:opacity-100 group-hover:grayscale-0"
+            />
+          </a>
         </div>
       </div>
     </footer>
