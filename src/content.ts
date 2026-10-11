@@ -22,9 +22,14 @@ export type Group = {
   ages: string
   about: string
   open: boolean
+  min: number
+  max: number
+  level: number // intensity, 1 to 4
+  pace: string
   shape: Shape
   color: string // shape fill
   tint: string // panel background
+  accent: string // solid background for highlights
 }
 
 // DUMMY: which groups open on 7 Nov
@@ -40,9 +45,14 @@ export const groups: Group[] = [
     ages: '6 to 8',
     about: 'Logic and computer basics through play.',
     open: false,
+    min: 6,
+    max: 8,
+    level: 1,
+    pace: 'Playful',
     shape: 'circle',
     color: 'fill-yellow-300',
     tint: 'bg-yellow-50',
+    accent: 'bg-yellow-300',
   },
   {
     id: 'orion',
@@ -55,9 +65,14 @@ export const groups: Group[] = [
     ages: '9 to 11',
     about: 'First real steps in coding, through games and animation.',
     open: true,
+    min: 9,
+    max: 11,
+    level: 2,
+    pace: 'Hands-on',
     shape: 'square',
     color: 'fill-sky-300',
     tint: 'bg-sky-50',
+    accent: 'bg-sky-300',
   },
   {
     id: 'nyota',
@@ -70,9 +85,14 @@ export const groups: Group[] = [
     ages: '12 to 15',
     about: 'Real programming and real projects.',
     open: false,
+    min: 12,
+    max: 15,
+    level: 3,
+    pace: 'Real code',
     shape: 'triangle',
     color: 'fill-emerald-300',
     tint: 'bg-emerald-50',
+    accent: 'bg-emerald-300',
   },
   {
     id: 'zenith',
@@ -85,53 +105,115 @@ export const groups: Group[] = [
     ages: '16 to 20',
     about: 'Bigger projects, and skills for university and first jobs.',
     open: false,
+    min: 16,
+    max: 20,
+    level: 4,
+    pace: 'Pro level',
     shape: 'diamond',
     color: 'fill-orange-300',
     tint: 'bg-orange-50',
+    accent: 'bg-orange-300',
   },
 ]
 
 // Every learner works through all six, in this order. Each category has many courses.
-export type Category = { name: string; about: string; kids: string[]; adults: string[] }
+export type CategoryId = 'foundations' | 'ai' | 'design' | 'software' | 'hardware' | 'automation'
+export type Category = { id: CategoryId; name: string; about: string; adults: string[] }
 
 // DUMMY: example courses
 export const categories: Category[] = [
   {
+    id: 'foundations',
     name: 'Computer Foundations',
     about: 'Using a computer well and staying safe online.',
-    kids: ['Typing and Files', 'Searching the Internet', 'Staying Safe Online'],
     adults: ['Technology from Zero', 'Email and Documents', 'Staying Safe Online'],
   },
   {
+    id: 'ai',
     name: 'AI and Data',
     about: 'How AI works, how to use it well, and making sense of data.',
-    kids: ['Meet AI', 'Asking AI Good Questions', 'Charts and Data'],
     adults: ['AI Tools for Work', 'Spreadsheets and Data', 'Checking AI Answers'],
   },
   {
+    id: 'design',
     name: 'Design and Digital Media',
     about: 'Drawing, animation, video, and how screens should look.',
-    kids: ['Digital Drawing', 'Animation and Stories', 'Video Making'],
     adults: ['Graphics for Work', 'Slides that Work', 'Video Basics'],
   },
   {
+    id: 'software',
     name: 'Software Engineering',
     about: 'Building working programs, games, websites and apps.',
-    kids: ['Game Making with Scratch', 'Intro to Python', 'Build a Website'],
     adults: ['Python from Zero', 'Build a Website', 'Web Apps'],
   },
   {
+    id: 'hardware',
     name: 'Hardware and Electronics',
     about: 'Circuits, sensors and robots.',
-    kids: ['First Circuits', 'Robots', 'Microcontrollers'],
     adults: ['Electronics Basics', 'Microcontrollers', 'Smart Devices'],
   },
   {
+    id: 'automation',
     name: 'Automation',
     about: 'Getting computers to do repetitive work for you.',
-    kids: ['Make the Computer Do It', 'Simple Bots', 'Automate with Python'],
     adults: ['Automate Your Spreadsheets', 'No-code Automation', 'Automate with Python'],
   },
+]
+
+// Courses change with age: same six categories, different courses and depth.
+export type Plan = { courses: string[]; make: string }
+
+// DUMMY: course names and projects per group
+export const plans: Record<string, Record<CategoryId, Plan>> = {
+  nova: {
+    foundations: { courses: ['Mouse and Keyboard', 'Saving My Work', 'Safe Online'], make: 'A typed and saved story' },
+    ai: { courses: ['What is AI?', 'Talking to AI', 'Sorting Things'], make: 'A sorting game' },
+    design: { courses: ['Digital Drawing', 'Colours and Shapes', 'Moving Pictures'], make: 'An animated drawing' },
+    software: { courses: ['Step by Step', 'ScratchJr Basics', 'My First Story'], make: 'An interactive story' },
+    hardware: { courses: ['Inside a Computer', 'Lights and Buttons', 'Simple Circuits'], make: 'A light-up card' },
+    automation: { courses: ['Patterns', 'Repeat It', 'Robot Instructions'], make: 'Instructions a robot can follow' },
+  },
+  orion: {
+    foundations: { courses: ['Typing Fast', 'Files and Folders', 'Smart Searching'], make: 'A research poster' },
+    ai: { courses: ['How AI Learns', 'Good Questions for AI', 'Is AI Right?'], make: 'A quiz checked against AI' },
+    design: { courses: ['Characters', 'Animation and Stories', 'Video Basics'], make: 'A short animated film' },
+    software: { courses: ['Scratch Games', 'Scores and Levels', 'Intro to Python'], make: 'A game they can play' },
+    hardware: { courses: ['Circuits', 'micro:bit Basics', 'Sensors'], make: 'A micro:bit gadget' },
+    automation: { courses: ['Loops', 'If This Then That', 'Simple Bots'], make: 'A bot that answers questions' },
+  },
+  nyota: {
+    foundations: { courses: ['Touch Typing', 'Docs and Sheets', 'Privacy and Scams'], make: 'A staying-safe guide for their family' },
+    ai: { courses: ['How AI Works', 'Data and Charts', 'Prompting Well'], make: 'A chart that answers a real question' },
+    design: { courses: ['Layout and Posters', 'Video Editing', 'Website Design'], make: 'A designed web page' },
+    software: { courses: ['Python Foundations', 'HTML and CSS', 'JavaScript Basics'], make: 'Their own live website' },
+    hardware: { courses: ['Arduino Basics', 'Sensors and Motors', 'Build a Robot'], make: 'A small robot' },
+    automation: { courses: ['Python Scripts', 'Automate Files', 'Simple APIs'], make: 'A script that saves time' },
+  },
+  zenith: {
+    foundations: { courses: ['Pro Tools', 'Cloud and Teamwork', 'Security Basics'], make: 'A secure online portfolio' },
+    ai: { courses: ['Machine Learning Basics', 'Data Analysis', 'Building with AI'], make: 'An app that uses AI' },
+    design: { courses: ['UI Design in Figma', 'Brand and Identity', 'Motion Graphics'], make: 'A full app design' },
+    software: { courses: ['Web Apps', 'Databases', 'Git and Teamwork'], make: 'A working web app' },
+    hardware: { courses: ['Microcontrollers', 'Internet of Things', 'Prototyping'], make: 'A connected device' },
+    automation: { courses: ['Workflows', 'Bots and APIs', 'Testing'], make: 'An automated workflow' },
+  },
+}
+
+export const stats = [
+  { big: '5', small: 'kids per tutor' },
+  { big: '8', small: 'live sessions a month' },
+  { big: '1', small: 'project every month' },
+  { big: '4', small: 'months per module' },
+]
+
+// DUMMY: confirm answers with the team
+export const faq = [
+  { q: 'My child has never used a computer much. Is that okay?', a: 'Yes. Everyone starts at the beginning, and there is a short device check before the first class.' },
+  { q: 'What happens as my child gets older?', a: 'They move up to the next group. The six areas stay the same, but the courses go deeper.' },
+  { q: 'What if we miss a class?', a: 'Every class is recorded, so your child can catch up.' },
+  { q: 'What is the showcase?', a: 'At the end of each 4-month module, learners present their project. Family and friends are invited.' },
+  { q: 'What do we need at home?', a: 'A laptop or desktop with a keyboard and mouse, and an internet connection. A phone is not enough.' },
+  { q: 'How much does it cost?', a: fees },
 ]
 
 // One module runs 4 months

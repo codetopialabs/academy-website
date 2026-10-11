@@ -56,30 +56,20 @@ export function NameWithMeaning({ name, meaning, className = '' }: { name: strin
   )
 }
 
-const numberColors = ['text-yellow-400', 'text-sky-400', 'text-emerald-400', 'text-orange-400']
-
-export function Categories({ look }: { look: Look }) {
+// Adults page list of the six categories
+export function Categories() {
   return (
     <ol className="divide-y divide-zinc-200 border-y border-zinc-200">
       {categories.map((category, i) => (
         <li key={category.name} className="grid gap-2 py-6 md:grid-cols-[3rem_1fr_1.5fr] md:gap-6">
-          {look === 'kids' ? (
-            <span className={`font-hand text-4xl leading-none font-bold ${numberColors[i % numberColors.length]}`}>
-              {i + 1}
-            </span>
-          ) : (
-            <span className="font-mono text-sm text-zinc-400">{String(i + 1).padStart(2, '0')}</span>
-          )}
+          <span className="font-mono text-sm text-zinc-400">{String(i + 1).padStart(2, '0')}</span>
           <div>
             <p className="text-lg font-bold">{category.name}</p>
             <p className="font-inter mt-1 text-zinc-600">{category.about}</p>
           </div>
           <ul className="flex flex-wrap content-start gap-2">
-            {(look === 'kids' ? category.kids : category.adults).map((course) => (
-              <li
-                key={course}
-                className={`font-inter border border-zinc-200 px-3 py-1 text-sm text-zinc-700 ${look === 'kids' ? 'rounded-full' : ''}`}
-              >
+            {category.adults.map((course) => (
+              <li key={course} className="font-inter border border-zinc-200 px-3 py-1 text-sm text-zinc-700">
                 {course}
               </li>
             ))}

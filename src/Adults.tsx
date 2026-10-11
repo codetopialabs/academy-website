@@ -38,7 +38,7 @@ export function Adults() {
           <p className="font-inter mb-8 text-lg text-zinc-700">
             Six areas, one after another. Each has many courses. Here are a few.
           </p>
-          <Categories look="adults" />
+          <Categories />
         </Row>
 
         <Row label="How it works">

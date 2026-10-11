@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import type { Shape } from './content'
+import type { CategoryId, Shape } from './content'
 
 // Hand-drawn doodles. Paths are wobbly on purpose so they look drawn, not generated.
 
@@ -121,4 +121,38 @@ export function SketchShape({ shape, color, className = 'h-10 w-10' }: { shape: 
 // Handwritten margin note
 export function Note({ children, className = '' }: { children: ReactNode; className?: string }) {
   return <span className={`font-hand text-2xl leading-tight text-zinc-700 ${className}`}>{children}</span>
+}
+
+// Hand-drawn icon for each category
+const iconPaths: Record<CategoryId, string[]> = {
+  foundations: ['M5 7 L35 6 L36 27 L4 28 Z', 'M17 28 L16 34', 'M24 28 L25 34', 'M11 34.5 L30 34'],
+  ai: [
+    'M16 7 Q 17 16 27 17.5 Q 17 19 16 29 Q 15 19 5 17.5 Q 15 16 16 7 Z',
+    'M30 4 Q 30.5 8 34 8.5 Q 30.5 9 30 13 Q 29.5 9 26 8.5 Q 29.5 8 30 4 Z',
+  ],
+  design: ['M8 33 L10 25 L28 7 L34 13 L16 31 Z', 'M10 25 L16 31', 'M25 10 L31 16'],
+  software: ['M13 10 L5 20 L13 30', 'M27 10 L35 20 L27 30', 'M23 7 L17 33'],
+  hardware: [
+    'M20 5 C 12 5, 9 12, 11 18 C 12 22, 15 24, 15 28 L 25 28 C 25 24, 28 22, 29 18 C 31 12, 28 5, 20 5 Z',
+    'M16 32 L24 32',
+    'M17.5 35.5 L22.5 35.5',
+  ],
+  automation: [
+    'M31 15 C 28 8, 20 5, 13 8 C 8 11, 6 16, 7 21',
+    'M31 15 L32 8',
+    'M31 15 L24 14',
+    'M9 26 C 12 32, 20 35, 27 32 C 32 29, 34 24, 33 19',
+    'M9 26 L8 33',
+    'M9 26 L16 27',
+  ],
+}
+
+export function CategoryIcon({ id, className = 'h-9 w-9' }: { id: CategoryId; className?: string }) {
+  return (
+    <svg viewBox="0 0 40 40" aria-hidden="true" className={className}>
+      {iconPaths[id].map((d) => (
+        <path key={d} {...stroke} d={d} />
+      ))}
+    </svg>
+  )
 }

@@ -1,16 +1,16 @@
 import type { ReactNode } from 'react'
-import { Categories, Ending, Header, Label, Marker, NameWithMeaning } from './components'
+import { Ending, Header, Label, Marker } from './components'
 import {
-  beforeYouStart,
+  faq,
   forParents,
-  groups,
   moduleSteps,
   registerLabel,
   registerUrl,
   startDate,
+  stats,
   tutors,
-  type Group,
 } from './content'
+import { Explorer } from './Explorer'
 import {
   Arrow,
   Check,
@@ -18,7 +18,6 @@ import {
   Note,
   Path,
   Scribbled,
-  SketchShape,
   Sparkle,
   Squiggle,
   Star,
@@ -49,35 +48,8 @@ function Section({
   )
 }
 
-// slight tilts so the panels look placed by hand
-const tilts = ['-rotate-1', 'rotate-[0.6deg]', 'rotate-[0.8deg]', '-rotate-[0.5deg]']
-
-function GroupBlock({ group, tilt }: { group: Group; tilt: string }) {
-  return (
-    <div id={group.id} className={`relative scroll-mt-20 rounded-3xl p-6 sm:p-8 ${group.tint} ${tilt}`}>
-      {group.open && (
-        <Note className="absolute -top-7 right-6 rotate-3 text-xl text-black">first classes here!</Note>
-      )}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
-        <SketchShape shape={group.shape} color={group.color} className="h-10 w-10" />
-        <h3 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
-          <NameWithMeaning name={group.name} meaning={group.meaning} />
-        </h3>
-        <span className="font-hand text-2xl text-zinc-600">ages {group.ages}</span>
-      </div>
-      <p className="font-inter mt-4 text-lg text-zinc-700">{group.about}</p>
-      <p className="mt-5">
-        <span
-          className={`rounded-full px-3 py-1 font-mono text-xs ${
-            group.open ? 'bg-black text-white' : 'border border-black/15 bg-white/70 text-zinc-500'
-          }`}
-        >
-          {group.open ? `Starts ${startDate}` : 'Opening soon'}
-        </span>
-      </p>
-    </div>
-  )
-}
+const stickerTilts = ['-rotate-2', 'rotate-1', '-rotate-1', 'rotate-2']
+const stickerColors = ['text-yellow-400', 'text-sky-400', 'text-emerald-400', 'text-orange-400']
 
 function CheckList({ lines }: { lines: string[] }) {
   return (
@@ -124,44 +96,36 @@ function App() {
           </div>
         </section>
 
-        <Section
-          label="Classes by age"
-          title={
-            <>
-              Pick your child's <Scribbled color="text-yellow-300">group</Scribbled>
-            </>
-          }
-          note={<Note className="-rotate-2">psst… tap a name. they all mean something ✦</Note>}
-        >
-          <div className="grid gap-8 md:grid-cols-2">
-            {groups.map((group, i) => (
-              <GroupBlock key={group.id} group={group} tilt={tilts[i % tilts.length]} />
-            ))}
-          </div>
-        </Section>
+        <div className="mx-auto grid max-w-5xl grid-cols-2 gap-4 px-4 pt-4 sm:px-6 md:grid-cols-4">
+          {stats.map((stat, i) => (
+            <div
+              key={stat.small}
+              className={`rounded-2xl border-2 border-black bg-white p-5 text-center ${stickerTilts[i]}`}
+            >
+              <p className={`font-hand text-6xl leading-none font-bold ${stickerColors[i]}`}>{stat.big}</p>
+              <p className="font-inter mt-2 text-sm text-zinc-700">{stat.small}</p>
+            </div>
+          ))}
+        </div>
 
         <Section
-          label="What we teach"
+          label="Find your child's group"
           title={
             <>
-              Six areas, <Scribbled color="text-emerald-300">one after another</Scribbled>
+              What will your child <Scribbled color="text-yellow-300">learn?</Scribbled>
             </>
           }
-          note={<Note className="rotate-2">everyone does all six!</Note>}
+          note={<Note className="-rotate-2">change the age. watch the courses change ✦</Note>}
         >
-          <p className="font-inter -mt-4 mb-10 max-w-2xl text-lg text-zinc-600">
-            Every learner works through all six, at a level that fits their age. Each area has many
-            courses. Here are a few.
-          </p>
-          <Categories look="kids" />
+          <Explorer />
         </Section>
 
         <div style={dots} className="relative">
           <Section
-            label="How learning works"
+            label="Inside one module"
             title={
               <>
-                Four months, <Scribbled>one module</Scribbled>
+                Four months. <Scribbled>One big project.</Scribbled>
               </>
             }
           >
@@ -225,15 +189,22 @@ function App() {
           </ul>
         </Section>
 
-        <Section label="Good to know" title="For parents">
-          <div className="grid gap-12 md:grid-cols-2">
-            <div className="rounded-3xl border-2 border-black p-6 sm:p-8">
+        <Section label="For parents" title="Questions parents ask">
+          <div className="grid gap-12 md:grid-cols-[1fr_1.4fr]">
+            <div className="h-fit rounded-3xl border-2 border-black p-6 sm:p-8">
               <h3 className="text-xl font-bold">Your child is safe with us</h3>
               <CheckList lines={forParents} />
             </div>
-            <div className="rounded-3xl border-2 border-dashed border-zinc-300 p-6 sm:p-8">
-              <h3 className="text-xl font-bold">Before you start</h3>
-              <CheckList lines={beforeYouStart} />
+            <div className="divide-y-2 divide-dashed divide-zinc-200">
+              {faq.map((item) => (
+                <details key={item.q} className="group py-5">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-bold">
+                    {item.q}
+                    <span className="font-hand text-3xl leading-none transition group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="font-inter mt-3 text-zinc-600">{item.a}</p>
+                </details>
+              ))}
             </div>
           </div>
         </Section>
