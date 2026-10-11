@@ -171,7 +171,6 @@ export const stats = [
 export const faq = [
   { q: 'My child has never used a computer much. Is that okay?', a: 'Yes. Everyone starts at the beginning, and there is a short device check before the first class.' },
   { q: 'What happens as my child gets older?', a: 'They move up to the next group. The six areas stay the same, but the courses go deeper.' },
-  { q: 'What if we miss a class?', a: 'Every class is recorded, so your child can catch up.' },
   { q: 'What is the showcase?', a: 'At the end of each 4-month module, learners present their project. Family and friends are invited.' },
   { q: 'What do we need at home?', a: 'A laptop or desktop with a keyboard and mouse, and an internet connection. A phone is not enough.' },
   { q: 'How much does it cost?', a: fees },
