@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react'
 import { FaWhatsapp } from 'react-icons/fa6'
 import logo from './assets/Codetopia Academy - Logo Black.png'
-import { categories, email, registerLabel, registerUrl, whatsapp, type Meaning, type Shape } from './content'
+import { email, registerLabel, registerUrl, whatsapp, type Meaning, type Shape } from './content'
 import { IdeaIcon } from './doodles'
-import { button, dots, type Look } from './styles'
+import { button, type Look } from './styles'
 
 export function Marker({ children }: { children: ReactNode }) {
   return (
@@ -15,10 +15,6 @@ export function Marker({ children }: { children: ReactNode }) {
       <span className="relative">{children}</span>
     </span>
   )
-}
-
-export function Label({ children }: { children: ReactNode }) {
-  return <p className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">{children}</p>
 }
 
 export function ShapeMark({ shape, color, className = 'h-8 w-8' }: { shape: Shape; color: string; className?: string }) {
@@ -62,29 +58,6 @@ export function NameWithMeaning({ name, meaning, className = '' }: { name: strin
   )
 }
 
-// Adults page list of the six categories
-export function Categories() {
-  return (
-    <ol className="divide-y divide-zinc-200 border-y border-zinc-200">
-      {categories.map((category) => (
-        <li key={category.name} className="grid gap-2 py-6 md:grid-cols-[1fr_1.5fr] md:gap-6">
-          <div>
-            <p className="text-lg font-bold">{category.name}</p>
-            <p className="font-inter mt-1 text-zinc-600">{category.about}</p>
-          </div>
-          <ul className="flex flex-wrap content-start gap-2">
-            {category.adults.map((course) => (
-              <li key={course} className="font-inter border border-zinc-200 px-3 py-1 text-sm text-zinc-700">
-                {course}
-              </li>
-            ))}
-          </ul>
-        </li>
-      ))}
-    </ol>
-  )
-}
-
 export function Header({ look }: { look: Look }) {
   const other = look === 'kids' ? { href: '/adults/', short: 'Adults', text: 'Classes for adults' } : { href: '/', short: 'Children', text: 'Classes for children' }
   return (
@@ -111,7 +84,6 @@ export function Ending({ look, title, shapes = false }: { look: Look; title: Rea
   return (
     <section
       id="register"
-      style={shapes ? undefined : dots}
       className="relative scroll-mt-20 overflow-hidden px-4 py-24 text-center sm:px-6"
     >
       {shapes && (

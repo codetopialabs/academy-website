@@ -121,7 +121,7 @@ export const groups: Group[] = [
 
 // Every learner covers all six, not in a fixed order. Each category has many courses.
 export type CategoryId = 'foundations' | 'ai' | 'design' | 'software' | 'hardware' | 'automation'
-export type Category = { id: CategoryId; name: string; about: string; feel: string; tint: string; adults: string[] }
+export type Category = { id: CategoryId; name: string; about: string; feel: string; adultFeel: string; tint: string }
 
 // DUMMY: example courses
 export const categories: Category[] = [
@@ -130,48 +130,48 @@ export const categories: Category[] = [
     name: 'Computer Foundations',
     about: 'Using a computer well and staying safe online.',
     feel: "Type, save, search, and stay safe online.",
+    adultFeel: "Get confident with computers, files, email and staying safe online.",
     tint: 'bg-yellow-100',
-    adults: ['Technology from Zero', 'Email and Documents', 'Staying Safe Online'],
   },
   {
     id: 'ai',
     name: 'AI and Data',
     about: 'How AI works, how to use it well, and making sense of data.',
     feel: "Ask AI good questions, and know when it's wrong.",
+    adultFeel: "Use AI tools well at work, and know when their answers are wrong.",
     tint: 'bg-sky-100',
-    adults: ['AI Tools for Work', 'Spreadsheets and Data', 'Checking AI Answers'],
   },
   {
     id: 'design',
     name: 'Design and Digital Media',
     about: 'Drawing, animation, video, and how screens should look.',
     feel: "Draw, animate and make their own videos.",
+    adultFeel: "Make clean slides, graphics and short videos.",
     tint: 'bg-rose-100',
-    adults: ['Graphics for Work', 'Slides that Work', 'Video Basics'],
   },
   {
     id: 'software',
     name: 'Software Engineering',
     about: 'Building working programs, games, websites and apps.',
     feel: "Build games, websites and apps that really work.",
+    adultFeel: "Build websites and simple apps, and start a portfolio.",
     tint: 'bg-emerald-100',
-    adults: ['Python from Zero', 'Build a Website', 'Web Apps'],
   },
   {
     id: 'hardware',
     name: 'Hardware and Electronics',
     about: 'Circuits, sensors and robots.',
     feel: "Make lights blink and robots move.",
+    adultFeel: "Understand the devices you use and build simple smart gadgets.",
     tint: 'bg-orange-100',
-    adults: ['Electronics Basics', 'Microcontrollers', 'Smart Devices'],
   },
   {
     id: 'automation',
     name: 'Automation',
     about: 'Getting computers to do repetitive work for you.',
     feel: "Get the computer to do the boring bits.",
+    adultFeel: "Get the computer to do the repetitive parts of your job.",
     tint: 'bg-lime-100',
-    adults: ['Automate Your Spreadsheets', 'No-code Automation', 'Automate with Python'],
   },
 ]
 
@@ -238,13 +238,15 @@ export const adultMeaning = {
 export const adultAges = '21+'
 
 
-export const adultHow = [
-  'Live evening classes online.',
-  'About 5 people per tutor.',
-  '8 sessions a month, twice a week.',
-  'A mini project every month.',
-  'Each module runs 4 months and ends with a bigger project.',
-  'Show it at the showcase. Bring family and friends.',
+export const adultPriceAmount = 'GHS 750'
+
+// DUMMY: confirm answers with the team
+export const adultFaq = [
+  { q: "I've never coded. Is that okay?", a: 'Yes. Everyone starts at the beginning and goes at a pace that suits them.' },
+  { q: 'When are the classes?', a: 'Twice a week. Choose evenings or weekends, whichever fits your schedule.' },
+  { q: 'Can I have more or fewer lessons?', a: 'Yes. We can add or reduce lessons to fit around your work and life.' },
+  { q: 'What will I have at the end?', a: 'A project every month, and a bigger one every four months for your portfolio. You present it at our showcase.' },
+  { q: 'What do I need?', a: 'A laptop or desktop and an internet connection. There is a short device check before your first class.' },
 ]
 
 export const adultWho = [
@@ -254,8 +256,3 @@ export const adultWho = [
   { who: 'Working professionals', why: 'Save time at work with the right tools.' },
 ]
 
-export const adultNeed = [
-  'A laptop or desktop and an internet connection.',
-  'A short device check before your first class.',
-  fees,
-]

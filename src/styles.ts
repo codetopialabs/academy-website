@@ -1,13 +1,9 @@
-export const dots = {
-  backgroundImage: 'radial-gradient(#d4d4d8 1px, transparent 1px)',
-  backgroundSize: '28px 28px',
-}
-
-// kids pages use rounded corners, the adults page uses sharp ones
+// which page a shared piece is on (both now use the same rounded buttons)
 export type Look = 'kids' | 'adults'
 
-export function button(look: Look, kind: 'primary' | 'secondary' = 'primary') {
-  const shape = look === 'kids' ? 'rounded-full px-6 py-3' : 'px-5 py-3'
+export function button(_look: Look, kind: 'primary' | 'secondary' = 'primary') {
+  // both pages share the rounded button now
+  const shape = 'rounded-full px-6 py-3'
   const colors =
     kind === 'primary'
       ? 'bg-black text-white hover:bg-zinc-800'
