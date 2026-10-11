@@ -1,0 +1,80 @@
+import type { ReactNode } from 'react'
+import { FaWhatsapp } from 'react-icons/fa6'
+import logo from './assets/Codetopia Academy - Logo Black.png'
+import { email, registerLabel, registerUrl, whatsapp, type Shape } from './content'
+import { button, dots, type Look } from './styles'
+
+export function Marker({ children }: { children: ReactNode }) {
+  return (
+    <span className="relative inline-block">
+      <span
+        aria-hidden="true"
+        className="absolute inset-x-[-0.1em] bottom-[0.08em] h-[0.42em] bg-sky-300"
+      />
+      <span className="relative">{children}</span>
+    </span>
+  )
+}
+
+export function Label({ children }: { children: ReactNode }) {
+  return <p className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">{children}</p>
+}
+
+export function ShapeMark({ shape, color, className = 'h-8 w-8' }: { shape: Shape; color: string; className?: string }) {
+  return (
+    <svg viewBox="0 0 32 32" aria-hidden="true" className={`${className} ${color}`}>
+      {shape === 'circle' && <circle cx="16" cy="16" r="15" />}
+      {shape === 'square' && <rect x="2" y="2" width="28" height="28" rx="5" />}
+      {shape === 'triangle' && <path d="M16 2.5 30 29H2z" strokeLinejoin="round" />}
+    </svg>
+  )
+}
+
+export function Header({ look }: { look: Look }) {
+  const other = look === 'kids' ? { href: '/adults/', short: 'Adults', text: 'Classes for adults' } : { href: '/', short: 'Children', text: 'Classes for children' }
+  return (
+    <header className="sticky top-0 z-20 border-b border-zinc-200 bg-white/90 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+        <a href="/">
+          <img src={logo} alt="Codetopia Academy" className="h-auto w-32 sm:w-44" />
+        </a>
+        <nav className="flex items-center gap-4 sm:gap-6">
+          <a href={other.href} className="font-inter text-sm text-zinc-600 hover:text-black">
+            <span className="sm:hidden">{other.short}</span>
+            <span className="hidden sm:inline">{other.text}</span>
+          </a>
+          <a href={registerUrl} className={`${button(look)} !py-2`}>
+            {registerLabel}
+          </a>
+        </nav>
+      </div>
+    </header>
+  )
+}
+
+export function Ending({ look, title }: { look: Look; title: ReactNode }) {
+  return (
+    <section id="register" style={dots} className="scroll-mt-20 px-4 py-24 text-center sm:px-6">
+      <h2 className="font-display text-4xl font-bold tracking-tight sm:text-6xl">{title}</h2>
+      <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+        <a href={registerUrl} className={button(look)}>
+          {registerLabel}
+        </a>
+        <a
+          href={`https://wa.me/${whatsapp}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={button(look, 'secondary')}
+        >
+          <FaWhatsapp className="h-4 w-4" /> Ask on WhatsApp
+        </a>
+      </div>
+      <p className="font-inter mt-6 text-sm text-zinc-500">
+        Or email{' '}
+        <a href={`mailto:${email}`} className="text-black underline">
+          {email}
+        </a>
+      </p>
+    </section>
+  )
+}

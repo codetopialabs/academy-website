@@ -1,7 +1,4 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import logo from './assets/Codetopia Academy - Logo Black.png'
+import { Header } from './components'
 import { email } from './content'
 import { Footer } from './Footer'
 
@@ -47,16 +44,10 @@ const sections = [
   },
 ]
 
-function Privacy() {
+export function Privacy() {
   return (
     <div className="bg-white text-black">
-      <header className="border-b border-zinc-200">
-        <div className="mx-auto max-w-3xl px-4 py-3 sm:px-6">
-          <a href="/">
-            <img src={logo} alt="Codetopia Academy" className="h-auto w-36 sm:w-44" />
-          </a>
-        </div>
-      </header>
+      <Header look="kids" />
       <main className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <h1 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">Privacy</h1>
         <p className="font-inter mt-4 text-zinc-600">
@@ -79,9 +70,3 @@ function Privacy() {
     </div>
   )
 }
-
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <Privacy />
-  </StrictMode>,
-)
