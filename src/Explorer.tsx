@@ -42,7 +42,7 @@ export function AgePicker() {
                 <button
                   type="button"
                   onClick={() => setAge(g.min)}
-                  className={`flex items-center gap-3 ${g === group ? 'font-bold text-black' : 'text-zinc-500 hover:text-black'}`}
+                  className={`flex items-center gap-3 ${g === group ? 'font-bold text-black' : 'text-zinc-600 hover:text-black'}`}
                 >
                   <SketchShape shape={g.shape} color={g.color} className="h-4 w-4" />
                   {g.name}, ages {g.ages}
@@ -53,7 +53,7 @@ export function AgePicker() {
               <button
                 type="button"
                 onClick={() => setAge(adultAge)}
-                className={`flex items-center gap-3 ${group ? 'text-zinc-500 hover:text-black' : 'font-bold text-black'}`}
+                className={`flex items-center gap-3 ${group ? 'text-zinc-600 hover:text-black' : 'font-bold text-black'}`}
               >
                 <SketchShape shape="hexagon" color="fill-zinc-300" className="h-4 w-4" />
                 {adultName}, ages 21+ (adults)
@@ -70,7 +70,7 @@ export function AgePicker() {
                 <NameWithMeaning name={group.name} meaning={group.meaning} />
               </p>
             </div>
-            <p className="mt-3 font-mono text-sm text-zinc-500">/ {group.meaning.say} /</p>
+            <p className="mt-3 font-mono text-sm text-zinc-600">/ {group.meaning.say} /</p>
             <p className="font-inter mt-2 text-zinc-600">Ages {group.ages}</p>
             <p className="font-inter mt-6 max-w-md text-xl">{group.about}</p>
             <p className="font-inter mt-6 text-sm text-zinc-600">{startLine}</p>
@@ -83,7 +83,7 @@ export function AgePicker() {
                 <NameWithMeaning name={adultName} meaning={adultMeaning} />
               </p>
             </div>
-            <p className="mt-3 font-mono text-sm text-zinc-500">/ {adultMeaning.say} /</p>
+            <p className="mt-3 font-mono text-sm text-zinc-600">/ {adultMeaning.say} /</p>
             <p className="font-inter mt-2 text-zinc-600">Ages 21+</p>
             <p className="font-inter mt-6 max-w-md text-xl">Classes for adults.</p>
             <a href="/adults/" className="font-inter mt-6 inline-block text-sm font-bold underline underline-offset-4">

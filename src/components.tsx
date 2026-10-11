@@ -108,7 +108,7 @@ export function Ending({ look, title, shapes = false, band = '' }: { look: Look;
           <FaWhatsapp className="h-4 w-4" /> Ask on WhatsApp
         </a>
       </div>
-      <p className="font-inter relative mt-6 text-sm text-zinc-500">
+      <p className="font-inter relative mt-6 text-sm text-zinc-600">
         Or email{' '}
         <a href={`mailto:${email}`} className="text-black underline">
           {email}

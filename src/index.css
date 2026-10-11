@@ -4,6 +4,13 @@
   --font-display: 'Space Grotesk', sans-serif;
   --font-mono: 'Space Mono', ui-monospace, monospace;
   --font-inter: 'Inter', sans-serif;
+
+  /* Academy palette. Text is black or zinc-600+ on all of these (AA 4.5:1 or better).
+     sun: price tag, warning sticker, closing band. sky (sky-300): the marker highlight.
+     cream: hero band. mist: tutors band, a light tint of the brand blue. */
+  --color-sun: #ffdf20;
+  --color-cream: #fff8e7;
+  --color-mist: #eef7fd;
 }
 
 :root {
@@ -22,7 +29,8 @@ html {
 }
 
 :focus-visible {
-  outline: 2px solid #38bdf8;
+  /* dark ring: visible on white, cream, mist, sun and every group tint (3:1 or better) */
+  outline: 3px solid #18181b;
   outline-offset: 3px;
 }
 

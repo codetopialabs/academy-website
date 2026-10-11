@@ -26,10 +26,10 @@ function App() {
         {edgeIcons.map((icon) => (
           <IdeaIcon key={icon.top + icon.name} name={icon.name} className={`absolute hidden h-14 w-14 xl:block ${icon.top} ${icon.side} ${icon.color}`} />
         ))}
-        <div className="relative overflow-hidden bg-yellow-50">
+        <div className="relative overflow-hidden bg-cream">
         <section className="relative mx-auto grid max-w-6xl gap-12 px-4 pt-20 pb-16 sm:px-6 md:grid-cols-[3fr_2fr] md:items-end md:pt-28">
           <div>
-            <p className="inline-flex -rotate-2 items-center gap-1.5 rounded-md border-2 border-black bg-yellow-300 px-3 py-1 font-mono text-xs font-bold tracking-wide shadow-[2px_2px_0_0_#000] sm:text-sm">
+            <p className="inline-flex -rotate-2 items-center gap-1.5 rounded-md border-2 border-black bg-sun px-3 py-1 font-mono text-xs font-bold tracking-wide shadow-[2px_2px_0_0_#000] sm:text-sm">
               <span aria-hidden="true">⚠</span> Warning: they might start fixing everything.
             </p>
             <h1 className="font-display mt-6 text-5xl leading-[1.02] font-bold tracking-tight sm:text-6xl lg:text-7xl">
@@ -102,7 +102,7 @@ function App() {
           <AreaCards audience="kids" />
         </Section>
 
-        <div className="bg-emerald-50">
+        <div className="bg-mist">
           <Section title="Who teaches" icons={[{ name: 'star', color: 'text-yellow-400' }, { name: 'search', color: 'text-sky-400' }]}>
             <p className="font-inter max-w-2xl text-lg text-zinc-700">
               We choose and train our own tutors, and check every one before they teach.
@@ -132,7 +132,7 @@ function App() {
         <Ending
           look="kids"
           shapes
-          band="bg-yellow-300"
+          band="bg-sun"
           title={
             <>
               {classStarted ? (

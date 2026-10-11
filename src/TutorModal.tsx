@@ -65,7 +65,7 @@ export function TutorModal({ tutor, onClose }: { tutor: Tutor; onClose: () => vo
 
           {socials.length > 0 && (
             <div className="mt-10">
-              <p className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Find them online</p>
+              <p className="font-mono text-xs tracking-[0.2em] text-zinc-600 uppercase">Find them online</p>
               <div className="mt-3 flex flex-wrap gap-3">
                 {socials.map(([kind, url]) => {
                   const { icon: Icon, label } = socialIcons[kind]

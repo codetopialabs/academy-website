@@ -28,7 +28,7 @@ export function Adults() {
       <main>
         <section className="mx-auto grid max-w-6xl gap-12 px-4 pt-20 pb-16 sm:px-6 md:grid-cols-[3fr_2fr] md:items-end md:pt-28">
           <div>
-            <p className="font-mono text-sm tracking-[0.2em] text-zinc-500 uppercase">
+            <p className="font-mono text-sm tracking-[0.2em] text-zinc-600 uppercase">
               <NameWithMeaning name={adultName} meaning={adultMeaning} className="uppercase" /> · Ages {adultAges}
             </p>
             <h1 className="font-display mt-5 text-5xl leading-[1.02] font-bold tracking-tight sm:text-6xl lg:text-7xl">
