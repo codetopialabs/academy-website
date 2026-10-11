@@ -56,22 +56,21 @@ function App() {
               Small live classes online for ages 6 to 20, every Saturday and Sunday. Taught by real
               tutors, in groups of about five.
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
+            <div className="mt-10 flex items-center gap-5">
               <a href={registerUrl} className={button('kids')}>
                 {registerLabel} ›
               </a>
-              <a
-                href={`https://wa.me/${whatsapp}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-inter text-sm underline underline-offset-4"
-              >
-                Questions? Message us on WhatsApp ›
-              </a>
+              <p className="font-display text-2xl font-bold tracking-tight whitespace-nowrap sm:text-3xl">{price}</p>
             </div>
-            <p className="font-inter mt-8 text-zinc-700">
-              <span className="font-bold text-black">{price}</span>. First classes {startDate}.
-            </p>
+            <p className="font-inter mt-6 text-zinc-700">First classes {startDate}.</p>
+            <a
+              href={`https://wa.me/${whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-inter mt-3 inline-block text-sm underline underline-offset-4"
+            >
+              Questions? Message us on WhatsApp ›
+            </a>
           </div>
           <PhotoSpace label="Photo: a learner showing their project" className="aspect-[4/5]" />
         </section>
