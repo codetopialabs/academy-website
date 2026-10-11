@@ -15,7 +15,7 @@ import {
 } from './content'
 import { Footer } from './Footer'
 import { RegisterButton } from './RegisterButton'
-import { AreaCards, PriceTag, Questions, Section, TutorCarousel } from './sections'
+import { AreaCards, PriceTag, Questions, Section, TutorCarousel, TutorsHeading } from './sections'
 import { button } from './styles'
 
 // Same layout and feel as the children's page, without the kids' doodles
@@ -89,11 +89,7 @@ export function Adults() {
           <AreaCards audience="adults" />
         </Section>
 
-        <Section title="Who teaches">
-          <p className="font-inter max-w-2xl text-lg text-zinc-700">
-            We choose and train our own tutors, and check every one before they teach.
-          </p>
-        </Section>
+        <TutorsHeading />
         <TutorCarousel />
 
         <Section title="Common questions">

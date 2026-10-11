@@ -4,7 +4,7 @@ import { IdeaIcon, type Idea } from './doodles'
 import { AgePicker } from './Explorer'
 import { RegisterButton } from './RegisterButton'
 import { endIntro } from './motion'
-import { AreaCards, PriceTag, Questions, Section, SectionTitle, TutorCarousel } from './sections'
+import { AreaCards, PriceTag, TutorsHeading, Questions, Section, SectionTitle, TutorCarousel } from './sections'
 import { Footer } from './Footer'
 import { button } from './styles'
 
@@ -143,11 +143,7 @@ function App() {
         </Section>
 
         <div className="bg-mist">
-          <Section title="Who teaches" icons={[{ name: 'star', color: 'text-yellow-400' }, { name: 'search', color: 'text-sky-400' }]}>
-            <p className="font-inter max-w-2xl text-lg text-zinc-700">
-              We choose and train our own tutors, and check every one before they teach.
-            </p>
-          </Section>
+          <TutorsHeading icon={{ name: 'star', color: 'text-yellow-400' }} />
           <TutorCarousel />
         </div>
 
