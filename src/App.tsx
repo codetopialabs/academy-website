@@ -26,7 +26,7 @@ function App() {
         {edgeIcons.map((icon) => (
           <IdeaIcon key={icon.top + icon.name} name={icon.name} className={`absolute hidden h-14 w-14 xl:block ${icon.top} ${icon.side} ${icon.color}`} />
         ))}
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden bg-yellow-50">
         <section className="relative mx-auto grid max-w-6xl gap-12 px-4 pt-20 pb-16 sm:px-6 md:grid-cols-[3fr_2fr] md:items-end md:pt-28">
           <div>
             <p className="inline-flex -rotate-2 items-center gap-1.5 rounded-md border-2 border-black bg-yellow-300 px-3 py-1 font-mono text-xs font-bold tracking-wide shadow-[2px_2px_0_0_#000] sm:text-sm">
@@ -102,12 +102,14 @@ function App() {
           <AreaCards audience="kids" />
         </Section>
 
-        <Section title="Who teaches" icons={[{ name: 'star', color: 'text-yellow-400' }, { name: 'search', color: 'text-sky-400' }]}>
-          <p className="font-inter max-w-2xl text-lg text-zinc-700">
-            We choose and train our own tutors, and check every one before they teach.
-          </p>
-        </Section>
-        <TutorCarousel />
+        <div className="bg-emerald-50">
+          <Section title="Who teaches" icons={[{ name: 'star', color: 'text-yellow-400' }, { name: 'search', color: 'text-sky-400' }]}>
+            <p className="font-inter max-w-2xl text-lg text-zinc-700">
+              We choose and train our own tutors, and check every one before they teach.
+            </p>
+          </Section>
+          <TutorCarousel />
+        </div>
 
         <Section title="For parents" icons={[{ name: 'shield', color: 'text-emerald-400' }, { name: 'lock', color: 'text-sky-400' }, { name: 'heart', color: 'text-orange-400' }]}>
           <h3 className="font-bold">Keeping your child safe</h3>
@@ -130,6 +132,7 @@ function App() {
         <Ending
           look="kids"
           shapes
+          band="bg-yellow-300"
           title={
             <>
               {classStarted ? (
