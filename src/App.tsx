@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { Ending, Header, Marker } from './components'
-import { categories, email, faq, forParents, registerLabel, registerUrl, startDate, tutors, whatsapp } from './content'
+import { categories, email, faq, forParents, price, registerLabel, registerUrl, startDate, tutors, whatsapp } from './content'
 import { AgePicker } from './Explorer'
 import { Footer } from './Footer'
 import { button } from './styles'
@@ -69,7 +69,9 @@ function App() {
                 Questions? Message us on WhatsApp ›
               </a>
             </div>
-            <p className="font-inter mt-8 text-sm text-zinc-500">First classes: {startDate}.</p>
+            <p className="font-inter mt-8 text-zinc-700">
+              <span className="font-bold text-black">{price}</span>. First classes {startDate}.
+            </p>
           </div>
           <PhotoSpace label="Photo: a learner showing their project" className="aspect-[4/5]" />
         </section>

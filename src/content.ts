@@ -13,6 +13,8 @@ export const whatsapp = '233000000000'
 
 export const fees = 'Fees are shared after you register.'
 
+export const price = 'GHS 500 a month'
+
 export type Shape = 'circle' | 'square' | 'triangle' | 'diamond'
 export type Meaning = { origin: string; means: string; why: string }
 export type Group = {
@@ -166,7 +168,6 @@ export const faq = [
   { q: 'What happens as my child gets older?', a: 'They move up to the next group. The six areas stay the same, but the courses go deeper.' },
   { q: 'What is the showcase?', a: 'At the end of each 4-month module, learners present their project. Family and friends are invited.' },
   { q: 'What do we need at home?', a: 'A laptop or desktop with a keyboard and mouse, and an internet connection. A phone is not enough.' },
-  { q: 'How much does it cost?', a: fees },
 ]
 
 // DUMMY: real tutors, photos and lines
@@ -181,13 +182,6 @@ export const forParents = [
   'Tutors never contact children privately. Everything goes through you.',
   'Every session is recorded, and you are told so.',
   "We never use your child's photo or name without your written consent.",
-]
-
-export const beforeYouStart = [
-  'A laptop or desktop with a keyboard and mouse. A phone is not enough.',
-  'An internet connection.',
-  'A short device check before the first class.',
-  fees,
 ]
 
 // Adults page
