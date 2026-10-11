@@ -185,9 +185,11 @@ export const faq = [
 
 // DUMMY: real tutors and photos. group is the id of the age group they teach
 export const tutors: { name: string; group: string; photo?: string }[] = [
-  { name: 'Tutor name', group: 'nova' },
-  { name: 'Tutor name', group: 'orion' },
-  { name: 'Tutor name', group: 'nyota' },
+  // DUMMY photos from Unsplash (free licence), for preview only. Replace with the real tutors before launch.
+  // dummy-1: Gabriel Ogulu (AZ1Bqm1GJQ0), dummy-2: Vitaly Gariev (TOuMSV0Nqjk), dummy-3: Adewale Shobaloju (4kDtZ_rJMS4)
+  { name: 'Tutor name', group: 'nova', photo: '/tutors/dummy-1.jpg' },
+  { name: 'Tutor name', group: 'orion', photo: '/tutors/dummy-2.jpg' },
+  { name: 'Tutor name', group: 'nyota', photo: '/tutors/dummy-3.jpg' },
 ]
 
 export const forParents = [
