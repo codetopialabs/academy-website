@@ -78,10 +78,11 @@ export function PhotoSpace({ label, className = '' }: { label: string; className
   )
 }
 
-// Yellow price tag next to the Register button. Both parts big so the price reads at a glance
+// Yellow price tag next to the Register button. Both parts big so the price reads at a glance.
+// Wiggles on hover like the warning sticker
 export function PriceTag({ amount, per }: { amount: string; per: string }) {
   return (
-    <p className="-rotate-2 rounded-lg bg-sun px-4 py-2 whitespace-nowrap shadow-[3px_3px_0_0_#000] transition duration-200 motion-safe:hover:scale-105 motion-safe:hover:rotate-0">
+    <p className="sticker -rotate-2 rounded-lg bg-sun px-4 py-2 whitespace-nowrap shadow-[3px_3px_0_0_#000]">
       <span className="font-display text-2xl font-bold tracking-tight sm:text-4xl">{amount}</span>
       <span className="font-display ml-1.5 text-lg font-bold tracking-tight sm:ml-2 sm:text-2xl">{per}</span>
     </p>
