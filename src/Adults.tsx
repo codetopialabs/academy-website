@@ -36,7 +36,7 @@ export function Adults() {
 
         <Row label="What we teach">
           <p className="font-inter mb-8 text-lg text-zinc-700">
-            Six areas, one after another. Each has many courses. Here are a few.
+            Six areas. Each has many courses. Here are a few.
           </p>
           <Categories />
         </Row>

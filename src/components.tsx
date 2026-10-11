@@ -60,9 +60,8 @@ export function NameWithMeaning({ name, meaning, className = '' }: { name: strin
 export function Categories() {
   return (
     <ol className="divide-y divide-zinc-200 border-y border-zinc-200">
-      {categories.map((category, i) => (
-        <li key={category.name} className="grid gap-2 py-6 md:grid-cols-[3rem_1fr_1.5fr] md:gap-6">
-          <span className="font-mono text-sm text-zinc-400">{String(i + 1).padStart(2, '0')}</span>
+      {categories.map((category) => (
+        <li key={category.name} className="grid gap-2 py-6 md:grid-cols-[1fr_1.5fr] md:gap-6">
           <div>
             <p className="text-lg font-bold">{category.name}</p>
             <p className="font-inter mt-1 text-zinc-600">{category.about}</p>

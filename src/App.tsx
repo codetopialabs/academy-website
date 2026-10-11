@@ -110,24 +110,17 @@ function App() {
         </div>
 
         <Section title="What they learn">
-          <p className="font-inter text-lg text-zinc-700">Six areas, in order.</p>
-          <ol className="relative mt-10 grid gap-6 md:grid-cols-6 md:gap-2">
-            <span
-              aria-hidden="true"
-              className="absolute top-2 bottom-2 left-7 w-0.5 bg-zinc-200 md:top-7 md:right-[8%] md:bottom-auto md:left-[8%] md:h-0.5 md:w-auto"
-            />
-            {categories.map((category, i) => (
-              <li key={category.id} className="relative flex items-center gap-4 md:flex-col md:gap-3 md:text-center">
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-black bg-white">
+          <p className="font-inter text-lg text-zinc-700">Every learner covers all six areas.</p>
+          <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 md:grid-cols-6">
+            {categories.map((category) => (
+              <li key={category.id} className="flex flex-col items-center gap-3 text-center">
+                <span className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-black bg-white">
                   <CategoryIcon id={category.id} className="h-7 w-7" />
                 </span>
-                <span>
-                  <span className="font-display block text-xs text-zinc-400">{i + 1}</span>
-                  <span className="block text-sm leading-tight font-bold">{category.name}</span>
-                </span>
+                <span className="text-sm leading-tight font-bold">{category.name}</span>
               </li>
             ))}
-          </ol>
+          </ul>
 
           <div className="mt-14 flex flex-wrap items-end gap-x-3 gap-y-4">
             {groups.map((group, i) => (

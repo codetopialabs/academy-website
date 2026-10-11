@@ -120,7 +120,7 @@ export const groups: Group[] = [
   },
 ]
 
-// Every learner works through all six, in this order. Each category has many courses.
+// Every learner covers all six, not in a fixed order. Each category has many courses.
 export type CategoryId = 'foundations' | 'ai' | 'design' | 'software' | 'hardware' | 'automation'
 export type Category = { id: CategoryId; name: string; about: string; adults: string[] }
 
