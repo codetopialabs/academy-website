@@ -73,9 +73,7 @@ export function AgePicker() {
             <p className="mt-3 font-mono text-sm text-zinc-500">/ {group.meaning.say} /</p>
             <p className="font-inter mt-2 text-zinc-600">Ages {group.ages}</p>
             <p className="font-inter mt-6 max-w-md text-xl">{group.about}</p>
-            <p className="font-inter mt-6 text-sm text-zinc-600">
-              {group.open ? startLine : 'Opening soon. Register and we will tell you first.'}
-            </p>
+            <p className="font-inter mt-6 text-sm text-zinc-600">{startLine}</p>
           </div>
         ) : (
           <div>

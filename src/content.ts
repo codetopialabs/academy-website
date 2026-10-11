@@ -26,7 +26,6 @@ export type Group = {
   meaning: Meaning
   ages: string
   about: string
-  open: boolean
   min: number
   max: number
   level: number // intensity, 1 to 4
@@ -37,7 +36,6 @@ export type Group = {
   accent: string // solid background for highlights
 }
 
-// DUMMY: which groups open on 7 Nov
 export const groups: Group[] = [
   {
     id: 'nova',
@@ -50,7 +48,6 @@ export const groups: Group[] = [
     },
     ages: '6 to 8',
     about: 'Logic and computer basics through play.',
-    open: false,
     min: 6,
     max: 8,
     level: 1,
@@ -71,7 +68,6 @@ export const groups: Group[] = [
     },
     ages: '9 to 11',
     about: 'First steps in coding, through games and animation.',
-    open: true,
     min: 9,
     max: 11,
     level: 2,
@@ -92,7 +88,6 @@ export const groups: Group[] = [
     },
     ages: '12 to 15',
     about: 'Proper programming and bigger projects.',
-    open: false,
     min: 12,
     max: 15,
     level: 3,
@@ -113,7 +108,6 @@ export const groups: Group[] = [
     },
     ages: '16 to 20',
     about: 'Bigger projects, and skills for university and first jobs.',
-    open: false,
     min: 16,
     max: 20,
     level: 4,
