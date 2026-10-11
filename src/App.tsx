@@ -124,15 +124,11 @@ function App() {
 
         {/* Welcome pack: its own banner so the hero stays calm */}
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="sticker flex -rotate-1 flex-col items-center gap-5 rounded-3xl border-2 border-black bg-orange-300 p-6 text-center shadow-[5px_5px_0_0_#000] sm:flex-row sm:p-8 sm:text-left">
-            <span className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-2 border-black bg-white">
-              <IdeaIcon name="gift" className="gift-bounce h-12 w-12 text-black" />
-            </span>
+          <div className="flex items-center gap-4 rounded-2xl border border-orange-200 bg-orange-50 p-5 sm:p-6">
+            <IdeaIcon name="gift" className="h-10 w-10 shrink-0 text-orange-500" />
             <div>
-              <p className="font-display text-2xl leading-tight font-bold tracking-tight sm:text-3xl">
-                Every new learner gets a welcome pack!
-              </p>
-              <p className="font-inter mt-2 text-zinc-800">Our way of saying welcome to the Academy.</p>
+              <p className="font-display text-lg leading-tight font-bold sm:text-xl">Every new learner gets a welcome pack.</p>
+              <p className="font-inter mt-1 text-zinc-700">Our way of saying welcome to the Academy.</p>
             </div>
           </div>
         </div>

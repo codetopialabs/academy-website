@@ -23,5 +23,5 @@ export function useReveal<T extends HTMLElement>() {
 
 // Once the arrival wiggle has played, drop it so hovering can wiggle again every time
 export function endIntro(e: AnimationEvent<HTMLElement>) {
-  e.currentTarget.classList.remove('intro-wiggle', 'intro-wiggle-2', 'intro-wiggle-3')
+  e.currentTarget.classList.remove('intro-wiggle', 'intro-wiggle-2')
 }
