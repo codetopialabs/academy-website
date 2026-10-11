@@ -1,6 +1,7 @@
 // All site content lives here. Items marked DUMMY are placeholders until the team confirms them.
 
-export const startDate = 'Saturday 7 November'
+// Next start date: set it in schedule.ts
+export { startDate } from './schedule'
 
 // DUMMY: Google Form link from Barbara
 export const registerUrl = '#register'

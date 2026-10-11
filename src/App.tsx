@@ -67,7 +67,7 @@ function App() {
                 <span className="font-display ml-1.5 text-lg font-bold tracking-tight sm:ml-2 sm:text-2xl">{pricePer}</span>
               </p>
             </div>
-            <p className="font-inter mt-6 text-zinc-700">First classes {startDate}.</p>
+            <p className="font-inter mt-6 text-zinc-700">Next class starts on {startDate}.</p>
             <a
               href={`https://wa.me/${whatsapp}`}
               target="_blank"
@@ -164,7 +164,7 @@ function App() {
           look="kids"
           title={
             <>
-              First classes <Marker>{startDate}.</Marker>
+              Next class starts on <Marker>{startDate}.</Marker>
             </>
           }
         />
