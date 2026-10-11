@@ -2,6 +2,7 @@ import { useCallback, useState, type ReactNode } from 'react'
 import { categories, tutors, type Tutor } from './content'
 import { CategoryIcon, IdeaIcon, type Idea } from './doodles'
 import { TutorModal } from './TutorModal'
+import { useReveal } from './useReveal'
 
 // Building blocks shared by the children's and adults' pages
 
@@ -25,8 +26,9 @@ export function SectionTitle({ title, icon }: { title: string; icon?: Icon }) {
 // The other icons go in the empty padding: top right above the line, and bottom right below the content
 export function Section({ title, icons = [], children }: { title: string; icons?: Icon[]; children: ReactNode }) {
   const [first, top, bottom] = icons
+  const ref = useReveal<HTMLElement>()
   return (
-    <section className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+    <section ref={ref} className="reveal relative mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
       {top && <IdeaIcon name={top.name} className={`absolute top-4 right-6 hidden h-16 w-16 rotate-12 md:block ${top.color}`} />}
       {bottom && (
         <IdeaIcon name={bottom.name} className={`absolute right-[22%] bottom-2 hidden h-16 w-16 -rotate-12 md:block ${bottom.color}`} />
@@ -42,13 +44,13 @@ export function Section({ title, icons = [], children }: { title: string; icons?
 export function Question({ q, children }: { q: string; children: ReactNode }) {
   return (
     <details className="group">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 font-bold [&::-webkit-details-marker]:hidden">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 font-bold transition-colors hover:text-zinc-700 [&::-webkit-details-marker]:hidden">
         {q}
         <span aria-hidden="true" className="text-2xl leading-none font-normal text-zinc-600 transition-transform group-open:rotate-45">
           +
         </span>
       </summary>
-      <div className="font-inter max-w-2xl pb-6 text-zinc-700">{children}</div>
+      <div className="answer font-inter max-w-2xl pb-6 text-zinc-700">{children}</div>
     </details>
   )
 }
@@ -79,7 +81,7 @@ export function PhotoSpace({ label, className = '' }: { label: string; className
 // Yellow price tag next to the Register button. Both parts big so the price reads at a glance
 export function PriceTag({ amount, per }: { amount: string; per: string }) {
   return (
-    <p className="-rotate-2 rounded-lg bg-sun px-4 py-2 whitespace-nowrap shadow-[3px_3px_0_0_#000]">
+    <p className="-rotate-2 rounded-lg bg-sun px-4 py-2 whitespace-nowrap shadow-[3px_3px_0_0_#000] transition duration-200 motion-safe:hover:scale-105 motion-safe:hover:rotate-0">
       <span className="font-display text-2xl font-bold tracking-tight sm:text-4xl">{amount}</span>
       <span className="font-display ml-1.5 text-lg font-bold tracking-tight sm:ml-2 sm:text-2xl">{per}</span>
     </p>
@@ -91,8 +93,11 @@ export function AreaCards({ audience }: { audience: 'kids' | 'adults' }) {
   return (
     <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {categories.map((category) => (
-        <li key={category.id} className={`rounded-2xl p-6 ${category.tint}`}>
-          <CategoryIcon id={category.id} className="h-9 w-9" />
+        <li
+          key={category.id}
+          className={`group rounded-2xl p-6 transition duration-200 motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-[4px_4px_0_0_rgba(0,0,0,0.85)] ${category.tint}`}
+        >
+          <CategoryIcon id={category.id} className="h-9 w-9 transition duration-200 motion-safe:group-hover:scale-110 motion-safe:group-hover:-rotate-6" />
           <p className="font-display mt-8 text-xl leading-tight font-bold">{category.name}</p>
           <p className="font-inter mt-2 text-zinc-700">{audience === 'kids' ? category.feel : category.adultFeel}</p>
         </li>

@@ -23,7 +23,7 @@ export function AgePicker() {
             <button type="button" aria-label="Younger" className={stepButton} disabled={age <= minAge} onClick={() => setAge(age - 1)}>
               −
             </button>
-            <p className="font-display w-32 text-center text-7xl font-bold tabular-nums" aria-live="polite">
+            <p key={age} className="pop font-display w-32 text-center text-7xl font-bold tabular-nums" aria-live="polite">
               {age >= adultAge ? (
                 <>
                   21<span className="align-top text-4xl">+</span>
@@ -63,7 +63,7 @@ export function AgePicker() {
         </div>
 
         {group ? (
-          <div>
+          <div key={group.id} className="fade-up">
             <SketchShape shape={group.shape} color={group.color} className="h-12 w-12" />
             <div className="mt-4 flex items-center gap-3">
               <p className="font-display text-5xl font-bold tracking-tight">
@@ -76,7 +76,7 @@ export function AgePicker() {
             <p className="font-inter mt-6 text-sm text-zinc-600">{startLine}</p>
           </div>
         ) : (
-          <div>
+          <div className="fade-up">
             <SketchShape shape="hexagon" color="fill-zinc-300" className="h-12 w-12" />
             <div className="mt-4 flex items-center gap-3">
               <p className="font-display text-5xl font-bold tracking-tight">
