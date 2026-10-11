@@ -237,8 +237,6 @@ export const adultMeaning = {
 }
 export const adultAges = '21+'
 
-// DUMMY: adult start date, null means opening soon
-export const adultStart: string | null = null
 
 export const adultHow = [
   'Live evening classes online.',
