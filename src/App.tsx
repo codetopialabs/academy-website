@@ -118,8 +118,12 @@ function App() {
               Each month, your child finishes a small project. Every four months they finish a bigger
               one and present it at our showcase. Family and friends are welcome.
             </p>
-            <p>
-              And when your child joins, we send a little welcome pack their way.
+            <p className="flex items-start gap-2.5 font-medium text-black">
+              <IdeaIcon name="gift" className="mt-0.5 h-6 w-6 shrink-0 text-orange-500" />
+              <span>
+                And when your child joins, we send a little{' '}
+                <span className="underline decoration-orange-400 decoration-2 underline-offset-4">welcome pack</span> their way.
+              </span>
             </p>
           </div>
         </Section>
