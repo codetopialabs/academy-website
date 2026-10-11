@@ -52,11 +52,13 @@ export function Adults() {
             </a>
           </div>
           {/* DUMMY photo from Unsplash (free licence), by Vitaly Gariev (s3hlZ-gdfdQ). Swap for a real class photo */}
-          <img
-            src="/hero/adults.jpg"
-            alt="A woman smiling while working on her laptop"
-            className="mx-4 aspect-[4/5] rounded-2xl object-cover object-[58%_50%] md:mx-0"
-          />
+          <div className="mx-4 md:mx-0">
+            <img
+              src="/hero/adults.jpg"
+              alt="A woman smiling while working on her laptop"
+              className="aspect-[4/5] w-full rounded-2xl object-cover object-[58%_50%]"
+            />
+          </div>
         </section>
 
         <Section title="How it works">
