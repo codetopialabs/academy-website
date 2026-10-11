@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { Ending, Header, Marker } from './components'
 import { categories, email, faq, forParents, priceAmount, pricePer, registerLabel, registerUrl, startDate, startLine, classStarted, tutors, whatsapp } from './content'
-import { CategoryIcon } from './doodles'
+import { BigShape, CategoryIcon } from './doodles'
 import { AgePicker } from './Explorer'
 import { Footer } from './Footer'
 import { button } from './styles'
@@ -35,7 +35,7 @@ function Question({ q, children }: { q: string; children: ReactNode }) {
 function PhotoSpace({ label, className = '' }: { label: string; className?: string }) {
   return (
     <div
-      className={`font-inter flex items-center justify-center rounded-lg border border-dashed border-zinc-300 bg-zinc-50 p-6 text-center text-sm text-zinc-400 ${className}`}
+      className={`font-inter flex items-center justify-center rounded-lg border border-dashed border-zinc-300 bg-white/80 p-6 text-center text-sm text-zinc-400 ${className}`}
     >
       {label}
     </div>
@@ -44,11 +44,14 @@ function PhotoSpace({ label, className = '' }: { label: string; className?: stri
 
 function App() {
   return (
-    <div className="bg-white text-black">
+    <div className="bg-paper text-black">
       <Header look="kids" />
 
       <main>
-        <section className="mx-auto grid max-w-6xl gap-12 px-4 pt-20 pb-16 sm:px-6 md:grid-cols-[3fr_2fr] md:items-end md:pt-28">
+        <div className="relative overflow-hidden">
+          <BigShape shape="circle" className="-top-14 -right-14 h-36 w-36 fill-yellow-300 md:-top-28 md:-right-40 md:h-[38rem] md:w-[38rem]" />
+          <BigShape shape="square" className="-bottom-24 -left-24 h-72 w-72 rotate-12 fill-sky-200" />
+        <section className="relative mx-auto grid max-w-6xl gap-12 px-4 pt-20 pb-16 sm:px-6 md:grid-cols-[3fr_2fr] md:items-end md:pt-28">
           <div>
             <h1 className="font-display text-4xl leading-[1.05] font-bold tracking-tight sm:text-6xl">
               Your child already uses technology. Here, they learn to <Marker>build with it.</Marker>
@@ -79,6 +82,7 @@ function App() {
           </div>
           <PhotoSpace label="Photo: a learner showing their project" className="aspect-[4/5]" />
         </section>
+        </div>
 
         <Section title="How it works">
           <div className="font-inter max-w-2xl space-y-5 text-lg text-zinc-700">
@@ -162,6 +166,7 @@ function App() {
 
         <Ending
           look="kids"
+          shapes
           title={
             <>
               {classStarted ? (

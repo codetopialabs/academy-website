@@ -15,7 +15,7 @@ function Row({ label, children }: { label: string; children: ReactNode }) {
 
 export function Adults() {
   return (
-    <div className="bg-white text-black">
+    <div className="bg-paper text-black">
       <Header look="adults" />
 
       <main>

@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { FaWhatsapp } from 'react-icons/fa6'
 import logo from './assets/Codetopia Academy - Logo Black.png'
 import { categories, email, registerLabel, registerUrl, whatsapp, type Meaning, type Shape } from './content'
+import { BigShape } from './doodles'
 import { button, dots, type Look } from './styles'
 
 export function Marker({ children }: { children: ReactNode }) {
@@ -82,7 +83,7 @@ export function Categories() {
 export function Header({ look }: { look: Look }) {
   const other = look === 'kids' ? { href: '/adults/', short: 'Adults', text: 'Classes for adults' } : { href: '/', short: 'Children', text: 'Classes for children' }
   return (
-    <header className="sticky top-0 z-20 border-b border-zinc-200 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-20 border-b border-zinc-200 bg-paper/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <a href="/">
           <img src={logo} alt="Codetopia Academy" className="h-auto w-32 sm:w-44" />
@@ -101,11 +102,21 @@ export function Header({ look }: { look: Look }) {
   )
 }
 
-export function Ending({ look, title }: { look: Look; title: ReactNode }) {
+export function Ending({ look, title, shapes = false }: { look: Look; title: ReactNode; shapes?: boolean }) {
   return (
-    <section id="register" style={dots} className="scroll-mt-20 px-4 py-24 text-center sm:px-6">
-      <h2 className="font-display text-4xl font-bold tracking-tight sm:text-6xl">{title}</h2>
-      <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+    <section
+      id="register"
+      style={shapes ? undefined : dots}
+      className="relative scroll-mt-20 overflow-hidden px-4 py-24 text-center sm:px-6"
+    >
+      {shapes && (
+        <>
+          <BigShape shape="triangle" className="-bottom-16 -left-20 h-72 w-72 -rotate-12 fill-emerald-200" />
+          <BigShape shape="diamond" className="-top-20 -right-16 h-64 w-64 fill-orange-200" />
+        </>
+      )}
+      <h2 className="font-display relative text-4xl font-bold tracking-tight sm:text-6xl">{title}</h2>
+      <div className="relative mt-10 flex flex-col justify-center gap-3 sm:flex-row">
         <a href={registerUrl} className={button(look)}>
           {registerLabel} ›
         </a>
@@ -118,7 +129,7 @@ export function Ending({ look, title }: { look: Look; title: ReactNode }) {
           <FaWhatsapp className="h-4 w-4" /> Ask on WhatsApp
         </a>
       </div>
-      <p className="font-inter mt-6 text-sm text-zinc-500">
+      <p className="font-inter relative mt-6 text-sm text-zinc-500">
         Or email{' '}
         <a href={`mailto:${email}`} className="text-black underline">
           {email}

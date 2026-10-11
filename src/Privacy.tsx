@@ -46,7 +46,7 @@ const sections = [
 
 export function Privacy() {
   return (
-    <div className="bg-white text-black">
+    <div className="bg-paper text-black">
       <Header look="kids" />
       <main className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <h1 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">Privacy</h1>

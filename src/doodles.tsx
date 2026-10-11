@@ -27,6 +27,15 @@ export function SketchShape({ shape, color, className = 'h-10 w-10' }: { shape: 
   )
 }
 
+// Large flat brand shape for backgrounds, no outline
+export function BigShape({ shape, className }: { shape: Shape; className: string }) {
+  return (
+    <svg viewBox="0 0 37 37" aria-hidden="true" className={`pointer-events-none absolute ${className}`}>
+      <path d={shapePaths[shape]} />
+    </svg>
+  )
+}
+
 // Hand-drawn icon for each category
 const iconPaths: Record<CategoryId, string[]> = {
   foundations: ['M5 7 L35 6 L36 27 L4 28 Z', 'M17 28 L16 34', 'M24 28 L25 34', 'M11 34.5 L30 34'],

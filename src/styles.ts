@@ -11,6 +11,6 @@ export function button(look: Look, kind: 'primary' | 'secondary' = 'primary') {
   const colors =
     kind === 'primary'
       ? 'bg-black text-white hover:bg-zinc-800'
-      : 'border border-black bg-white text-black hover:bg-zinc-100'
+      : 'border border-black bg-transparent text-black hover:bg-black/5'
   return `inline-flex items-center justify-center gap-2 text-sm font-bold transition-colors ${shape} ${colors}`
 }
