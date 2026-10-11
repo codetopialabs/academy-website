@@ -40,7 +40,7 @@ export function Adults() {
             </p>
             <div className="mt-10 flex items-center gap-4 sm:gap-5">
               <a href={registerUrl} className={`${button('adults')} shrink-0 whitespace-nowrap`}>
-                {registerLabel} ›
+                {registerLabel}
               </a>
               <PriceTag amount={adultPriceAmount} per={pricePer} />
             </div>
@@ -51,7 +51,7 @@ export function Adults() {
               rel="noopener noreferrer"
               className="font-inter mt-3 inline-block text-sm underline underline-offset-4"
             >
-              Questions? Message us on WhatsApp ›
+              Questions? Message us on WhatsApp
             </a>
           </div>
           {/* DUMMY photo from Unsplash (free licence), by Vitaly Gariev (s3hlZ-gdfdQ). Swap for a real class photo */}

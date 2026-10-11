@@ -83,7 +83,7 @@ function App() {
             </p>
             <div className="mt-10 flex items-center gap-4 sm:gap-5">
               <a href={registerUrl} className={`${button('kids')} shrink-0 whitespace-nowrap`}>
-                {registerLabel} ›
+                {registerLabel}
               </a>
               <PriceTag amount={priceAmount} per={pricePer} intro />
             </div>
@@ -94,7 +94,7 @@ function App() {
               rel="noopener noreferrer"
               className="font-inter mt-3 inline-block text-sm underline underline-offset-4"
             >
-              Questions? Message us on WhatsApp ›
+              Questions? Message us on WhatsApp
             </a>
           </div>
           <div className="relative mx-4 md:mx-0">

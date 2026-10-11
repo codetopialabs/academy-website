@@ -97,7 +97,7 @@ export function Ending({ look, title, shapes = false, band = '' }: { look: Look;
       <h2 className="font-display relative text-4xl font-bold tracking-tight sm:text-6xl">{title}</h2>
       <div className="relative mt-10 flex flex-col justify-center gap-3 sm:flex-row">
         <a href={registerUrl} className={button(look)}>
-          {registerLabel} ›
+          {registerLabel}
         </a>
         <a
           href={`https://wa.me/${whatsapp}`}

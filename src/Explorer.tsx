@@ -93,7 +93,7 @@ export function AgePicker({ children }: { children?: ReactNode }) {
             <p className="font-inter mt-2 text-zinc-600">Ages 21+</p>
             <p className="font-inter mt-6 max-w-md text-xl">Classes for adults.</p>
             <a href="/adults/" className="font-inter mt-6 inline-block text-sm font-bold underline underline-offset-4">
-              See adult classes ›
+              See adult classes
             </a>
           </div>
         )}
