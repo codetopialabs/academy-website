@@ -63,9 +63,10 @@ export function NameWithMeaning({ name, meaning, className = '' }: { name: strin
 export function Header({ look }: { look: Look }) {
   const other = look === 'kids' ? { href: '/adults/', short: 'Adults', text: 'Classes for adults' } : { href: '/', short: 'Children', text: 'Classes for children' }
   return (
-    <>
+    // banner and header stick to the top together, so the note stays visible while scrolling
+    <div className="sticky top-0 z-20">
     <DevBanner />
-    <header className="sticky top-0 z-20 border-b border-zinc-200 bg-white/90 backdrop-blur">
+    <header className="border-b border-zinc-200 bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <a href="/">
           <img src={logo} alt="Codetopia Academy" className="h-auto w-32 sm:w-44" />
@@ -79,7 +80,7 @@ export function Header({ look }: { look: Look }) {
         </nav>
       </div>
     </header>
-    </>
+    </div>
   )
 }
 
@@ -87,7 +88,7 @@ export function Ending({ look, title, shapes = false, band = '' }: { look: Look;
   return (
     <section
       id="register"
-      className={`relative scroll-mt-20 overflow-hidden px-4 py-24 text-center sm:px-6 ${band}`}
+      className={`relative scroll-mt-32 overflow-hidden px-4 py-24 text-center sm:px-6 ${band}`}
     >
       {shapes && (
         <>
