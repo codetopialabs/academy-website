@@ -10,7 +10,7 @@ const sections = [
       "The learner's first name and age.",
       "A parent's name, email and WhatsApp number (or your own, if you are an adult learner).",
       'Your country, so we can plan class times.',
-      'Whether you have a laptop and internet.',
+      'Whether you have a laptop, desktop or tablet, and internet.',
     ],
   },
   {

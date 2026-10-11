@@ -180,7 +180,7 @@ export const faq = [
   { q: 'My child has never used a computer much. Is that okay?', a: 'Yes. Everyone starts at the beginning, and there is a short device check before the first class.' },
   { q: 'What happens as my child gets older?', a: 'They move up to the next group. The six areas stay the same, but the courses go deeper.' },
   { q: 'What is the showcase?', a: 'At the end of each 4-month module, learners present their project. Family and friends are invited.' },
-  { q: 'What do we need at home?', a: 'A laptop or desktop with a keyboard and mouse, and an internet connection. A phone is not enough.' },
+  { q: 'What do we need at home?', a: 'A laptop, desktop or tablet, and an internet connection. A phone is not enough.' },
 ]
 
 // DUMMY: real tutors and photos. group is the id of the age group they teach.
@@ -246,7 +246,7 @@ export const adultFaq = [
   { q: 'When are the classes?', a: 'Twice a week. Choose evenings or weekends, whichever fits your schedule.' },
   { q: 'Can I have more or fewer lessons?', a: 'Yes. We can add or reduce lessons to fit around your work and life.' },
   { q: 'What will I have at the end?', a: 'A project every month, and a bigger one every four months for your portfolio. You present it at our showcase.' },
-  { q: 'What do I need?', a: 'A laptop or desktop and an internet connection. There is a short device check before your first class.' },
+  { q: 'What do I need?', a: 'A laptop, desktop or tablet, and an internet connection. There is a short device check before your first class.' },
 ]
 
 export const adultWho = [
