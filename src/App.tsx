@@ -134,14 +134,14 @@ function App() {
         </Section>
 
         <Section title="For parents">
-          <div className="divide-y divide-zinc-200 border-y border-zinc-200">
-            <Question q="How do you keep my child safe?">
-              <ul className="list-disc space-y-2 pl-5 marker:text-zinc-400">
-                {forParents.map((line) => (
-                  <li key={line}>{line}</li>
-                ))}
-              </ul>
-            </Question>
+          <h3 className="font-bold">Keeping your child safe</h3>
+          <ul className="font-inter mt-4 list-disc space-y-2 pl-5 text-zinc-700 marker:text-zinc-400">
+            {forParents.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+          <h3 className="mt-12 font-bold">Common questions</h3>
+          <div className="mt-2 divide-y divide-zinc-200 border-y border-zinc-200">
             {faq.map((item) => (
               <Question key={item.q} q={item.q}>
                 {item.a}
