@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import type { CategoryId, Shape } from './content'
 
 // Hand-drawn group shapes: coloured fill with a wobbly outline
@@ -186,6 +187,41 @@ export function CategoryIcon({ id, className = 'h-9 w-9' }: { id: CategoryId; cl
       {iconPaths[id].map((d) => (
         <path key={d} {...stroke} d={d} />
       ))}
+    </svg>
+  )
+}
+
+// The welcome pack gift: every few seconds the lid lifts and a few bits of confetti pop out
+const confetti = [
+  { d: 'M0 0 L0 0.1', x: -22, y: -22, color: 'text-sky-400' },
+  { d: 'M-2.5 0 L2.5 0 M0 -2.5 L0 2.5', x: -7, y: -34, color: 'text-yellow-400' },
+  { d: 'M0 0 L0 0.1', x: 10, y: -30, color: 'text-emerald-400' },
+  { d: 'M-2.5 0 L2.5 0 M0 -2.5 L0 2.5', x: 24, y: -18, color: 'text-orange-400' },
+  { d: 'M0 0 L0 0.1', x: 2, y: -42, color: 'text-sky-400' },
+]
+
+export function GiftBox({ className }: { className: string }) {
+  return (
+    <svg viewBox="0 0 40 40" overflow="visible" aria-hidden="true" className={className}>
+      <g {...stroke} strokeWidth={3} vectorEffect="non-scaling-stroke">
+        {confetti.map((c, i) => (
+          <path
+            key={i}
+            d={c.d}
+            strokeWidth={4}
+            className={`gift-bit ${c.color}`}
+            style={{ '--x': `${c.x}px`, '--y': `${c.y}px`, animationDelay: `${i * 30}ms` } as CSSProperties}
+          />
+        ))}
+        <path d="M7 17 L33 17 L33 35 L7 35 Z" vectorEffect="non-scaling-stroke" />
+        <path d="M20 17 L20 35" vectorEffect="non-scaling-stroke" />
+        <g className="gift-lid">
+          <path d="M5 11 L35 11 L35 17 L5 17 Z" vectorEffect="non-scaling-stroke" />
+          <path d="M20 11 L20 17" vectorEffect="non-scaling-stroke" />
+          <path d="M20 11 C 14 3, 7 8, 13 11" vectorEffect="non-scaling-stroke" />
+          <path d="M20 11 C 26 3, 33 8, 27 11" vectorEffect="non-scaling-stroke" />
+        </g>
+      </g>
     </svg>
   )
 }
