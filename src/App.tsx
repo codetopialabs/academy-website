@@ -88,7 +88,10 @@ function App() {
         <div className="relative overflow-hidden">
         <section className="relative mx-auto grid max-w-6xl gap-12 px-4 pt-20 pb-16 sm:px-6 md:grid-cols-[3fr_2fr] md:items-end md:pt-28">
           <div>
-            <h1 className="font-display text-5xl leading-[1.02] font-bold tracking-tight sm:text-6xl lg:text-7xl">
+            <p className="inline-flex -rotate-2 items-center gap-1.5 rounded-md border-2 border-black bg-yellow-300 px-3 py-1 font-mono text-xs font-bold tracking-wide shadow-[2px_2px_0_0_#000] sm:text-sm">
+              <span aria-hidden="true">⚠</span> Warning: they might start fixing everything.
+            </p>
+            <h1 className="font-display mt-6 text-5xl leading-[1.02] font-bold tracking-tight sm:text-6xl lg:text-7xl">
               <span className="block">Learn tech.</span>
               <span className="block">
                 Build <Marker>cool stuff.</Marker>
@@ -120,9 +123,6 @@ function App() {
           </div>
           <div className="relative mx-4 md:mx-0">
             <PhotoSpace label="Photo: a learner showing their project" className="aspect-[4/5]" />
-            <p className="absolute -top-5 left-6 z-10 inline-flex -rotate-3 items-center gap-1.5 rounded-md border-2 border-black bg-yellow-300 px-2.5 py-1 font-mono text-[11px] font-bold tracking-wide shadow-[2px_2px_0_0_#000] sm:text-xs">
-              <span aria-hidden="true">⚠</span> Warning: they might start fixing everything.
-            </p>
             <IdeaIcon name="controller" className="absolute -top-12 -right-6 h-20 w-20 -rotate-12 text-sky-400" />
             <IdeaIcon name="robot" className="absolute -right-8 -bottom-8 h-24 w-24 rotate-6 text-orange-400" />
             <IdeaIcon name="flag" className="absolute -bottom-6 -left-6 h-16 w-16 -rotate-12 text-emerald-400" />
