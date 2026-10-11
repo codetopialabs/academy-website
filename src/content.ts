@@ -186,6 +186,7 @@ export const categories: Category[] = [
 export const faq = [
   { q: 'My child has never used a computer much. Is that okay?', a: 'Yes. Everyone starts at the beginning, and there is a short device check before the first class.' },
   { q: 'What happens as my child gets older?', a: 'They move up to the next group. The six areas stay the same, but the courses go deeper.' },
+  { q: 'How will I know how my child is doing?', a: 'You get a short progress note every month.' },
   { q: 'Do they get a certificate?', a: 'Yes. At the end of every 4-month module, each learner gets a certificate for what they learned and built.' },
   { q: 'What is the showcase?', a: 'At the end of each 4-month module, learners present their project. Family and friends are invited.' },
   { q: 'What do we need at home?', a: 'A laptop, desktop or tablet, and an internet connection. A phone is not enough.' },
@@ -228,7 +229,6 @@ export const tutors: Tutor[] = [
 ]
 
 export const forParents = [
-  'You get a short progress note every month.',
   'Tutors never contact children privately. Everything goes through you.',
   'Every session is recorded, and you are told so.',
   "We never use your child's photo or name without your written consent.",
