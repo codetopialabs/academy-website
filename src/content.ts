@@ -16,7 +16,7 @@ export const fees = 'Fees are shared after you register.'
 export const priceAmount = 'GHS 500'
 export const pricePer = 'a month'
 
-export type Shape = 'circle' | 'square' | 'triangle' | 'diamond'
+export type Shape = 'circle' | 'square' | 'triangle' | 'diamond' | 'hexagon'
 export type Meaning = { origin: string; means: string; why: string }
 export type Group = {
   id: string

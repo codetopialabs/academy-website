@@ -23,8 +23,14 @@ export function AgePicker() {
             <button type="button" aria-label="Younger" className={stepButton} disabled={age <= minAge} onClick={() => setAge(age - 1)}>
               −
             </button>
-            <p className="font-display w-28 text-center text-7xl font-bold tabular-nums" aria-live="polite">
-              {age >= adultAge ? '21+' : age}
+            <p className="font-display w-32 text-center text-7xl font-bold tabular-nums" aria-live="polite">
+              {age >= adultAge ? (
+                <>
+                  21<span className="align-top text-4xl">+</span>
+                </>
+              ) : (
+                age
+              )}
             </p>
             <button type="button" aria-label="Older" className={stepButton} disabled={age >= adultAge} onClick={() => setAge(age + 1)}>
               +
@@ -43,6 +49,16 @@ export function AgePicker() {
                 </button>
               </li>
             ))}
+            <li>
+              <button
+                type="button"
+                onClick={() => setAge(adultAge)}
+                className={`flex items-center gap-3 ${group ? 'text-zinc-500 hover:text-black' : 'font-bold text-black'}`}
+              >
+                <SketchShape shape="hexagon" color="fill-zinc-300" className="h-4 w-4" />
+                {adultName}, ages 21+ (adults)
+              </button>
+            </li>
           </ul>
         </div>
 
@@ -60,11 +76,13 @@ export function AgePicker() {
           </div>
         ) : (
           <div>
-            <p className="font-display text-5xl font-bold tracking-tight">
+            <SketchShape shape="hexagon" color="fill-zinc-300" className="h-12 w-12" />
+            <p className="font-display mt-4 text-5xl font-bold tracking-tight">
               <NameWithMeaning name={adultName} meaning={adultMeaning} />
             </p>
-            <p className="font-inter mt-6 max-w-md text-xl">21 or older? We run separate classes for adults.</p>
-            <a href="/adults/" className="font-inter mt-6 inline-block font-bold underline underline-offset-4">
+            <p className="font-inter mt-1 text-zinc-600">Ages 21+</p>
+            <p className="font-inter mt-6 max-w-md text-xl">Classes for adults, with their own page.</p>
+            <a href="/adults/" className="font-inter mt-6 inline-block text-sm font-bold underline underline-offset-4">
               See adult classes ›
             </a>
           </div>

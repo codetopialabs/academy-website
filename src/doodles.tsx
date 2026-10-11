@@ -15,6 +15,7 @@ const shapePaths: Record<Shape, string> = {
   square: 'M4.5 5.5 L32 3.5 L33.5 31.5 L5 33 Z',
   triangle: 'M18.5 3.5 L34 31.5 L3.5 32.5 Z',
   diamond: 'M18 2.5 L34 18.5 L17.5 34 L2.5 18 Z',
+  hexagon: 'M10.5 3.5 L26 3 L34 17.5 L26.5 32.5 L10 33 L2.5 18 Z',
 }
 
 export function SketchShape({ shape, color, className = 'h-10 w-10' }: { shape: Shape; color: string; className?: string }) {
