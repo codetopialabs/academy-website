@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { FaWhatsapp } from 'react-icons/fa6'
 import logo from './assets/Codetopia Academy - Logo Black.png'
 import { email, whatsapp, type Meaning, type Shape } from './content'
+import { DevBanner } from './DevBanner'
 import { RegisterButton } from './RegisterButton'
 import { IdeaIcon } from './doodles'
 import { button, type Look } from './styles'
@@ -62,6 +63,8 @@ export function NameWithMeaning({ name, meaning, className = '' }: { name: strin
 export function Header({ look }: { look: Look }) {
   const other = look === 'kids' ? { href: '/adults/', short: 'Adults', text: 'Classes for adults' } : { href: '/', short: 'Children', text: 'Classes for children' }
   return (
+    <>
+    <DevBanner />
     <header className="sticky top-0 z-20 border-b border-zinc-200 bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <a href="/">
@@ -76,6 +79,7 @@ export function Header({ look }: { look: Look }) {
         </nav>
       </div>
     </header>
+    </>
   )
 }
 

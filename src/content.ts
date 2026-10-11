@@ -8,6 +8,9 @@ export const registerUrl = '#register'
 // DUMMY: label may become 'Book a free taster'
 export const registerLabel = 'Register'
 
+// true: a thin note at the top of every page says the site is still being built
+export const underDevelopment = true
+
 // false: Register buttons show a 'registration opens soon' note instead of going to the form
 export const registrationOpen = false
 export const registrationSoon = "Registration opens soon. Message us on WhatsApp and we'll keep you posted."
