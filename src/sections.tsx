@@ -154,13 +154,26 @@ function TutorCard({ tutor, copy = false, onOpen }: { tutor: Tutor; copy?: boole
 const tutorSet = Array.from({ length: Math.max(1, Math.ceil(8 / tutors.length)) }, () => tutors).flat()
 const carousel = [...tutorSet, ...tutorSet]
 
+// Big 'Who teaches' heading that sits right above the tutor carousel
+export function TutorsHeading({ icon }: { icon?: Icon }) {
+  const ref = useReveal<HTMLElement>()
+  return (
+    <section ref={ref} className="reveal mx-auto max-w-6xl px-4 pt-16 sm:px-6 md:pt-24">
+      <div className="flex items-center gap-4 border-t border-zinc-200 pt-10">
+        <h2 className="font-display text-5xl font-bold tracking-tight sm:text-7xl">Who teaches</h2>
+        {icon && <IdeaIcon name={icon.name} className={`h-12 w-12 -rotate-6 sm:h-16 sm:w-16 ${icon.color}`} />}
+      </div>
+    </section>
+  )
+}
+
 // Carousel: moves right to left in a loop, stops while hovered, tapped or a profile is open
 export function TutorCarousel() {
   const [openTutor, setOpenTutor] = useState<Tutor | null>(null)
   const closeTutor = useCallback(() => setOpenTutor(null), [])
   return (
     <>
-      <div className={`marquee-wrap -mt-6 overflow-hidden pb-16 md:-mt-10 md:pb-24 ${openTutor ? 'paused' : ''}`}>
+      <div className={`marquee-wrap mt-10 overflow-hidden pb-16 md:mt-12 md:pb-24 ${openTutor ? 'paused' : ''}`}>
         <ul className="marquee flex gap-4 md:gap-6">
           {carousel.map((tutor, i) => (
             <TutorCard key={i} tutor={tutor} copy={i >= tutors.length} onOpen={setOpenTutor} />
