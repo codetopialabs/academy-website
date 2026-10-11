@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { Ending, Header, Marker } from './components'
-import { categories, email, faq, forParents, groups, priceAmount, pricePer, registerLabel, registerUrl, startDate, startLine, classStarted, tutors, whatsapp } from './content'
-import { CategoryIcon, IdeaIcon, SketchShape, type Idea } from './doodles'
+import { categories, email, faq, forParents, priceAmount, pricePer, registerLabel, registerUrl, startDate, startLine, classStarted, tutors, whatsapp } from './content'
+import { CategoryIcon, IdeaIcon, type Idea } from './doodles'
 import { AgePicker } from './Explorer'
 import { Footer } from './Footer'
 import { button } from './styles'
@@ -77,9 +77,8 @@ function PhotoSpace({ label, className = '' }: { label: string; className?: stri
 }
 
 // Big portrait card like the community site: photo goes from grey to colour on hover,
-// and the name and group slide up on hover, keyboard focus or tap
+// and the name slides up on hover, keyboard focus or tap
 function TutorCard({ tutor, copy = false }: { tutor: (typeof tutors)[number]; copy?: boolean }) {
-  const group = groups.find((g) => g.id === tutor.group)
   return (
     <li className="w-64 shrink-0 sm:w-72" aria-hidden={copy || undefined}>
       <div tabIndex={copy ? -1 : 0} className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-2xl bg-zinc-100 outline-offset-4">
@@ -99,17 +98,8 @@ function TutorCard({ tutor, copy = false }: { tutor: (typeof tutors)[number]; co
           className="absolute inset-x-0 bottom-0 translate-y-full bg-black/85 p-5 text-white transition-transform duration-300 group-hover:translate-y-0 group-focus:translate-y-0"
         >
           <p className="font-display text-2xl leading-tight font-bold tracking-tight">{tutor.name}</p>
-          {group && (
-            <p className="font-inter mt-2 flex items-center gap-2 text-sm text-zinc-300">
-              <SketchShape shape={group.shape} color={group.color} className="h-4 w-4" />
-              Teaches {group.name}, ages {group.ages}
-            </p>
-          )}
         </div>
-        <span className="sr-only">
-          {tutor.name}
-          {group && `, teaches ${group.name}, ages ${group.ages}`}
-        </span>
+        <span className="sr-only">{tutor.name}</span>
       </div>
     </li>
   )
