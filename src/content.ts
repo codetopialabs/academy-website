@@ -160,45 +160,6 @@ export const categories: Category[] = [
   },
 ]
 
-// Courses change with age: same six categories, different courses and depth.
-export type Plan = { courses: string[]; make: string }
-
-// DUMMY: course names and projects per group
-export const plans: Record<string, Record<CategoryId, Plan>> = {
-  nova: {
-    foundations: { courses: ['Mouse and Keyboard', 'Saving My Work', 'Safe Online'], make: 'A typed and saved story' },
-    ai: { courses: ['What is AI?', 'Talking to AI', 'Sorting Things'], make: 'A sorting game' },
-    design: { courses: ['Digital Drawing', 'Colours and Shapes', 'Moving Pictures'], make: 'An animated drawing' },
-    software: { courses: ['Step by Step', 'ScratchJr Basics', 'My First Story'], make: 'An interactive story' },
-    hardware: { courses: ['Inside a Computer', 'Lights and Buttons', 'Simple Circuits'], make: 'A light-up card' },
-    automation: { courses: ['Patterns', 'Repeat It', 'Robot Instructions'], make: 'Instructions a robot can follow' },
-  },
-  orion: {
-    foundations: { courses: ['Typing Fast', 'Files and Folders', 'Smart Searching'], make: 'A research poster' },
-    ai: { courses: ['How AI Learns', 'Good Questions for AI', 'Is AI Right?'], make: 'A quiz checked against AI' },
-    design: { courses: ['Characters', 'Animation and Stories', 'Video Basics'], make: 'A short animated film' },
-    software: { courses: ['Scratch Games', 'Scores and Levels', 'Intro to Python'], make: 'A game they can play' },
-    hardware: { courses: ['Circuits', 'micro:bit Basics', 'Sensors'], make: 'A micro:bit gadget' },
-    automation: { courses: ['Loops', 'If This Then That', 'Simple Bots'], make: 'A bot that answers questions' },
-  },
-  nyota: {
-    foundations: { courses: ['Touch Typing', 'Docs and Sheets', 'Privacy and Scams'], make: 'A staying-safe guide for their family' },
-    ai: { courses: ['How AI Works', 'Data and Charts', 'Prompting Well'], make: 'A chart that answers a real question' },
-    design: { courses: ['Layout and Posters', 'Video Editing', 'Website Design'], make: 'A designed web page' },
-    software: { courses: ['Python Foundations', 'HTML and CSS', 'JavaScript Basics'], make: 'Their own live website' },
-    hardware: { courses: ['Arduino Basics', 'Sensors and Motors', 'Build a Robot'], make: 'A small robot' },
-    automation: { courses: ['Python Scripts', 'Automate Files', 'Simple APIs'], make: 'A script that saves time' },
-  },
-  zenith: {
-    foundations: { courses: ['Pro Tools', 'Cloud and Teamwork', 'Security Basics'], make: 'A secure online portfolio' },
-    ai: { courses: ['Machine Learning Basics', 'Data Analysis', 'Building with AI'], make: 'An app that uses AI' },
-    design: { courses: ['UI Design in Figma', 'Brand and Identity', 'Motion Graphics'], make: 'A full app design' },
-    software: { courses: ['Web Apps', 'Databases', 'Git and Teamwork'], make: 'A working web app' },
-    hardware: { courses: ['Microcontrollers', 'Internet of Things', 'Prototyping'], make: 'A connected device' },
-    automation: { courses: ['Workflows', 'Bots and APIs', 'Testing'], make: 'An automated workflow' },
-  },
-}
-
 export const stats = [
   { big: '5', small: 'kids per tutor' },
   { big: '8', small: 'live sessions a month' },

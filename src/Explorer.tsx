@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { NameWithMeaning } from './components'
-import { adultMeaning, adultName, categories, groups, plans, startDate, type CategoryId } from './content'
+import { adultMeaning, adultName, categories, groups, startDate, type CategoryId } from './content'
 import { CategoryIcon, Note, SketchShape, Star } from './doodles'
 
 const minAge = 6
@@ -41,7 +41,6 @@ export function Explorer() {
   const group = groups.find((g) => age >= g.min && age <= g.max)
   const categoryIndex = categories.findIndex((c) => c.id === categoryId)
   const category = categories[categoryIndex]
-  const plan = group ? plans[group.id][categoryId] : null
 
   return (
     <div className="overflow-hidden rounded-[2rem] border-2 border-black bg-white">
@@ -112,7 +111,7 @@ export function Explorer() {
       </div>
 
       {/* categories and courses for this age */}
-      {group && plan && (
+      {group && (
         <div className="border-t-2 border-black p-6 sm:p-10">
           <div className="flex flex-wrap items-end justify-between gap-2">
             <Note>pick an area</Note>
@@ -142,22 +141,6 @@ export function Explorer() {
             <p className="font-inter text-zinc-600">
               <span className="font-bold text-black">{category.name}.</span> {category.about}
             </p>
-            <ol className="mt-6 grid gap-3 md:grid-cols-4 md:gap-4">
-              {plan.courses.map((course) => (
-                <li key={course} className="relative flex items-center rounded-2xl border-2 border-black/10 bg-white p-4">
-                  <p className="font-bold">{course}</p>
-                  <span aria-hidden="true" className="font-hand absolute top-1/2 -right-4 z-10 hidden -translate-y-1/2 text-3xl md:block">
-                    →
-                  </span>
-                </li>
-              ))}
-              <li className={`rounded-2xl border-2 border-black p-4 ${group.accent}`}>
-                <span className="font-hand flex items-center gap-1 text-xl">
-                  <Star className="h-5 w-5" fillClass="fill-white" /> they build
-                </span>
-                <p className="mt-1 font-bold">{plan.make}</p>
-              </li>
-            </ol>
           </div>
         </div>
       )}

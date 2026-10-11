@@ -123,7 +123,7 @@ function App() {
               What will your child <Scribbled color="text-yellow-300">learn?</Scribbled>
             </>
           }
-          note={<Note className="-rotate-2">change the age. watch the courses change ✦</Note>}
+          note={<Note className="-rotate-2">pick your child's age ✦</Note>}
         >
           <Explorer />
         </Section>
