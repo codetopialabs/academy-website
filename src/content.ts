@@ -18,8 +18,9 @@ export const priceAmount = 'GHS 500'
 export const pricePer = 'a month'
 
 export type Shape = 'circle' | 'square' | 'triangle' | 'diamond' | 'hexagon'
-// say: easy written pronunciation. speak: what the browser voice reads out
-export type Meaning = { origin: string; means: string; why: string; say: string; speak: string }
+// say: easy written pronunciation. speak: what the browser voice reads out.
+// audio: optional recording in public/audio (e.g. '/audio/nova.mp3'), played instead of the browser voice
+export type Meaning = { origin: string; means: string; why: string; say: string; speak: string; audio?: string }
 export type Group = {
   id: string
   name: string

@@ -32,15 +32,26 @@ export function ShapeMark({ shape, color, className = 'h-8 w-8' }: { shape: Shap
   )
 }
 
-// Plays the name out loud with the browser's built-in voice
+// Closest accent first: Ghanaian English, then other African English voices, then British
+const accents = ['en-GH', 'en-NG', 'en-KE', 'en-TZ', 'en-ZA', 'en-GB']
+
+// Plays the name out loud: a recording if there is one, otherwise the closest browser voice
 export function SayIt({ name, meaning, className = '' }: { name: string; meaning: Meaning; className?: string }) {
   if (typeof window === 'undefined' || !('speechSynthesis' in window)) return null
   const speak = () => {
-    const voice = new SpeechSynthesisUtterance(meaning.speak)
-    voice.lang = 'en-GB'
-    voice.rate = 0.8
+    // a real recording always wins
+    if (meaning.audio) {
+      void new Audio(meaning.audio).play()
+      return
+    }
+    const utterance = new SpeechSynthesisUtterance(meaning.speak)
+    const voices = window.speechSynthesis.getVoices()
+    const voice = accents.map((lang) => voices.find((v) => v.lang.replace('_', '-') === lang)).find(Boolean)
+    utterance.lang = voice?.lang ?? 'en-GB'
+    if (voice) utterance.voice = voice
+    utterance.rate = 0.8
     window.speechSynthesis.cancel()
-    window.speechSynthesis.speak(voice)
+    window.speechSynthesis.speak(utterance)
   }
   return (
     <button
