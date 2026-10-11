@@ -31,19 +31,19 @@ body {
   background: #fff;
 }
 
-/* Tutor carousel: slides left to right, pauses on hover or when a card is tapped */
-@keyframes marquee-right {
+/* Tutor carousel: slides right to left, pauses on hover or when a card is tapped */
+@keyframes marquee-left {
   from {
-    transform: translateX(-50%);
+    transform: translateX(0);
   }
   to {
-    transform: translateX(0);
+    transform: translateX(-50%);
   }
 }
 
 .marquee {
   width: max-content;
-  animation: marquee-right 45s linear infinite;
+  animation: marquee-left 45s linear infinite;
 }
 
 .marquee-wrap:hover .marquee,

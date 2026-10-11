@@ -225,7 +225,7 @@ function App() {
             We choose and train our own tutors, and check every one before they teach.
           </p>
         </Section>
-        {/* Carousel: moves left to right in a loop, stops while hovered or tapped */}
+        {/* Carousel: moves right to left in a loop, stops while hovered or tapped */}
         <div className={`marquee-wrap -mt-6 overflow-hidden pb-16 md:-mt-10 md:pb-24 ${openTutor ? 'paused' : ''}`}>
           <ul className="marquee flex gap-4 md:gap-6">
             {carousel.map((tutor, i) => (
