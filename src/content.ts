@@ -160,13 +160,6 @@ export const categories: Category[] = [
   },
 ]
 
-export const stats = [
-  { big: '5', small: 'kids per tutor' },
-  { big: '8', small: 'live sessions a month, every Saturday and Sunday' },
-  { big: '1', small: 'project every month' },
-  { big: '4', small: 'months per module' },
-]
-
 // DUMMY: confirm answers with the team
 export const faq = [
   { q: 'My child has never used a computer much. Is that okay?', a: 'Yes. Everyone starts at the beginning, and there is a short device check before the first class.' },

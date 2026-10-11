@@ -1,204 +1,163 @@
 import type { ReactNode } from 'react'
-import { Ending, Header, Label, Marker } from './components'
-import {
-  faq,
-  forParents,
-  registerLabel,
-  registerUrl,
-  startDate,
-  stats,
-  tutors,
-} from './content'
-import { Explorer } from './Explorer'
-import {
-  Arrow,
-  Check,
-  Loop,
-  Note,
-  Scribbled,
-  Sparkle,
-  Squiggle,
-  Star,
-} from './doodles'
+import { Ending, Header, Marker } from './components'
+import { categories, email, faq, forParents, registerLabel, registerUrl, startDate, tutors, whatsapp } from './content'
+import { AgePicker } from './Explorer'
 import { Footer } from './Footer'
-import { button, dots } from './styles'
+import { button } from './styles'
 
-function Section({
-  label,
-  title,
-  note,
-  children,
-}: {
-  label: string
-  title: ReactNode
-  note?: ReactNode
-  children: ReactNode
-}) {
+function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-      <Label>{label}</Label>
-      <div className="mt-3 flex flex-wrap items-end justify-between gap-x-8 gap-y-2">
-        <h2 className="font-display text-3xl font-bold tracking-tight sm:text-5xl">{title}</h2>
-        {note}
+    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+      <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
+        <h2 className="font-display text-3xl font-bold tracking-tight">{title}</h2>
+        <div>{children}</div>
       </div>
-      <div className="mt-12">{children}</div>
     </section>
   )
 }
 
-const stickerTilts = ['-rotate-2', 'rotate-1', '-rotate-1', 'rotate-2']
-const stickerColors = ['text-yellow-400', 'text-sky-400', 'text-emerald-400', 'text-orange-400']
-
-function CheckList({ lines }: { lines: string[] }) {
+// DUMMY: swap for a real photo
+function PhotoSpace({ label, className = '' }: { label: string; className?: string }) {
   return (
-    <ul className="font-inter mt-5 space-y-4 text-zinc-700">
-      {lines.map((line) => (
-        <li key={line} className="flex gap-3">
-          <Check className="mt-0.5 h-5 w-5 shrink-0 text-sky-400" />
-          {line}
-        </li>
-      ))}
-    </ul>
+    <div
+      className={`font-inter flex items-center justify-center rounded-lg border border-dashed border-zinc-300 bg-zinc-50 p-6 text-center text-sm text-zinc-400 ${className}`}
+    >
+      {label}
+    </div>
   )
 }
 
 function App() {
   return (
-    <div className="overflow-x-clip bg-white text-black">
-      <a
-        href={registerUrl}
-        className="font-inter block bg-yellow-300 px-4 py-2.5 text-center text-sm hover:bg-yellow-200"
-      >
-        <span className="font-bold">First classes start {startDate}.</span>{' '}
-        <span className="underline underline-offset-2">Register ›</span>
-      </a>
+    <div className="bg-white text-black">
       <Header look="kids" />
 
       <main>
-        <section style={dots} className="relative px-4 pt-24 pb-28 text-center sm:px-6 sm:pt-32 sm:pb-36">
-          <Star className="absolute top-14 left-[8%] h-10 w-10 -rotate-12 text-yellow-400 sm:h-14 sm:w-14" />
-          <Squiggle className="absolute top-24 right-[7%] hidden h-6 w-28 text-emerald-400 sm:block" />
-          <Sparkle className="absolute bottom-20 left-[14%] hidden h-8 w-8 text-sky-400 sm:block" />
-          <Loop className="absolute right-[10%] bottom-16 hidden h-10 w-32 text-orange-300 md:block" />
-
-          <p className="font-mono text-sm tracking-[0.2em] text-zinc-500 uppercase">
-            Think. Build. <span className="font-bold text-black">Solve.</span>
-          </p>
-          <h1 className="font-display relative mx-auto mt-6 max-w-4xl text-4xl leading-[1.05] font-bold tracking-tight sm:text-6xl md:text-7xl">
-            Kids already use technology every day. We teach them to <Marker>build with it.</Marker>
-          </h1>
-          <p className="font-inter mx-auto mt-6 max-w-xl text-lg text-zinc-600 sm:text-xl">
-            Live, project-based weekend classes for children and teens aged 6 to 20. Small groups,
-            real tutors, and something new built every month.
-          </p>
-
-          <div className="relative mx-auto mt-12 inline-block">
-            <a href={registerUrl} className={button('kids')}>
-              {registerLabel} ›
-            </a>
-            <div className="absolute top-1/2 left-full ml-3 hidden -translate-y-1/2 items-center sm:flex">
-              <Arrow className="h-12 w-16 -scale-x-100 rotate-[100deg] text-zinc-500" />
-              <Note className="-rotate-3 whitespace-nowrap">first class: {startDate}</Note>
+        <section className="mx-auto grid max-w-6xl gap-12 px-4 pt-20 pb-16 sm:px-6 md:grid-cols-[3fr_2fr] md:items-end md:pt-28">
+          <div>
+            <h1 className="font-display text-4xl leading-[1.05] font-bold tracking-tight sm:text-6xl">
+              Your child already uses technology. Here, they learn to <Marker>build with it.</Marker>
+            </h1>
+            <p className="font-inter mt-8 max-w-xl text-lg text-zinc-700">
+              Small live classes online for ages 6 to 20, every Saturday and Sunday. Taught by real
+              tutors, in groups of about five.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <a href={registerUrl} className={button('kids')}>
+                {registerLabel} ›
+              </a>
+              <a
+                href={`https://wa.me/${whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-inter text-sm underline underline-offset-4"
+              >
+                Questions? Message us on WhatsApp ›
+              </a>
             </div>
-            <Note className="mt-4 block -rotate-2 sm:hidden">first class: {startDate}</Note>
+            <p className="font-inter mt-8 text-sm text-zinc-500">First classes: {startDate}.</p>
           </div>
+          <PhotoSpace label="Photo: a learner showing their project" className="aspect-[4/5]" />
         </section>
 
-        <div className="mx-auto grid max-w-5xl grid-cols-2 gap-4 px-4 pt-4 sm:px-6 md:grid-cols-4">
-          {stats.map((stat, i) => (
-            <div
-              key={stat.small}
-              className={`rounded-2xl border-2 border-black bg-white p-5 text-center ${stickerTilts[i]}`}
-            >
-              <p className={`font-hand text-6xl leading-none font-bold ${stickerColors[i]}`}>{stat.big}</p>
-              <p className="font-inter mt-2 text-sm text-zinc-700">{stat.small}</p>
-            </div>
-          ))}
-        </div>
-
-        <Section
-          label="Find your child's group"
-          title={
-            <>
-              What will your child <Scribbled color="text-yellow-300">learn?</Scribbled>
-            </>
-          }
-          note={<Note className="-rotate-2">pick your child's age ✦</Note>}
-        >
-          <Explorer />
+        <Section title="How it works">
+          <div className="font-inter max-w-2xl space-y-5 text-lg text-zinc-700">
+            <p>
+              Every class is live on video, cameras on, with a tutor who knows each child by name.
+              Groups are small, about five children, and they meet twice every weekend.
+            </p>
+            <p>
+              Each month, your child finishes a small project. Every four months they finish a bigger
+              one and present it at our showcase. Family and friends are welcome.
+            </p>
+          </div>
         </Section>
 
-        <section className="relative bg-black px-4 py-24 text-white sm:px-6 sm:py-32">
-          <Sparkle className="absolute top-12 right-[10%] h-10 w-10 text-yellow-300" />
-          <Squiggle className="absolute bottom-14 left-[8%] h-6 w-28 text-sky-300" />
-          <figure className="mx-auto max-w-4xl">
-            <blockquote className="font-display text-3xl leading-tight font-bold tracking-tight sm:text-5xl">
-              “We don't train people to use one tool or one language. We raise{' '}
-              <span className="whitespace-nowrap text-sky-300">problem-solvers.</span>”
-            </blockquote>
-            <figcaption className="mt-8 font-mono text-sm tracking-[0.2em] text-zinc-400 uppercase">
-              Codetopia Academy
-            </figcaption>
-          </figure>
+        <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
+          <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
+            <h2 className="font-display text-3xl font-bold tracking-tight">Find your child's group</h2>
+            <p className="font-inter max-w-2xl text-lg text-zinc-700">
+              Children are grouped by age, so everyone learns with others at their level. Tap a group
+              name to see what it means.
+            </p>
+          </div>
         </section>
+        <div className="mt-10">
+          <AgePicker />
+        </div>
 
-        <Section
-          label="Who teaches"
-          title={
-            <>
-              Tutors who know your <Scribbled color="text-orange-300">child's name</Scribbled>
-            </>
-          }
-        >
-          <ul className="grid gap-10 sm:grid-cols-3">
-            {tutors.map((tutor, i) => (
-              <li key={i} className="flex items-center gap-4">
-                <div
-                  className={`h-20 w-20 shrink-0 rounded-full border-2 border-black bg-zinc-100 ${i % 2 ? 'rotate-3' : '-rotate-3'}`}
-                  aria-hidden="true"
-                />
+        <Section title="What they learn">
+          <p className="font-inter max-w-2xl text-lg text-zinc-700">
+            Every group works through the same six areas, one after another. What changes with age is
+            how deep they go.
+          </p>
+          <ol className="mt-10 grid gap-x-12 gap-y-8 sm:grid-cols-2">
+            {categories.map((category, i) => (
+              <li key={category.id} className="flex gap-4">
+                <span className="font-display text-lg text-zinc-400">{i + 1}</span>
                 <div>
-                  <p className="font-bold">{tutor.name}</p>
-                  <p className="font-hand text-xl text-zinc-500">{tutor.role}</p>
-                  <p className="font-inter mt-1 text-sm text-zinc-600">{tutor.line}</p>
+                  <p className="font-bold">{category.name}</p>
+                  <p className="font-inter mt-1 text-zinc-600">{category.about}</p>
                 </div>
+              </li>
+            ))}
+          </ol>
+        </Section>
+
+        <Section title="Who teaches">
+          <p className="font-inter max-w-2xl text-lg text-zinc-700">
+            We choose and train our own tutors, and check every one before they teach.
+          </p>
+          <ul className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3">
+            {tutors.map((tutor, i) => (
+              <li key={i}>
+                <PhotoSpace label="Tutor photo" className="aspect-square" />
+                <p className="mt-3 font-bold">{tutor.name}</p>
+                <p className="font-inter text-sm text-zinc-600">{tutor.line}</p>
               </li>
             ))}
           </ul>
         </Section>
 
-        <Section label="For parents" title="Questions parents ask">
-          <div className="grid gap-12 md:grid-cols-[1fr_1.4fr]">
-            <div className="h-fit rounded-3xl border-2 border-black p-6 sm:p-8">
-              <h3 className="text-xl font-bold">Your child is safe with us</h3>
-              <CheckList lines={forParents} />
+        <Section title="For parents">
+          <div className="grid gap-12 lg:grid-cols-2">
+            <div>
+              <h3 className="font-bold">Keeping your child safe</h3>
+              <ul className="font-inter mt-4 list-disc space-y-2 pl-5 text-zinc-700 marker:text-zinc-400">
+                {forParents.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
             </div>
-            <div className="divide-y-2 divide-dashed divide-zinc-200">
-              {faq.map((item) => (
-                <details key={item.q} className="group py-5">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-bold">
-                    {item.q}
-                    <span className="font-hand text-3xl leading-none transition group-open:rotate-45">+</span>
-                  </summary>
-                  <p className="font-inter mt-3 text-zinc-600">{item.a}</p>
-                </details>
-              ))}
+            <div>
+              <h3 className="font-bold">Common questions</h3>
+              <dl className="font-inter mt-4 space-y-5">
+                {faq.map((item) => (
+                  <div key={item.q}>
+                    <dt className="font-medium">{item.q}</dt>
+                    <dd className="mt-1 text-zinc-600">{item.a}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="font-inter mt-6 text-sm text-zinc-600">
+                Anything else? Email{' '}
+                <a href={`mailto:${email}`} className="underline underline-offset-2">
+                  {email}
+                </a>
+                .
+              </p>
             </div>
           </div>
         </Section>
 
-        <div className="relative">
-          <Star className="absolute top-12 right-[12%] h-12 w-12 rotate-12 text-yellow-400" />
-          <Sparkle className="absolute bottom-16 left-[10%] h-9 w-9 text-sky-400" />
-          <Ending
-            look="kids"
-            title={
-              <>
-                Classes start <Marker>{startDate}.</Marker>
-              </>
-            }
-          />
-        </div>
+        <Ending
+          look="kids"
+          title={
+            <>
+              First classes <Marker>{startDate}.</Marker>
+            </>
+          }
+        />
       </main>
 
       <Footer />
