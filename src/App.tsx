@@ -88,8 +88,8 @@ function App() {
             Kids already use technology every day. We teach them to <Marker>build with it.</Marker>
           </h1>
           <p className="font-inter mx-auto mt-6 max-w-xl text-lg text-zinc-600 sm:text-xl">
-            Live, project-based classes for children and teens aged 6 to 20. Small groups, real
-            tutors, and something new built every month.
+            Live, project-based weekend classes for children and teens aged 6 to 20. Small groups,
+            real tutors, and something new built every month.
           </p>
 
           <div className="relative mx-auto mt-12 inline-block">

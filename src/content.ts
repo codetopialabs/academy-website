@@ -162,7 +162,7 @@ export const categories: Category[] = [
 
 export const stats = [
   { big: '5', small: 'kids per tutor' },
-  { big: '8', small: 'live sessions a month' },
+  { big: '8', small: 'live sessions a month, every Saturday and Sunday' },
   { big: '1', small: 'project every month' },
   { big: '4', small: 'months per module' },
 ]
