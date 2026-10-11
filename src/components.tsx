@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { FaWhatsapp } from 'react-icons/fa6'
 import logo from './assets/Codetopia Academy - Logo Black.png'
-import { email, registerLabel, registerUrl, whatsapp, type Meaning, type Shape } from './content'
+import { categories, email, registerLabel, registerUrl, whatsapp, type Meaning, type Shape } from './content'
 import { button, dots, type Look } from './styles'
 
 export function Marker({ children }: { children: ReactNode }) {
@@ -53,6 +53,32 @@ export function NameWithMeaning({ name, meaning, className = '' }: { name: strin
         <span className="mt-2 block text-zinc-300">{meaning.why}</span>
       </span>
     </span>
+  )
+}
+
+export function Categories({ look }: { look: Look }) {
+  return (
+    <ol className="divide-y divide-zinc-200 border-y border-zinc-200">
+      {categories.map((category, i) => (
+        <li key={category.name} className="grid gap-2 py-6 md:grid-cols-[3rem_1fr_1.5fr] md:gap-6">
+          <span className="font-mono text-sm text-zinc-400">{String(i + 1).padStart(2, '0')}</span>
+          <div>
+            <p className="text-lg font-bold">{category.name}</p>
+            <p className="font-inter mt-1 text-zinc-600">{category.about}</p>
+          </div>
+          <ul className="flex flex-wrap content-start gap-2">
+            {(look === 'kids' ? category.kids : category.adults).map((course) => (
+              <li
+                key={course}
+                className={`font-inter border border-zinc-200 px-3 py-1 text-sm text-zinc-700 ${look === 'kids' ? 'rounded-full' : ''}`}
+              >
+                {course}
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))}
+    </ol>
   )
 }
 

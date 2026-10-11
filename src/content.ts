@@ -13,7 +13,6 @@ export const whatsapp = '233000000000'
 
 export const fees = 'Fees are shared after you register.'
 
-export type Course = { name: string; about: string; make: string }
 export type Shape = 'circle' | 'square' | 'triangle' | 'diamond'
 export type Meaning = { origin: string; means: string; why: string }
 export type Group = {
@@ -26,10 +25,9 @@ export type Group = {
   shape: Shape
   color: string // shape fill
   tint: string // panel background
-  courses: Course[]
 }
 
-// DUMMY: courses and which groups open on 7 Nov
+// DUMMY: which groups open on 7 Nov
 export const groups: Group[] = [
   {
     id: 'nova',
@@ -45,11 +43,6 @@ export const groups: Group[] = [
     shape: 'circle',
     color: 'fill-yellow-300',
     tint: 'bg-yellow-50',
-    courses: [
-      { name: 'Computer Basics', about: 'Using a mouse, typing and saving work.', make: 'A typed and saved story' },
-      { name: 'Logic Puzzles', about: 'Solving puzzles one step at a time.', make: 'A puzzle for a friend to solve' },
-      { name: 'First Animations', about: 'Moving characters in Scratch.', make: 'An animated story' },
-    ],
   },
   {
     id: 'orion',
@@ -65,11 +58,6 @@ export const groups: Group[] = [
     shape: 'square',
     color: 'fill-sky-300',
     tint: 'bg-sky-50',
-    courses: [
-      { name: 'Game Making with Scratch', about: 'Loops, controls, scores and collisions.', make: 'A game they can play' },
-      { name: 'Animation and Stories', about: 'Scenes, timing and characters that talk.', make: 'A short animated film' },
-      { name: 'Intro to Python', about: 'Their first lines of real code.', make: 'A small text game' },
-    ],
   },
   {
     id: 'nyota',
@@ -85,11 +73,6 @@ export const groups: Group[] = [
     shape: 'triangle',
     color: 'fill-emerald-300',
     tint: 'bg-emerald-50',
-    courses: [
-      { name: 'Python Foundations', about: 'Variables, logic and functions.', make: 'A quiz or a simple tool' },
-      { name: 'Build a Website', about: 'HTML, CSS and putting it online.', make: 'Their own live website' },
-      { name: 'AI Projects', about: 'How AI works and how to use it well.', make: 'A small project that uses AI' },
-    ],
   },
   {
     id: 'zenith',
@@ -105,21 +88,59 @@ export const groups: Group[] = [
     shape: 'diamond',
     color: 'fill-orange-300',
     tint: 'bg-orange-50',
-    courses: [
-      { name: 'Web Apps', about: 'Building apps people can sign in to and use.', make: 'A working web app' },
-      { name: 'Data and AI', about: 'Working with data and putting AI to use.', make: 'A project that answers a real question' },
-      { name: 'Portfolio Project', about: 'One big project, planned and built by them.', make: 'A portfolio piece to show universities and employers' },
-    ],
   },
 ]
 
-export const month = [
-  { when: 'Week 1', what: 'Learn a new idea and start building' },
-  { when: 'Week 2', what: 'Add to it' },
-  { when: 'Week 3', what: 'Test, fix and improve' },
-  { when: 'Week 4', what: 'Finish the mini project' },
-  // DUMMY: confirm showcase is monthly
-  { when: 'Showcase', what: 'Show it to parents' },
+// Every learner works through all six, in this order. Each category has many courses.
+export type Category = { name: string; about: string; kids: string[]; adults: string[] }
+
+// DUMMY: example courses
+export const categories: Category[] = [
+  {
+    name: 'Computer Foundations',
+    about: 'Using a computer well and staying safe online.',
+    kids: ['Typing and Files', 'Searching the Internet', 'Staying Safe Online'],
+    adults: ['Technology from Zero', 'Email and Documents', 'Staying Safe Online'],
+  },
+  {
+    name: 'AI and Data',
+    about: 'How AI works, how to use it well, and making sense of data.',
+    kids: ['Meet AI', 'Asking AI Good Questions', 'Charts and Data'],
+    adults: ['AI Tools for Work', 'Spreadsheets and Data', 'Checking AI Answers'],
+  },
+  {
+    name: 'Design and Digital Media',
+    about: 'Drawing, animation, video, and how screens should look.',
+    kids: ['Digital Drawing', 'Animation and Stories', 'Video Making'],
+    adults: ['Graphics for Work', 'Slides that Work', 'Video Basics'],
+  },
+  {
+    name: 'Software Engineering',
+    about: 'Building working programs, games, websites and apps.',
+    kids: ['Game Making with Scratch', 'Intro to Python', 'Build a Website'],
+    adults: ['Python from Zero', 'Build a Website', 'Web Apps'],
+  },
+  {
+    name: 'Hardware and Electronics',
+    about: 'Circuits, sensors and robots.',
+    kids: ['First Circuits', 'Robots', 'Microcontrollers'],
+    adults: ['Electronics Basics', 'Microcontrollers', 'Smart Devices'],
+  },
+  {
+    name: 'Automation',
+    about: 'Getting computers to do repetitive work for you.',
+    kids: ['Make the Computer Do It', 'Simple Bots', 'Automate with Python'],
+    adults: ['Automate Your Spreadsheets', 'No-code Automation', 'Automate with Python'],
+  },
+]
+
+// One module runs 4 months
+export const moduleSteps = [
+  { when: 'Month 1', what: 'Mini project' },
+  { when: 'Month 2', what: 'Mini project' },
+  { when: 'Month 3', what: 'Mini project' },
+  { when: 'Month 4', what: 'End-of-module project' },
+  { when: 'Showcase', what: 'Family and friends come to see it' },
 ]
 
 // DUMMY: real tutors, photos and lines
@@ -156,19 +177,13 @@ export const adultAges = '21+'
 // DUMMY: adult start date, null means opening soon
 export const adultStart: string | null = null
 
-// DUMMY: adult courses
-export const adultCourses: Course[] = [
-  { name: 'Technology from Zero', about: 'Computers, the internet and AI for complete beginners.', make: 'Confidence with everyday tech tasks' },
-  { name: 'Tech for Work', about: 'Spreadsheets, automation and AI tools.', make: 'A tool that saves you time at work' },
-  { name: 'Build a Website', about: 'From a blank page to a live site.', make: 'Your first portfolio site' },
-]
-
 export const adultHow = [
   'Live evening classes online.',
   'About 5 people per tutor.',
-  '4 sessions a month.',
-  'A project at the end of every month.',
-  'A bigger portfolio project at the end of every 4-month term.',
+  '8 sessions a month, twice a week.',
+  'A mini project every month.',
+  'Each module runs 4 months and ends with a bigger project.',
+  'Show it at the showcase. Bring family and friends.',
 ]
 
 export const adultWho = [

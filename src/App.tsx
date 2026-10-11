@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react'
-import { Ending, Header, Label, Marker, NameWithMeaning, ShapeMark } from './components'
+import { Categories, Ending, Header, Label, Marker, NameWithMeaning, ShapeMark } from './components'
 import { button, dots } from './styles'
 import {
   beforeYouStart,
   forParents,
   groups,
-  month,
+  moduleSteps,
   registerLabel,
   registerUrl,
   startDate,
@@ -26,7 +26,7 @@ function Section({ label, title, children }: { label: string; title: string; chi
 
 function GroupBlock({ group }: { group: Group }) {
   return (
-    <div id={group.id} className={`scroll-mt-20 rounded-3xl p-6 sm:p-10 ${group.tint}`}>
+    <div id={group.id} className={`scroll-mt-20 rounded-3xl p-6 sm:p-8 ${group.tint}`}>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
         <ShapeMark shape={group.shape} color={group.color} className="h-9 w-9" />
         <h3 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
@@ -42,18 +42,6 @@ function GroupBlock({ group }: { group: Group }) {
         </span>
       </div>
       <p className="font-inter mt-4 text-lg text-zinc-700">{group.about}</p>
-      <ul className="mt-8 divide-y divide-black/10">
-        {group.courses.map((course) => (
-          <li key={course.name} className="grid gap-1 py-4 sm:grid-cols-[1fr_1fr_1fr] sm:gap-6">
-            <p className="font-bold">{course.name}</p>
-            <p className="font-inter text-zinc-600">{course.about}</p>
-            <p className="font-inter">
-              <span className="text-zinc-500">They'll make: </span>
-              {course.make}
-            </p>
-          </li>
-        ))}
-      </ul>
     </div>
   )
 }
@@ -69,8 +57,8 @@ function App() {
             Think. Build. <Marker>Solve.</Marker>
           </h1>
           <p className="font-inter mx-auto mt-6 max-w-xl text-lg text-zinc-600 sm:text-xl">
-            Live classes where children and teens aged 6 to 20 build games, animations and websites. Small
-            groups, real tutors.
+            Live, project-based classes for children and teens aged 6 to 20. Small groups, real
+            tutors, and something new built every month.
           </p>
           <p className="mt-8 font-mono text-sm tracking-[0.2em] text-zinc-500 uppercase">
             Classes start {startDate}
@@ -81,23 +69,31 @@ function App() {
         </section>
 
         <Section label="Classes by age" title="Pick your child's group">
-          <div className="space-y-6">
+          <div className="grid gap-6 md:grid-cols-2">
             {groups.map((group) => (
               <GroupBlock key={group.id} group={group} />
             ))}
           </div>
         </Section>
 
-        <Section label="How a month works" title="Four weeks, one finished project">
+        <Section label="What we teach" title="Six areas, one after another">
+          <p className="font-inter -mt-4 mb-8 max-w-2xl text-lg text-zinc-600">
+            Every learner works through all six, at a level that fits their age. Each area has many
+            courses. Here are a few.
+          </p>
+          <Categories look="kids" />
+        </Section>
+
+        <Section label="How learning works" title="Four months, one module">
           <ol className="grid gap-6 sm:grid-cols-5 sm:gap-4">
-            {month.map((step, i) => (
+            {moduleSteps.map((step, i) => (
               <li key={step.when} className="flex gap-4 sm:flex-col sm:gap-3">
                 <span
                   className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-mono text-sm font-bold ${
-                    i === month.length - 1 ? 'bg-sky-300' : 'bg-zinc-100'
+                    i === moduleSteps.length - 1 ? 'bg-sky-300' : 'bg-zinc-100'
                   }`}
                 >
-                  {i < month.length - 1 ? i + 1 : '★'}
+                  {i < moduleSteps.length - 1 ? i + 1 : '★'}
                 </span>
                 <div>
                   <p className="font-bold">{step.when}</p>
@@ -107,8 +103,8 @@ function App() {
             ))}
           </ol>
           <div className="font-inter mt-12 space-y-2 text-lg text-zinc-700">
-            <p>About 5 children per tutor, live with cameras on.</p>
-            <p>Every 4-month term ends with a bigger capstone project.</p>
+            <p>8 live sessions a month, twice a week, cameras on.</p>
+            <p>About 5 children per tutor.</p>
           </div>
         </Section>
 

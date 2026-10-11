@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
-import { Ending, Header, Label, NameWithMeaning } from './components'
+import { Categories, Ending, Header, Label, NameWithMeaning } from './components'
 import { button } from './styles'
-import { adultAges, adultCourses, adultMeaning, adultName, adultHow, adultNeed, adultStart, adultWho, registerLabel, registerUrl } from './content'
+import { adultAges, adultMeaning, adultName, adultHow, adultNeed, adultStart, adultWho, registerLabel, registerUrl } from './content'
 import { Footer } from './Footer'
 
 function Row({ label, children }: { label: string; children: ReactNode }) {
@@ -34,19 +34,11 @@ export function Adults() {
           </a>
         </section>
 
-        <Row label="Courses">
-          <ul className="divide-y divide-zinc-200 border-y border-zinc-200">
-            {adultCourses.map((course) => (
-              <li key={course.name} className="py-6">
-                <p className="text-xl font-bold">{course.name}</p>
-                <p className="font-inter mt-1 text-zinc-600">{course.about}</p>
-                <p className="font-inter mt-3 text-sm">
-                  <span className="text-zinc-500">You'll leave with: </span>
-                  {course.make}
-                </p>
-              </li>
-            ))}
-          </ul>
+        <Row label="What we teach">
+          <p className="font-inter mb-8 text-lg text-zinc-700">
+            Six areas, one after another. Each has many courses. Here are a few.
+          </p>
+          <Categories look="adults" />
         </Row>
 
         <Row label="How it works">
