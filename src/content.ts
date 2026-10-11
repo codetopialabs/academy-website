@@ -44,7 +44,7 @@ export const groups: Group[] = [
     meaning: {
       origin: 'Latin',
       means: 'A new star that suddenly lights up.',
-      why: 'This is where every learner first lights up.',
+      why: 'A new star is just starting to shine. Ages 6 to 8 are where every learner first lights up.',
     },
     ages: '6 to 8',
     about: 'Logic and computer basics through play.',
@@ -64,7 +64,7 @@ export const groups: Group[] = [
     meaning: {
       origin: 'Greek',
       means: 'One of the brightest groups of stars in the sky.',
-      why: 'This is where learners start to shine and build their first projects.',
+      why: 'Orion is easy to spot because it shines so brightly. Ages 9 to 11 is when learners start to stand out with their first projects.',
     },
     ages: '9 to 11',
     about: 'First steps in coding, through games and animation.',
@@ -84,7 +84,7 @@ export const groups: Group[] = [
     meaning: {
       origin: 'Swahili',
       means: 'Star.',
-      why: 'Learners now shine on their own, with their own code and their own projects.',
+      why: 'A star gives off its own light. Ages 12 to 15 shine on their own, with their own code and projects.',
     },
     ages: '12 to 15',
     about: 'Proper programming and bigger projects.',
@@ -104,7 +104,7 @@ export const groups: Group[] = [
     meaning: {
       origin: 'Arabic, via Latin',
       means: 'The highest point in the sky.',
-      why: 'The top of the ladder, ready for university and work.',
+      why: 'Nothing sits higher in the sky. Ages 16 to 20 are our top group, getting ready for university and work.',
     },
     ages: '16 to 20',
     about: 'Bigger projects, and skills for university and first jobs.',
@@ -204,7 +204,7 @@ export const adultName = 'Atlas'
 export const adultMeaning = {
   origin: 'Greek',
   means: 'The titan who holds up the sky.',
-  why: 'Adults carry a lot: work, family, careers. We help you carry it with new skills.',
+  why: 'Adults carry a lot, from work to family. Our adult classes give you skills that make the load lighter.',
 }
 export const adultAges = '21+'
 

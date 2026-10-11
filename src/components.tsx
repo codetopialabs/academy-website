@@ -47,10 +47,14 @@ export function NameWithMeaning({ name, meaning, className = '' }: { name: strin
       <span
         id={id}
         role="tooltip"
-        className="font-inter pointer-events-none absolute top-full left-0 z-10 mt-2 w-64 rounded-xl bg-black p-4 text-left text-sm font-normal tracking-normal normal-case text-white opacity-0 shadow-lg transition-opacity group-focus-within:opacity-100 group-hover:opacity-100"
+        className="font-inter pointer-events-none absolute top-full left-0 z-10 mt-2 w-72 rounded-xl bg-black p-4 text-left text-sm font-normal tracking-normal normal-case text-white opacity-0 shadow-lg transition-opacity group-focus-within:opacity-100 group-hover:opacity-100"
       >
         <span className="block font-mono text-xs text-zinc-400">{meaning.origin}</span>
         <span className="mt-1 block font-bold">{meaning.means}</span>
+        <span className="mt-3 block border-t border-white/15 pt-3 text-zinc-300">
+          <span className="mb-1 block font-mono text-xs text-zinc-400">Why this name</span>
+          {meaning.why}
+        </span>
       </span>
     </span>
   )
