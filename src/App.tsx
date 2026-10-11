@@ -78,11 +78,11 @@ function PhotoSpace({ label, className = '' }: { label: string; className?: stri
 
 // Big portrait card like the community site: photo goes from grey to colour on hover,
 // and the name and group slide up on hover, keyboard focus or tap
-function TutorCard({ tutor }: { tutor: (typeof tutors)[number] }) {
+function TutorCard({ tutor, copy = false }: { tutor: (typeof tutors)[number]; copy?: boolean }) {
   const group = groups.find((g) => g.id === tutor.group)
   return (
-    <li>
-      <div tabIndex={0} className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-2xl bg-zinc-100 outline-offset-4">
+    <li className="w-64 shrink-0 sm:w-72" aria-hidden={copy || undefined}>
+      <div tabIndex={copy ? -1 : 0} className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-2xl bg-zinc-100 outline-offset-4">
         {tutor.photo ? (
           <img
             src={tutor.photo}
@@ -114,6 +114,10 @@ function TutorCard({ tutor }: { tutor: (typeof tutors)[number] }) {
     </li>
   )
 }
+
+// enough cards to fill wide screens, then the whole set twice so the loop is seamless
+const tutorSet = Array.from({ length: Math.max(1, Math.ceil(8 / tutors.length)) }, () => tutors).flat()
+const carousel = [...tutorSet, ...tutorSet]
 
 function App() {
   return (
@@ -217,10 +221,11 @@ function App() {
             We choose and train our own tutors, and check every one before they teach.
           </p>
         </Section>
-        <div className="mx-auto -mt-6 max-w-6xl px-4 pb-16 sm:px-6 md:-mt-10 md:pb-24">
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6">
-            {tutors.map((tutor, i) => (
-              <TutorCard key={i} tutor={tutor} />
+        {/* Carousel: moves left to right in a loop, stops while hovered or tapped */}
+        <div className="marquee-wrap -mt-6 overflow-hidden pb-16 md:-mt-10 md:pb-24">
+          <ul className="marquee flex gap-4 md:gap-6">
+            {carousel.map((tutor, i) => (
+              <TutorCard key={i} tutor={tutor} copy={i >= tutors.length} />
             ))}
           </ul>
         </div>

@@ -30,3 +30,32 @@ body {
   margin: 0;
   background: #fff;
 }
+
+/* Tutor carousel: slides left to right, pauses on hover or when a card is tapped */
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.marquee {
+  width: max-content;
+  animation: marquee-right 45s linear infinite;
+}
+
+.marquee-wrap:hover .marquee,
+.marquee-wrap:focus-within .marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none;
+  }
+  .marquee-wrap {
+    overflow-x: auto;
+  }
+}
