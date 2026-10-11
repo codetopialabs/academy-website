@@ -51,7 +51,6 @@ export function NameWithMeaning({ name, meaning, className = '' }: { name: strin
       >
         <span className="block font-mono text-xs text-zinc-400">{meaning.origin}</span>
         <span className="mt-1 block font-bold">{meaning.means}</span>
-        <span className="mt-2 block text-zinc-300">{meaning.why}</span>
       </span>
     </span>
   )
