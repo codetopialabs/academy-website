@@ -8,26 +8,41 @@ import { button } from './styles'
 
 type Icon = { name: Idea; color: string }
 
-// Icon sits in the empty space beside or under the title, never over content
-function SectionTitle({ title, icon }: { title: string; icon?: Icon }) {
+// icons in the empty page margins, wide screens only
+const edgeIcons: { name: Idea; top: string; side: string; color: string }[] = [
+  { name: 'loop', top: 'top-[18%]', side: 'left-3 -rotate-12', color: 'text-sky-400' },
+  { name: 'binary', top: 'top-[30%]', side: 'right-3 rotate-6', color: 'text-orange-400' },
+  { name: 'bug', top: 'top-[46%]', side: 'left-3 rotate-12', color: 'text-emerald-400' },
+  { name: 'blocks', top: 'top-[58%]', side: 'right-3 -rotate-6', color: 'text-yellow-400' },
+  { name: 'cursor', top: 'top-[72%]', side: 'left-3 -rotate-6', color: 'text-orange-400' },
+  { name: 'controller', top: 'top-[84%]', side: 'right-3 rotate-12', color: 'text-sky-400' },
+]
+
+// sizes and tilts for the cluster under a section title
+const cluster = ['h-28 w-28 -rotate-6', 'h-16 w-16 rotate-12 ml-20 -mt-2', 'h-20 w-20 -rotate-3 ml-6 mt-2']
+
+// Icons sit in the empty space beside or under the title, never over content
+function SectionTitle({ title, icons = [] }: { title: string; icons?: Icon[] }) {
   return (
     <div className="relative">
       <h2 className="font-display pr-16 text-3xl font-bold tracking-tight md:pr-0">{title}</h2>
-      {icon && (
-        <IdeaIcon
-          name={icon.name}
-          className={`absolute top-0 right-0 h-12 w-12 -rotate-6 md:static md:mt-10 md:h-28 md:w-28 ${icon.color}`}
-        />
+      {icons[0] && (
+        <IdeaIcon name={icons[0].name} className={`absolute top-0 right-0 h-12 w-12 -rotate-6 md:hidden ${icons[0].color}`} />
       )}
+      <div className="mt-10 hidden md:block">
+        {icons.map((icon, i) => (
+          <IdeaIcon key={icon.name} name={icon.name} className={`block ${cluster[i]} ${icon.color}`} />
+        ))}
+      </div>
     </div>
   )
 }
 
-function Section({ title, icon, children }: { title: string; icon?: Icon; children: ReactNode }) {
+function Section({ title, icons, children }: { title: string; icons?: Icon[]; children: ReactNode }) {
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
       <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
-        <SectionTitle title={title} icon={icon} />
+        <SectionTitle title={title} icons={icons} />
         <div>{children}</div>
       </div>
     </section>
@@ -61,10 +76,13 @@ function PhotoSpace({ label, className = '' }: { label: string; className?: stri
 
 function App() {
   return (
-    <div className="bg-white text-black">
+    <div className="overflow-x-clip bg-white text-black">
       <Header look="kids" />
 
-      <main>
+      <main className="relative">
+        {edgeIcons.map((icon) => (
+          <IdeaIcon key={icon.top + icon.name} name={icon.name} className={`absolute hidden h-14 w-14 xl:block ${icon.top} ${icon.side} ${icon.color}`} />
+        ))}
         <div className="relative overflow-hidden">
         <section className="relative mx-auto grid max-w-6xl gap-12 px-4 pt-20 pb-16 sm:px-6 md:grid-cols-[3fr_2fr] md:items-end md:pt-28">
           <div>
@@ -101,11 +119,13 @@ function App() {
             <IdeaIcon name="bulb" className="absolute -top-10 right-4 h-16 w-16 rotate-12 text-yellow-400" />
             <IdeaIcon name="robot" className="absolute -right-8 -bottom-8 h-24 w-24 rotate-6 text-orange-400" />
             <IdeaIcon name="bug" className="absolute -bottom-6 -left-6 h-16 w-16 -rotate-12 text-emerald-400" />
+            <IdeaIcon name="braces" className="absolute top-1/3 -right-7 h-14 w-14 rotate-12 text-emerald-400" />
+            <IdeaIcon name="cursor" className="absolute top-1/2 -left-7 h-14 w-14 -rotate-12 text-orange-400" />
           </div>
         </section>
         </div>
 
-        <Section title="How it works" icon={{ name: 'laptop', color: 'text-sky-400' }}>
+        <Section title="How it works" icons={[{ name: 'laptop', color: 'text-sky-400' }, { name: 'cursor', color: 'text-orange-400' }, { name: 'loop', color: 'text-emerald-400' }]}>
           <div className="font-inter max-w-2xl space-y-5 text-lg text-zinc-700">
             <p>
               Every class is live on video, cameras on, with a tutor who knows each child by name.
@@ -120,7 +140,7 @@ function App() {
 
         <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
           <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
-            <SectionTitle title="Find your child's group" icon={{ name: 'binary', color: 'text-emerald-400' }} />
+            <SectionTitle title="Find your child's group" icons={[{ name: 'binary', color: 'text-emerald-400' }, { name: 'controller', color: 'text-yellow-400' }, { name: 'robot', color: 'text-orange-400' }]} />
             <p className="font-inter max-w-2xl text-lg text-zinc-700">
               Children are grouped by age, so everyone learns with others at their level. Tap a group
               name to see what it means.
@@ -131,7 +151,7 @@ function App() {
           <AgePicker />
         </div>
 
-        <Section title="What they learn" icon={{ name: 'blocks', color: 'text-orange-400' }}>
+        <Section title="What they learn" icons={[{ name: 'blocks', color: 'text-orange-400' }, { name: 'bulb', color: 'text-yellow-400' }, { name: 'ifelse', color: 'text-sky-400' }]}>
           <p className="font-inter text-lg text-zinc-700">
             Six areas. Every learner gets to try them all.
           </p>
@@ -146,7 +166,7 @@ function App() {
           </ul>
         </Section>
 
-        <Section title="Who teaches" icon={{ name: 'bulb', color: 'text-yellow-400' }}>
+        <Section title="Who teaches" icons={[{ name: 'bulb', color: 'text-yellow-400' }, { name: 'robot', color: 'text-sky-400' }, { name: 'braces', color: 'text-orange-400' }]}>
           <p className="font-inter max-w-2xl text-lg text-zinc-700">
             We choose and train our own tutors, and check every one before they teach.
           </p>
@@ -161,7 +181,7 @@ function App() {
           </ul>
         </Section>
 
-        <Section title="For parents" icon={{ name: 'braces', color: 'text-emerald-400' }}>
+        <Section title="For parents" icons={[{ name: 'braces', color: 'text-emerald-400' }, { name: 'bug', color: 'text-orange-400' }, { name: 'controller', color: 'text-sky-400' }]}>
           <h3 className="font-bold">Keeping your child safe</h3>
           <ul className="font-inter mt-4 list-disc space-y-2 pl-5 text-zinc-700 marker:text-zinc-400">
             {forParents.map((line) => (
