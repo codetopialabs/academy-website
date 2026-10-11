@@ -7,9 +7,10 @@
 
   /* Academy palette. Text is black or zinc-600+ on all of these (AA 4.5:1 or better).
      sun: price tag, warning sticker, closing band. sky (sky-300): the marker highlight.
-     cream: hero band. */
+     cream: hero band. mist: tutors band, a light tint of the brand blue. */
   --color-sun: #ffdf20;
   --color-cream: #fff8e7;
+  --color-mist: #eef7fd;
 }
 
 :root {

@@ -23,12 +23,16 @@ export function SectionTitle({ title, icon }: { title: string; icon?: Icon }) {
   )
 }
 
-// One icon at most, under the title
+// The other icons go in the empty padding: top right above the line, and bottom right below the content
 export function Section({ title, icons = [], children }: { title: string; icons?: Icon[]; children: ReactNode }) {
-  const [first] = icons
+  const [first, top, bottom] = icons
   const ref = useReveal<HTMLElement>()
   return (
     <section ref={ref} className="reveal relative mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+      {top && <IdeaIcon name={top.name} className={`absolute top-4 right-6 hidden h-16 w-16 rotate-12 md:block ${top.color}`} />}
+      {bottom && (
+        <IdeaIcon name={bottom.name} className={`absolute right-[22%] bottom-2 hidden h-16 w-16 -rotate-12 md:block ${bottom.color}`} />
+      )}
       <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
         <SectionTitle title={title} icon={first} />
         <div>{children}</div>
