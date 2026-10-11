@@ -173,7 +173,7 @@ function App() {
         <Ending
           look="kids"
           shapes
-          band="bg-sun"
+          band="bg-yellow-100"
           title={
             <>
               {classStarted ? (
