@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { FaGithub, FaGlobe, FaInstagram, FaLinkedinIn, FaXmark, FaXTwitter } from 'react-icons/fa6'
-import { groups, type Tutor } from './content'
-import { SketchShape } from './doodles'
+import type { Tutor } from './content'
 
 const socialIcons = {
   linkedin: { icon: FaLinkedinIn, label: 'LinkedIn' },
@@ -14,7 +13,6 @@ const socialIcons = {
 // Tutor profile, opened by clicking a tutor card
 export function TutorModal({ tutor, onClose }: { tutor: Tutor; onClose: () => void }) {
   const closeRef = useRef<HTMLButtonElement>(null)
-  const group = groups.find((g) => g.id === tutor.group)
   const socials = Object.entries(tutor.socials ?? {}).filter(([, url]) => url) as [keyof typeof socialIcons, string][]
 
   // close on Esc, stop the page scrolling behind, and put focus on the close button
@@ -60,13 +58,7 @@ export function TutorModal({ tutor, onClose }: { tutor: Tutor; onClose: () => vo
         </div>
 
         <div className="flex flex-col justify-center p-6 sm:p-10 md:overflow-y-auto md:p-14">
-          {group && (
-            <p className="font-inter flex items-center gap-2 text-base text-zinc-600">
-              <SketchShape shape={group.shape} color={group.color} className="h-5 w-5" />
-              Teaches {group.name}, ages {group.ages}
-            </p>
-          )}
-          <h2 id="tutor-name" className="font-display mt-4 pr-10 text-4xl leading-tight font-bold tracking-tight sm:text-5xl">
+          <h2 id="tutor-name" className="font-display pr-10 text-4xl leading-tight font-bold tracking-tight sm:text-5xl">
             {tutor.name}
           </h2>
           {tutor.bio && <p className="font-inter mt-6 text-lg leading-relaxed text-zinc-700 md:text-xl">{tutor.bio}</p>}
