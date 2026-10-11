@@ -59,11 +59,11 @@ function App() {
             </a>
           </div>
           <div className="relative mx-4 md:mx-0">
-            {/* DUMMY photo from Unsplash (free licence), by Vitaly Gariev (qPl8Qy8NPyY). Swap for a real class photo */}
+            {/* DUMMY photo from Unsplash (free licence), by Ben Mullins (je240KkJIuA). Swap for a real class photo */}
             <img
               src="/hero/kids.jpg"
-              alt="A boy working on a laptop at a desk"
-              className="aspect-[4/5] w-full rounded-2xl object-cover object-[68%_40%]"
+              alt="A smiling girl wearing headphones in a classroom"
+              className="aspect-[4/5] w-full rounded-2xl object-cover object-[53%_35%]"
             />
             <IdeaIcon name="controller" className="absolute -top-12 -right-6 h-20 w-20 -rotate-12 text-sky-400" />
             <IdeaIcon name="robot" className="absolute -right-8 -bottom-8 h-24 w-24 rotate-6 text-orange-400" />
