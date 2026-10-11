@@ -105,7 +105,7 @@ export function Explorer() {
               21 or older? We have evening classes for adults.
             </p>
             <a href="/adults/" className="mt-6 self-start rounded-full bg-black px-6 py-3 text-sm font-bold text-white hover:bg-zinc-800">
-              See adult classes →
+              See adult classes ›
             </a>
           </div>
         )}

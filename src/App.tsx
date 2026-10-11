@@ -67,6 +67,13 @@ function CheckList({ lines }: { lines: string[] }) {
 function App() {
   return (
     <div className="overflow-x-clip bg-white text-black">
+      <a
+        href={registerUrl}
+        className="font-inter block bg-yellow-300 px-4 py-2.5 text-center text-sm hover:bg-yellow-200"
+      >
+        <span className="font-bold">First classes start {startDate}.</span>{' '}
+        <span className="underline underline-offset-2">Register ›</span>
+      </a>
       <Header look="kids" />
 
       <main>
@@ -76,8 +83,11 @@ function App() {
           <Sparkle className="absolute bottom-20 left-[14%] hidden h-8 w-8 text-sky-400 sm:block" />
           <Loop className="absolute right-[10%] bottom-16 hidden h-10 w-32 text-orange-300 md:block" />
 
-          <h1 className="font-display relative text-5xl font-bold tracking-tight sm:text-7xl md:text-8xl">
-            Think. Build. <Marker>Solve.</Marker>
+          <p className="font-mono text-sm tracking-[0.2em] text-zinc-500 uppercase">
+            Think. Build. <span className="font-bold text-black">Solve.</span>
+          </p>
+          <h1 className="font-display relative mx-auto mt-6 max-w-4xl text-4xl leading-[1.05] font-bold tracking-tight sm:text-6xl md:text-7xl">
+            Kids already use technology every day. We teach them to <Marker>build with it.</Marker>
           </h1>
           <p className="font-inter mx-auto mt-6 max-w-xl text-lg text-zinc-600 sm:text-xl">
             Live, project-based classes for children and teens aged 6 to 20. Small groups, real
@@ -86,7 +96,7 @@ function App() {
 
           <div className="relative mx-auto mt-12 inline-block">
             <a href={registerUrl} className={button('kids')}>
-              {registerLabel}
+              {registerLabel} ›
             </a>
             <div className="absolute top-1/2 left-full ml-3 hidden -translate-y-1/2 items-center sm:flex">
               <Arrow className="h-12 w-16 -scale-x-100 rotate-[100deg] text-zinc-500" />
@@ -120,24 +130,24 @@ function App() {
           <Explorer />
         </Section>
 
-        <div style={dots} className="relative">
+        <div className="relative bg-sky-300">
           <Section
             label="Inside one module"
             title={
               <>
-                Four months. <Scribbled>One big project.</Scribbled>
+                Four months. <Scribbled color="text-white">One big project.</Scribbled>
               </>
             }
           >
             <div className="relative">
-              <Path className="absolute top-5 left-0 hidden h-6 w-full text-zinc-400 sm:block" />
+              <Path className="absolute top-5 left-0 hidden h-6 w-full text-black/50 sm:block" />
               <ol className="relative grid gap-8 sm:grid-cols-5 sm:gap-4">
                 {moduleSteps.map((step, i) => {
                   const last = i === moduleSteps.length - 1
                   return (
                     <li key={step.when} className="flex gap-4 sm:flex-col sm:gap-3">
                       {last ? (
-                        <Star className="h-14 w-14 shrink-0 -rotate-6 text-black" fillClass="fill-sky-300" />
+                        <Star className="h-14 w-14 shrink-0 -rotate-6 text-black" fillClass="fill-yellow-300" />
                       ) : (
                         <span className="font-hand flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-black bg-white text-2xl font-bold">
                           {i + 1}
@@ -145,7 +155,7 @@ function App() {
                       )}
                       <div>
                         <p className="font-bold">{step.when}</p>
-                        <p className="font-inter text-zinc-600">{step.what}</p>
+                        <p className="font-inter text-zinc-800">{step.what}</p>
                       </div>
                     </li>
                   )
@@ -153,16 +163,30 @@ function App() {
               </ol>
             </div>
             <div className="mt-14 flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-              <div className="font-inter space-y-2 text-lg text-zinc-700">
+              <div className="font-inter space-y-2 text-lg text-zinc-900">
                 <p>8 live sessions a month, twice a week, cameras on.</p>
                 <p>About 5 children per tutor.</p>
               </div>
-              <Note className="rotate-2 sm:max-w-xs sm:text-right">
+              <Note className="rotate-2 text-black sm:max-w-xs sm:text-right">
                 bring grandma. bring the cousins. everyone's invited to the showcase!
               </Note>
             </div>
           </Section>
         </div>
+
+        <section className="relative bg-black px-4 py-24 text-white sm:px-6 sm:py-32">
+          <Sparkle className="absolute top-12 right-[10%] h-10 w-10 text-yellow-300" />
+          <Squiggle className="absolute bottom-14 left-[8%] h-6 w-28 text-sky-300" />
+          <figure className="mx-auto max-w-4xl">
+            <blockquote className="font-display text-3xl leading-tight font-bold tracking-tight sm:text-5xl">
+              “We don't train people to use one tool or one language. We raise{' '}
+              <span className="whitespace-nowrap text-sky-300">problem-solvers.</span>”
+            </blockquote>
+            <figcaption className="mt-8 font-mono text-sm tracking-[0.2em] text-zinc-400 uppercase">
+              Codetopia Academy
+            </figcaption>
+          </figure>
+        </section>
 
         <Section
           label="Who teaches"
