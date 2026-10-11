@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-display: 'Space Grotesk', sans-serif;
+  --font-display: 'Albert Sans', sans-serif;
   --font-mono: 'Space Mono', ui-monospace, monospace;
   --font-inter: 'Inter', sans-serif;
 
@@ -14,7 +14,7 @@
 }
 
 :root {
-  --sans: 'Space Grotesk', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: 'Albert Sans', system-ui, 'Segoe UI', Roboto, sans-serif;
 
   font-family: var(--sans);
   letter-spacing: 0.18px;
