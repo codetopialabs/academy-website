@@ -122,7 +122,7 @@ export const groups: Group[] = [
 
 // Every learner covers all six, not in a fixed order. Each category has many courses.
 export type CategoryId = 'foundations' | 'ai' | 'design' | 'software' | 'hardware' | 'automation'
-export type Category = { id: CategoryId; name: string; about: string; adults: string[] }
+export type Category = { id: CategoryId; name: string; about: string; feel: string; tint: string; adults: string[] }
 
 // DUMMY: example courses
 export const categories: Category[] = [
@@ -130,36 +130,48 @@ export const categories: Category[] = [
     id: 'foundations',
     name: 'Computer Foundations',
     about: 'Using a computer well and staying safe online.',
+    feel: "Type, save, search, and stay safe online.",
+    tint: 'bg-yellow-100',
     adults: ['Technology from Zero', 'Email and Documents', 'Staying Safe Online'],
   },
   {
     id: 'ai',
     name: 'AI and Data',
     about: 'How AI works, how to use it well, and making sense of data.',
+    feel: "Ask AI good questions, and know when it's wrong.",
+    tint: 'bg-sky-100',
     adults: ['AI Tools for Work', 'Spreadsheets and Data', 'Checking AI Answers'],
   },
   {
     id: 'design',
     name: 'Design and Digital Media',
     about: 'Drawing, animation, video, and how screens should look.',
+    feel: "Draw, animate and make their own videos.",
+    tint: 'bg-rose-100',
     adults: ['Graphics for Work', 'Slides that Work', 'Video Basics'],
   },
   {
     id: 'software',
     name: 'Software Engineering',
     about: 'Building working programs, games, websites and apps.',
+    feel: "Build games, websites and apps that really work.",
+    tint: 'bg-emerald-100',
     adults: ['Python from Zero', 'Build a Website', 'Web Apps'],
   },
   {
     id: 'hardware',
     name: 'Hardware and Electronics',
     about: 'Circuits, sensors and robots.',
+    feel: "Make lights blink and robots move.",
+    tint: 'bg-orange-100',
     adults: ['Electronics Basics', 'Microcontrollers', 'Smart Devices'],
   },
   {
     id: 'automation',
     name: 'Automation',
     about: 'Getting computers to do repetitive work for you.',
+    feel: "Get the computer to do the boring bits.",
+    tint: 'bg-lime-100',
     adults: ['Automate Your Spreadsheets', 'No-code Automation', 'Automate with Python'],
   },
 ]

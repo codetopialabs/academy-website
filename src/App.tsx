@@ -1,13 +1,10 @@
 import type { ReactNode } from 'react'
 import { Ending, Header, Marker } from './components'
-import { categories, email, faq, forParents, groups, priceAmount, pricePer, registerLabel, registerUrl, startDate, startLine, classStarted, tutors, whatsapp } from './content'
-import { CategoryIcon, SketchShape } from './doodles'
+import { categories, email, faq, forParents, priceAmount, pricePer, registerLabel, registerUrl, startDate, startLine, classStarted, tutors, whatsapp } from './content'
+import { CategoryIcon } from './doodles'
 import { AgePicker } from './Explorer'
 import { Footer } from './Footer'
 import { button } from './styles'
-
-// shapes grow from the youngest group to the oldest
-const depthSizes = ['h-6 w-6', 'h-8 w-8', 'h-10 w-10', 'h-12 w-12']
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -110,30 +107,18 @@ function App() {
         </div>
 
         <Section title="What they learn">
-          <p className="font-inter text-lg text-zinc-700">Every learner covers all six areas.</p>
-          <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 md:grid-cols-6">
+          <p className="font-inter text-lg text-zinc-700">
+            Six areas. Every learner gets to try them all.
+          </p>
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {categories.map((category) => (
-              <li key={category.id} className="flex flex-col items-center gap-3 text-center">
-                <span className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-black bg-white">
-                  <CategoryIcon id={category.id} className="h-7 w-7" />
-                </span>
-                <span className="text-sm leading-tight font-bold">{category.name}</span>
+              <li key={category.id} className={`rounded-2xl p-6 ${category.tint}`}>
+                <CategoryIcon id={category.id} className="h-9 w-9" />
+                <p className="font-display mt-8 text-xl leading-tight font-bold">{category.name}</p>
+                <p className="font-inter mt-2 text-zinc-700">{category.feel}</p>
               </li>
             ))}
           </ul>
-
-          <div className="mt-14 flex flex-wrap items-end gap-x-3 gap-y-4">
-            {groups.map((group, i) => (
-              <span key={group.id} className="flex items-end gap-3">
-                <span className="flex flex-col items-center gap-1">
-                  <SketchShape shape={group.shape} color={group.color} className={depthSizes[i]} />
-                  <span className="font-inter text-xs text-zinc-600">{group.name}</span>
-                </span>
-                {i < groups.length - 1 && <span className="mb-6 text-zinc-300">→</span>}
-              </span>
-            ))}
-            <p className="font-inter mb-5 ml-2 text-zinc-700">Same six areas. Deeper as they grow.</p>
-          </div>
         </Section>
 
         <Section title="Who teaches">
