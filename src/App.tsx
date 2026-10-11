@@ -18,6 +18,32 @@ const edgeIcons: { name: Idea; top: string; side: string; color: string }[] = [
   { name: 'loop', top: 'top-[85%]', side: 'left-3 rotate-6', color: 'text-emerald-400' },
 ]
 
+// DUMMY photos from Unsplash (free licence). Swap for real class photos (with parents' consent).
+// kids-1 Ben Mullins (je240KkJIuA), kids-2 Theo (5keTNEWfdMM), kids-3 Mpumelelo Macu (9p-DsBtSygA), kids-4 Muhammad Rizqi (N-lCdqdAdes)
+const heroPhotos = [
+  { src: '/hero/kids-1.jpg', alt: 'A smiling girl wearing headphones in a classroom', tile: 'col-start-1 row-span-3 row-start-1', focus: 'object-[50%_35%]' },
+  { src: '/hero/kids-2.jpg', alt: 'A vintage toy robot', tile: 'col-start-2 row-span-2 row-start-1', focus: 'object-[50%_18%]' },
+  { src: '/hero/kids-3.jpg', alt: 'A boy listening to music on headphones', tile: 'col-start-2 row-span-4 row-start-3', focus: 'object-[60%_25%]' },
+  { src: '/hero/kids-4.jpg', alt: 'A girl smiling while working on her laptop', tile: 'col-start-1 row-span-3 row-start-4', focus: 'object-[35%_50%]' },
+]
+
+// Mosaic of photos in the hero: two columns of tiles in different heights
+function HeroGrid() {
+  return (
+    <div className="grid aspect-[4/5] grid-cols-2 grid-rows-6 gap-3">
+      {heroPhotos.map((photo) => (
+        <div key={photo.src} className={`overflow-hidden rounded-2xl ${photo.tile}`}>
+          <img
+            src={photo.src}
+            alt={photo.alt}
+            className={`h-full w-full object-cover transition duration-500 motion-safe:hover:scale-105 ${photo.focus}`}
+          />
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function App() {
   return (
     <div className="overflow-x-clip bg-white text-black">
@@ -60,12 +86,7 @@ function App() {
             </a>
           </div>
           <div className="relative mx-4 md:mx-0">
-            {/* DUMMY photo from Unsplash (free licence), by Ben Mullins (je240KkJIuA). Swap for a real class photo */}
-            <img
-              src="/hero/kids.jpg"
-              alt="A smiling girl wearing headphones in a classroom"
-              className="aspect-[4/5] w-full rounded-2xl object-cover object-[53%_35%]"
-            />
+            <HeroGrid />
             <IdeaIcon name="controller" className="absolute -top-12 -right-6 h-20 w-20 -rotate-12 text-sky-400" />
             <IdeaIcon name="robot" className="absolute -right-8 -bottom-8 h-24 w-24 rotate-6 text-orange-400" />
             <IdeaIcon name="flag" className="absolute -bottom-6 -left-6 h-16 w-16 -rotate-12 text-emerald-400" />
