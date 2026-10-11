@@ -14,7 +14,7 @@ export const whatsapp = '233000000000'
 export const fees = 'Fees are shared after you register.'
 
 export type Course = { name: string; about: string; make: string }
-export type Shape = 'circle' | 'square' | 'triangle'
+export type Shape = 'circle' | 'square' | 'triangle' | 'diamond'
 export type Group = {
   id: string
   name: string
@@ -30,9 +30,9 @@ export type Group = {
 // DUMMY: courses and which groups open on 7 Nov
 export const groups: Group[] = [
   {
-    id: 'builders',
-    name: 'Builders',
-    ages: '9 to 12',
+    id: 'orion',
+    name: 'Orion',
+    ages: '9 to 11',
     about: 'First real steps in coding, through games and animation.',
     open: true,
     shape: 'square',
@@ -45,8 +45,8 @@ export const groups: Group[] = [
     ],
   },
   {
-    id: 'explorers',
-    name: 'Explorers',
+    id: 'nova',
+    name: 'Nova',
     ages: '6 to 8',
     about: 'Logic and computer basics through play.',
     open: false,
@@ -60,9 +60,9 @@ export const groups: Group[] = [
     ],
   },
   {
-    id: 'makers',
-    name: 'Makers',
-    ages: '13 to 16',
+    id: 'nyota',
+    name: 'Nyota',
+    ages: '12 to 15',
     about: 'Real programming and real projects.',
     open: false,
     shape: 'triangle',
@@ -72,6 +72,21 @@ export const groups: Group[] = [
       { name: 'Python Foundations', about: 'Variables, logic and functions.', make: 'A quiz or a simple tool' },
       { name: 'Build a Website', about: 'HTML, CSS and putting it online.', make: 'Their own live website' },
       { name: 'AI Projects', about: 'How AI works and how to use it well.', make: 'A small project that uses AI' },
+    ],
+  },
+  {
+    id: 'zenith',
+    name: 'Zenith',
+    ages: '16 to 20',
+    about: 'Bigger projects, and skills for university and first jobs.',
+    open: false,
+    shape: 'diamond',
+    color: 'fill-orange-300',
+    tint: 'bg-orange-50',
+    courses: [
+      { name: 'Web Apps', about: 'Building apps people can sign in to and use.', make: 'A working web app' },
+      { name: 'Data and AI', about: 'Working with data and putting AI to use.', make: 'A project that answers a real question' },
+      { name: 'Portfolio Project', about: 'One big project, planned and built by them.', make: 'A portfolio piece to show universities and employers' },
     ],
   },
 ]
@@ -87,9 +102,9 @@ export const month = [
 
 // DUMMY: real tutors, photos and lines
 export const tutors = [
-  { name: 'Tutor name', role: 'Builders tutor', line: 'One line about who they are.' },
-  { name: 'Tutor name', role: 'Builders tutor', line: 'One line about who they are.' },
-  { name: 'Tutor name', role: 'Builders tutor', line: 'One line about who they are.' },
+  { name: 'Tutor name', role: 'Orion tutor', line: 'One line about who they are.' },
+  { name: 'Tutor name', role: 'Orion tutor', line: 'One line about who they are.' },
+  { name: 'Tutor name', role: 'Orion tutor', line: 'One line about who they are.' },
 ]
 
 export const forParents = [
@@ -107,6 +122,9 @@ export const beforeYouStart = [
 ]
 
 // Adults page
+
+export const adultName = 'Atlas'
+export const adultAges = '21+'
 
 // DUMMY: adult start date, null means opening soon
 export const adultStart: string | null = null

@@ -26,6 +26,7 @@ export function ShapeMark({ shape, color, className = 'h-8 w-8' }: { shape: Shap
       {shape === 'circle' && <circle cx="16" cy="16" r="15" />}
       {shape === 'square' && <rect x="2" y="2" width="28" height="28" rx="5" />}
       {shape === 'triangle' && <path d="M16 2.5 30 29H2z" strokeLinejoin="round" />}
+      {shape === 'diamond' && <path d="M16 1 31 16 16 31 1 16z" />}
     </svg>
   )
 }

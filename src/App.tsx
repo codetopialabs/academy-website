@@ -67,7 +67,7 @@ function App() {
             Think. Build. <Marker>Solve.</Marker>
           </h1>
           <p className="font-inter mx-auto mt-6 max-w-xl text-lg text-zinc-600 sm:text-xl">
-            Live classes where children aged 6 to 16 build games, animations and websites. Small
+            Live classes where children and teens aged 6 to 20 build games, animations and websites. Small
             groups, real tutors.
           </p>
           <p className="mt-8 font-mono text-sm tracking-[0.2em] text-zinc-500 uppercase">
