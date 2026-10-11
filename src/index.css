@@ -123,22 +123,22 @@ body {
 }
 
 /* Welcome pack gift: lid hinges open at its left edge, confetti pops up out of the box.
-   One loop is 3.5s: open and close in the first second, then rest closed */
+   One loop is 3.5s: the lid opens, then the confetti pops, then the lid closes and rests */
 .gift-lid { transform-box: view-box; transform-origin: 5px 17px; }
 .gift-bit { opacity: 0; transform: translate(20px, 22px); }
 
 @media (prefers-reduced-motion: no-preference) {
   @keyframes gift-lid {
-    0%, 31%, 100% { transform: none; }
-    8%, 20% { transform: translate(-2px, -5px) rotate(-28deg); }
-    25% { transform: translateY(-1px) rotate(3deg); }
+    0%, 40%, 100% { transform: none; }
+    8%, 30% { transform: translate(-2px, -5px) rotate(-28deg); }
+    35% { transform: translateY(-1px) rotate(3deg); }
   }
   @keyframes gift-bit {
-    0%, 6% { opacity: 0; transform: translate(20px, 22px) scale(0.4); }
-    11% { opacity: 1; }
-    21% { opacity: 1; transform: translate(calc(20px + var(--x)), calc(22px + var(--y))) scale(1); }
-    31%, 100% { opacity: 0; transform: translate(calc(20px + var(--x)), calc(26px + var(--y))) scale(1); }
+    0%, 9% { opacity: 0; transform: translate(20px, 22px) scale(0.4); }
+    12% { opacity: 1; }
+    20% { opacity: 1; transform: translate(calc(20px + var(--x)), calc(22px + var(--y))) scale(1); }
+    29%, 100% { opacity: 0; transform: translate(calc(20px + var(--x)), calc(26px + var(--y))) scale(1); }
   }
   .gift-lid { animation: gift-lid 3500ms ease-in-out 600ms infinite; }
-  .gift-bit { animation: gift-bit 3500ms ease-out 600ms infinite backwards; }
+  .gift-bit { animation: gift-bit 3500ms ease-out infinite backwards; }
 }
