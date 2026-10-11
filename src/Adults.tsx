@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Categories, Ending, Header, Label, NameWithMeaning, SayIt } from './components'
+import { Categories, Ending, Header, Label, NameWithMeaning } from './components'
 import { button } from './styles'
 import { adultAges, adultMeaning, adultName, adultHow, adultNeed, adultStart, adultWho, registerLabel, registerUrl } from './content'
 import { Footer } from './Footer'
@@ -21,8 +21,7 @@ export function Adults() {
       <main>
         <section className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32">
           <p className="font-mono text-sm tracking-[0.2em] text-zinc-500 uppercase">
-            <NameWithMeaning name={adultName} meaning={adultMeaning} className="uppercase" />{' '}
-            <SayIt name={adultName} meaning={adultMeaning} className="mx-1 h-6 w-6 align-middle text-xs" /> · Ages {adultAges} · {adultStart ? `Starts ${adultStart}` : 'Opening soon'}
+            <NameWithMeaning name={adultName} meaning={adultMeaning} className="uppercase" /> · Ages {adultAges} · {adultStart ? `Starts ${adultStart}` : 'Opening soon'}
           </p>
           <h1 className="font-display mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">
             Tech skills you can use at work.

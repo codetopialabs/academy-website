@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { FaVolumeHigh, FaWhatsapp } from 'react-icons/fa6'
+import { FaWhatsapp } from 'react-icons/fa6'
 import logo from './assets/Codetopia Academy - Logo Black.png'
 import { categories, email, registerLabel, registerUrl, whatsapp, type Meaning, type Shape } from './content'
 import { IdeaIcon } from './doodles'
@@ -29,39 +29,6 @@ export function ShapeMark({ shape, color, className = 'h-8 w-8' }: { shape: Shap
       {shape === 'triangle' && <path d="M16 2.5 30 29H2z" strokeLinejoin="round" />}
       {shape === 'diamond' && <path d="M16 1 31 16 16 31 1 16z" />}
     </svg>
-  )
-}
-
-// Closest accent first: Ghanaian English, then other African English voices, then British
-const accents = ['en-GH', 'en-NG', 'en-KE', 'en-TZ', 'en-ZA', 'en-GB']
-
-// Plays the name out loud: a recording if there is one, otherwise the closest browser voice
-export function SayIt({ name, meaning, className = '' }: { name: string; meaning: Meaning; className?: string }) {
-  if (typeof window === 'undefined' || !('speechSynthesis' in window)) return null
-  const speak = () => {
-    // a real recording always wins
-    if (meaning.audio) {
-      void new Audio(meaning.audio).play()
-      return
-    }
-    const utterance = new SpeechSynthesisUtterance(meaning.speak)
-    const voices = window.speechSynthesis.getVoices()
-    const voice = accents.map((lang) => voices.find((v) => v.lang.replace('_', '-') === lang)).find(Boolean)
-    utterance.lang = voice?.lang ?? 'en-GB'
-    if (voice) utterance.voice = voice
-    utterance.rate = 0.8
-    window.speechSynthesis.cancel()
-    window.speechSynthesis.speak(utterance)
-  }
-  return (
-    <button
-      type="button"
-      onClick={speak}
-      aria-label={`Hear how to say ${name}`}
-      className={`inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 bg-white text-sm transition hover:border-black ${className}`}
-    >
-      <FaVolumeHigh aria-hidden="true" />
-    </button>
   )
 }
 

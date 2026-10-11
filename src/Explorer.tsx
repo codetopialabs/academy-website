@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NameWithMeaning, SayIt } from './components'
+import { NameWithMeaning } from './components'
 import { adultMeaning, adultName, groups, startLine } from './content'
 import { SketchShape } from './doodles'
 
@@ -69,7 +69,6 @@ export function AgePicker() {
               <p className="font-display text-5xl font-bold tracking-tight">
                 <NameWithMeaning name={group.name} meaning={group.meaning} />
               </p>
-              <SayIt name={group.name} meaning={group.meaning} />
             </div>
             <p className="mt-3 font-mono text-sm text-zinc-500">/ {group.meaning.say} /</p>
             <p className="font-inter mt-2 text-zinc-600">Ages {group.ages}</p>
@@ -85,7 +84,6 @@ export function AgePicker() {
               <p className="font-display text-5xl font-bold tracking-tight">
                 <NameWithMeaning name={adultName} meaning={adultMeaning} />
               </p>
-              <SayIt name={adultName} meaning={adultMeaning} />
             </div>
             <p className="mt-3 font-mono text-sm text-zinc-500">/ {adultMeaning.say} /</p>
             <p className="font-inter mt-2 text-zinc-600">Ages 21+</p>
