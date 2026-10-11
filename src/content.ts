@@ -183,11 +183,11 @@ export const faq = [
   { q: 'What do we need at home?', a: 'A laptop or desktop with a keyboard and mouse, and an internet connection. A phone is not enough.' },
 ]
 
-// DUMMY: real tutors, photos and lines
-export const tutors = [
-  { name: 'Tutor name', role: 'Orion tutor', line: 'One line about who they are.' },
-  { name: 'Tutor name', role: 'Orion tutor', line: 'One line about who they are.' },
-  { name: 'Tutor name', role: 'Orion tutor', line: 'One line about who they are.' },
+// DUMMY: real tutors and photos. group is the id of the age group they teach
+export const tutors: { name: string; group: string; photo?: string }[] = [
+  { name: 'Tutor name', group: 'nova' },
+  { name: 'Tutor name', group: 'orion' },
+  { name: 'Tutor name', group: 'nyota' },
 ]
 
 export const forParents = [

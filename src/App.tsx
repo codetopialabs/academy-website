@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { Ending, Header, Marker } from './components'
-import { categories, email, faq, forParents, priceAmount, pricePer, registerLabel, registerUrl, startDate, startLine, classStarted, tutors, whatsapp } from './content'
-import { CategoryIcon, IdeaIcon, type Idea } from './doodles'
+import { categories, email, faq, forParents, groups, priceAmount, pricePer, registerLabel, registerUrl, startDate, startLine, classStarted, tutors, whatsapp } from './content'
+import { CategoryIcon, IdeaIcon, SketchShape, type Idea } from './doodles'
 import { AgePicker } from './Explorer'
 import { Footer } from './Footer'
 import { button } from './styles'
@@ -73,6 +73,38 @@ function PhotoSpace({ label, className = '' }: { label: string; className?: stri
     >
       {label}
     </div>
+  )
+}
+
+// Photo card: name and the group they teach show on hover, keyboard focus or tap
+function TutorCard({ tutor }: { tutor: (typeof tutors)[number] }) {
+  const group = groups.find((g) => g.id === tutor.group)
+  return (
+    <li>
+      <div
+        tabIndex={0}
+        className="group relative aspect-square cursor-pointer overflow-hidden rounded-lg outline-offset-4"
+      >
+        {tutor.photo ? (
+          <img src={tutor.photo} alt="" className="h-full w-full object-cover" />
+        ) : (
+          <PhotoSpace label="Tutor photo" className="h-full" />
+        )}
+        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 translate-y-full bg-black/85 p-4 text-white transition-transform duration-200 group-hover:translate-y-0 group-focus:translate-y-0">
+          <p className="font-bold">{tutor.name}</p>
+          {group && (
+            <p className="font-inter mt-1 flex items-center gap-2 text-sm text-zinc-300">
+              <SketchShape shape={group.shape} color={group.color} className="h-4 w-4" />
+              Teaches {group.name}, ages {group.ages}
+            </p>
+          )}
+        </div>
+        <span className="sr-only">
+          {tutor.name}
+          {group && `, teaches ${group.name}, ages ${group.ages}`}
+        </span>
+      </div>
+    </li>
   )
 }
 
@@ -179,11 +211,7 @@ function App() {
           </p>
           <ul className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3">
             {tutors.map((tutor, i) => (
-              <li key={i}>
-                <PhotoSpace label="Tutor photo" className="aspect-square" />
-                <p className="mt-3 font-bold">{tutor.name}</p>
-                <p className="font-inter text-sm text-zinc-600">{tutor.line}</p>
-              </li>
+              <TutorCard key={i} tutor={tutor} />
             ))}
           </ul>
         </Section>
