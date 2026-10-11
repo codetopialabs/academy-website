@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Ending, Header, Label, Marker, ShapeMark } from './components'
+import { Ending, Header, Label, Marker, NameWithMeaning, ShapeMark } from './components'
 import { button, dots } from './styles'
 import {
   beforeYouStart,
@@ -29,7 +29,9 @@ function GroupBlock({ group }: { group: Group }) {
     <div id={group.id} className={`scroll-mt-20 rounded-3xl p-6 sm:p-10 ${group.tint}`}>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
         <ShapeMark shape={group.shape} color={group.color} className="h-9 w-9" />
-        <h3 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">{group.name}</h3>
+        <h3 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
+          <NameWithMeaning name={group.name} meaning={group.meaning} />
+        </h3>
         <span className="font-mono text-sm text-zinc-500">Ages {group.ages}</span>
         <span
           className={`rounded-full px-3 py-1 font-mono text-xs ${

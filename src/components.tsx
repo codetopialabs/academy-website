@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { FaWhatsapp } from 'react-icons/fa6'
 import logo from './assets/Codetopia Academy - Logo Black.png'
-import { email, registerLabel, registerUrl, whatsapp, type Shape } from './content'
+import { email, registerLabel, registerUrl, whatsapp, type Meaning, type Shape } from './content'
 import { button, dots, type Look } from './styles'
 
 export function Marker({ children }: { children: ReactNode }) {
@@ -28,6 +28,31 @@ export function ShapeMark({ shape, color, className = 'h-8 w-8' }: { shape: Shap
       {shape === 'triangle' && <path d="M16 2.5 30 29H2z" strokeLinejoin="round" />}
       {shape === 'diamond' && <path d="M16 1 31 16 16 31 1 16z" />}
     </svg>
+  )
+}
+
+// Name with its meaning: shows on hover, keyboard focus, or tap on phones
+export function NameWithMeaning({ name, meaning, className = '' }: { name: string; meaning: Meaning; className?: string }) {
+  const id = `meaning-${name.toLowerCase()}`
+  return (
+    <span className="group relative inline-block">
+      <button
+        type="button"
+        aria-describedby={id}
+        className={`cursor-help underline decoration-zinc-300 decoration-dotted underline-offset-[0.2em] ${className}`}
+      >
+        {name}
+      </button>
+      <span
+        id={id}
+        role="tooltip"
+        className="font-inter pointer-events-none absolute top-full left-0 z-10 mt-2 w-64 rounded-xl bg-black p-4 text-left text-sm font-normal tracking-normal normal-case text-white opacity-0 shadow-lg transition-opacity group-focus-within:opacity-100 group-hover:opacity-100"
+      >
+        <span className="block font-mono text-xs text-zinc-400">{meaning.origin}</span>
+        <span className="mt-1 block font-bold">{meaning.means}</span>
+        <span className="mt-2 block text-zinc-300">{meaning.why}</span>
+      </span>
+    </span>
   )
 }
 

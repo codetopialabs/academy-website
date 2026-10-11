@@ -15,9 +15,11 @@ export const fees = 'Fees are shared after you register.'
 
 export type Course = { name: string; about: string; make: string }
 export type Shape = 'circle' | 'square' | 'triangle' | 'diamond'
+export type Meaning = { origin: string; means: string; why: string }
 export type Group = {
   id: string
   name: string
+  meaning: Meaning
   ages: string
   about: string
   open: boolean
@@ -32,6 +34,11 @@ export const groups: Group[] = [
   {
     id: 'orion',
     name: 'Orion',
+    meaning: {
+      origin: 'Greek',
+      means: 'One of the brightest groups of stars in the sky.',
+      why: 'This is where learners start to shine and build their first real things.',
+    },
     ages: '9 to 11',
     about: 'First real steps in coding, through games and animation.',
     open: true,
@@ -47,6 +54,11 @@ export const groups: Group[] = [
   {
     id: 'nova',
     name: 'Nova',
+    meaning: {
+      origin: 'Latin',
+      means: 'A new star that suddenly lights up.',
+      why: 'This is where every learner first lights up.',
+    },
     ages: '6 to 8',
     about: 'Logic and computer basics through play.',
     open: false,
@@ -62,6 +74,11 @@ export const groups: Group[] = [
   {
     id: 'nyota',
     name: 'Nyota',
+    meaning: {
+      origin: 'Swahili',
+      means: 'Star.',
+      why: 'Learners now shine on their own, with real code and real projects.',
+    },
     ages: '12 to 15',
     about: 'Real programming and real projects.',
     open: false,
@@ -77,6 +94,11 @@ export const groups: Group[] = [
   {
     id: 'zenith',
     name: 'Zenith',
+    meaning: {
+      origin: 'Arabic, via Latin',
+      means: 'The highest point in the sky.',
+      why: 'The top of the ladder, ready for university and work.',
+    },
     ages: '16 to 20',
     about: 'Bigger projects, and skills for university and first jobs.',
     open: false,
@@ -124,6 +146,11 @@ export const beforeYouStart = [
 // Adults page
 
 export const adultName = 'Atlas'
+export const adultMeaning = {
+  origin: 'Greek',
+  means: 'The titan who holds up the sky.',
+  why: 'Adults carry a lot: work, family, careers. We help you carry it with new skills.',
+}
 export const adultAges = '21+'
 
 // DUMMY: adult start date, null means opening soon
