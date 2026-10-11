@@ -16,6 +16,20 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
   )
 }
 
+function Question({ q, children }: { q: string; children: ReactNode }) {
+  return (
+    <details className="group">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 font-bold [&::-webkit-details-marker]:hidden">
+        {q}
+        <span aria-hidden="true" className="text-2xl leading-none font-normal text-zinc-400 transition-transform group-open:rotate-45">
+          +
+        </span>
+      </summary>
+      <div className="font-inter max-w-2xl pb-6 text-zinc-700">{children}</div>
+    </details>
+  )
+}
+
 // DUMMY: swap for a real photo
 function PhotoSpace({ label, className = '' }: { label: string; className?: string }) {
   return (
@@ -120,34 +134,27 @@ function App() {
         </Section>
 
         <Section title="For parents">
-          <div className="grid gap-12 lg:grid-cols-2">
-            <div>
-              <h3 className="font-bold">Keeping your child safe</h3>
-              <ul className="font-inter mt-4 list-disc space-y-2 pl-5 text-zinc-700 marker:text-zinc-400">
+          <div className="divide-y divide-zinc-200 border-y border-zinc-200">
+            <Question q="How do you keep my child safe?">
+              <ul className="list-disc space-y-2 pl-5 marker:text-zinc-400">
                 {forParents.map((line) => (
                   <li key={line}>{line}</li>
                 ))}
               </ul>
-            </div>
-            <div>
-              <h3 className="font-bold">Common questions</h3>
-              <dl className="font-inter mt-4 space-y-5">
-                {faq.map((item) => (
-                  <div key={item.q}>
-                    <dt className="font-medium">{item.q}</dt>
-                    <dd className="mt-1 text-zinc-600">{item.a}</dd>
-                  </div>
-                ))}
-              </dl>
-              <p className="font-inter mt-6 text-sm text-zinc-600">
-                Anything else? Email{' '}
-                <a href={`mailto:${email}`} className="underline underline-offset-2">
-                  {email}
-                </a>
-                .
-              </p>
-            </div>
+            </Question>
+            {faq.map((item) => (
+              <Question key={item.q} q={item.q}>
+                {item.a}
+              </Question>
+            ))}
           </div>
+          <p className="font-inter mt-6 text-sm text-zinc-600">
+            Anything else? Email{' '}
+            <a href={`mailto:${email}`} className="underline underline-offset-2">
+              {email}
+            </a>
+            .
+          </p>
         </Section>
 
         <Ending
