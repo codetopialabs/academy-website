@@ -98,8 +98,8 @@ function App() {
               </span>
             </h1>
             <p className="font-inter mt-8 max-w-xl text-lg text-zinc-700">
-              Online, in small groups of about five, every Saturday and Sunday. For ages 6 to 20,
-              taught by tutors who know every child by name.
+              Online, in small groups of about five, every Saturday and Sunday. For all ages, taught
+              by tutors who know every learner by name.
             </p>
             <div className="mt-10 flex items-center gap-4 sm:gap-5">
               <a href={registerUrl} className={`${button('kids')} shrink-0 whitespace-nowrap`}>
