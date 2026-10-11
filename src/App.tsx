@@ -81,7 +81,7 @@ function PhotoSpace({ label, className = '' }: { label: string; className?: stri
 // and the name slides up on hover, keyboard focus or tap
 function TutorCard({ tutor, copy = false, onOpen }: { tutor: Tutor; copy?: boolean; onOpen: (tutor: Tutor) => void }) {
   return (
-    <li className="w-64 shrink-0 sm:w-72" aria-hidden={copy || undefined}>
+    <li className="w-72 shrink-0 sm:w-80 lg:w-96" aria-hidden={copy || undefined}>
       <div
         role="button"
         tabIndex={copy ? -1 : 0}

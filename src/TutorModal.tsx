@@ -39,7 +39,7 @@ export function TutorModal({ tutor, onClose }: { tutor: Tutor; onClose: () => vo
         role="dialog"
         aria-modal="true"
         aria-labelledby="tutor-name"
-        className="relative grid max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-3xl bg-white shadow-2xl md:grid-cols-[2fr_3fr]"
+        className="relative grid max-h-[92vh] w-full max-w-5xl overflow-y-auto rounded-3xl bg-white shadow-2xl md:h-[min(640px,88vh)] md:grid-cols-[5fr_6fr] md:overflow-hidden"
       >
         <button
           ref={closeRef}
@@ -51,7 +51,7 @@ export function TutorModal({ tutor, onClose }: { tutor: Tutor; onClose: () => vo
           <FaXmark aria-hidden="true" />
         </button>
 
-        <div className="aspect-[4/5] bg-zinc-100 md:aspect-auto">
+        <div className="aspect-[4/5] bg-zinc-100 md:aspect-auto md:h-full">
           {tutor.photo ? (
             <img src={tutor.photo} alt={tutor.name} className="h-full w-full object-cover" />
           ) : (
@@ -59,20 +59,20 @@ export function TutorModal({ tutor, onClose }: { tutor: Tutor; onClose: () => vo
           )}
         </div>
 
-        <div className="p-6 sm:p-10">
+        <div className="flex flex-col justify-center p-6 sm:p-10 md:overflow-y-auto md:p-14">
           {group && (
-            <p className="font-inter flex items-center gap-2 text-sm text-zinc-600">
-              <SketchShape shape={group.shape} color={group.color} className="h-4 w-4" />
+            <p className="font-inter flex items-center gap-2 text-base text-zinc-600">
+              <SketchShape shape={group.shape} color={group.color} className="h-5 w-5" />
               Teaches {group.name}, ages {group.ages}
             </p>
           )}
-          <h2 id="tutor-name" className="font-display mt-3 pr-10 text-4xl leading-tight font-bold tracking-tight">
+          <h2 id="tutor-name" className="font-display mt-4 pr-10 text-4xl leading-tight font-bold tracking-tight sm:text-5xl">
             {tutor.name}
           </h2>
-          {tutor.bio && <p className="font-inter mt-6 text-lg text-zinc-700">{tutor.bio}</p>}
+          {tutor.bio && <p className="font-inter mt-6 text-lg leading-relaxed text-zinc-700 md:text-xl">{tutor.bio}</p>}
 
           {socials.length > 0 && (
-            <div className="mt-8">
+            <div className="mt-10">
               <p className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Find them online</p>
               <div className="mt-3 flex flex-wrap gap-3">
                 {socials.map(([kind, url]) => {
@@ -84,7 +84,7 @@ export function TutorModal({ tutor, onClose }: { tutor: Tutor; onClose: () => vo
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={label}
-                      className="flex h-11 w-11 items-center justify-center rounded-full border border-black/15 transition hover:border-black hover:bg-zinc-50"
+                      className="flex h-12 w-12 items-center justify-center rounded-full border border-black/15 text-lg transition hover:border-black hover:bg-zinc-50"
                     >
                       <Icon aria-hidden="true" />
                     </a>
