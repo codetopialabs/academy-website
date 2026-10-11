@@ -19,31 +19,32 @@ const edgeIcons: { name: Idea; top: string; side: string; color: string }[] = [
   { name: 'loop', top: 'top-[85%]', side: 'left-3 rotate-6', color: 'text-emerald-400' },
 ]
 
-// sizes and tilts for the cluster under a section title
-const cluster = ['h-28 w-28 -rotate-6', 'h-16 w-16 rotate-12 ml-20 -mt-2', 'h-20 w-20 -rotate-3 ml-6 mt-2']
-
-// Icons sit in the empty space beside or under the title, never over content
-function SectionTitle({ title, icons = [] }: { title: string; icons?: Icon[] }) {
+// One icon sits under the title, never over content
+function SectionTitle({ title, icon }: { title: string; icon?: Icon }) {
   return (
     <div className="relative">
       <h2 className="font-display pr-16 text-3xl font-bold tracking-tight md:pr-0">{title}</h2>
-      {icons[0] && (
-        <IdeaIcon name={icons[0].name} className={`absolute top-0 right-0 h-12 w-12 -rotate-6 md:hidden ${icons[0].color}`} />
+      {icon && (
+        <IdeaIcon
+          name={icon.name}
+          className={`absolute top-0 right-0 h-12 w-12 -rotate-6 md:static md:mt-10 md:h-28 md:w-28 ${icon.color}`}
+        />
       )}
-      <div className="mt-10 hidden md:block">
-        {icons.map((icon, i) => (
-          <IdeaIcon key={icon.name} name={icon.name} className={`block ${cluster[i]} ${icon.color}`} />
-        ))}
-      </div>
     </div>
   )
 }
 
-function Section({ title, icons, children }: { title: string; icons?: Icon[]; children: ReactNode }) {
+// The other icons go in the empty padding: top right above the line, and bottom right below the content
+function Section({ title, icons = [], children }: { title: string; icons?: Icon[]; children: ReactNode }) {
+  const [first, top, bottom] = icons
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+    <section className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+      {top && <IdeaIcon name={top.name} className={`absolute top-4 right-6 hidden h-16 w-16 rotate-12 md:block ${top.color}`} />}
+      {bottom && (
+        <IdeaIcon name={bottom.name} className={`absolute right-[22%] bottom-2 hidden h-16 w-16 -rotate-12 md:block ${bottom.color}`} />
+      )}
       <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
-        <SectionTitle title={title} icons={icons} />
+        <SectionTitle title={title} icon={first} />
         <div>{children}</div>
       </div>
     </section>
@@ -141,7 +142,7 @@ function App() {
 
         <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
           <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
-            <SectionTitle title="Find your child's group" icons={[{ name: 'puzzle', color: 'text-emerald-400' }, { name: 'dice', color: 'text-yellow-400' }, { name: 'binary', color: 'text-orange-400' }]} />
+            <SectionTitle title="Find your child's group" icon={{ name: 'puzzle', color: 'text-emerald-400' }} />
             <p className="font-inter max-w-2xl text-lg text-zinc-700">
               Children are grouped by age, so everyone learns with others at their level. Tap a group
               name to see what it means.
