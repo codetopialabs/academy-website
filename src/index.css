@@ -4,6 +4,13 @@
   --font-display: 'Space Grotesk', sans-serif;
   --font-mono: 'Space Mono', ui-monospace, monospace;
   --font-inter: 'Inter', sans-serif;
+
+  /* Academy palette. Text is black or zinc-600+ on all of these (AA 4.5:1 or better).
+     sun: price tag, warning sticker, closing band. sky (sky-300): the marker highlight.
+     cream: hero band. mist: tutors band, a light tint of the brand blue. */
+  --color-sun: #ffdf20;
+  --color-cream: #fff8e7;
+  --color-mist: #eef7fd;
 }
 
 :root {
@@ -17,6 +24,100 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+:focus-visible {
+  /* dark ring: visible on white, cream, mist, sun and every group tint (3:1 or better) */
+  outline: 3px solid #18181b;
+  outline-offset: 3px;
+}
+
 body {
   margin: 0;
+  background: #fff;
+}
+
+/* Tutor carousel: slides right to left, pauses on hover or when a card is tapped */
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  width: max-content;
+  animation: marquee-left 45s linear infinite;
+}
+
+.marquee-wrap:hover .marquee,
+.marquee-wrap:focus-within .marquee,
+.marquee-wrap.paused .marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none;
+  }
+  .marquee-wrap {
+    overflow-x: auto;
+  }
+}
+
+/* Small animations. Only for people who haven't asked their device to reduce motion */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes pop {
+    0% { transform: scale(0.8); opacity: 0.3; }
+    60% { transform: scale(1.08); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-2deg); }
+    25% { transform: rotate(2deg); }
+    50% { transform: rotate(-3deg); }
+    75% { transform: rotate(1deg); }
+  }
+
+  .pop { animation: pop 250ms ease-out; }
+  .fade-up { animation: fade-up 300ms ease-out; }
+  .answer { animation: fade-up 250ms ease-out; }
+  .sticker:hover { animation: wiggle 400ms ease-in-out; }
+
+  /* on arrival the stickers wiggle twice to catch the eye: warning first, then the price */
+  .intro-wiggle { animation: wiggle 400ms ease-in-out 700ms 2; }
+  .intro-wiggle-2 { animation-delay: 1100ms; }
+
+  /* sections fade up the first time they scroll into view */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 600ms ease-out, transform 600ms ease-out; }
+  .reveal.is-visible { opacity: 1; transform: none; }
+}
+
+/* Hero photo columns: left scrolls up, right scrolls down, pause on hover.
+   The soft fade at the top and bottom edges is a mask, not a colour gradient */
+.photo-columns {
+  mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes column-up {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
+  }
+  @keyframes column-down {
+    from { transform: translateY(-50%); }
+    to { transform: translateY(0); }
+  }
+  .scroll-up { animation: column-up 32s linear infinite; }
+  .scroll-down { animation: column-down 32s linear infinite; }
+  .photo-columns:hover .scroll-up,
+  .photo-columns:hover .scroll-down { animation-play-state: paused; }
 }

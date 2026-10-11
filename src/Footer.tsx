@@ -12,8 +12,11 @@ import {
 } from 'react-icons/fa6'
 import { SiBluesky } from 'react-icons/si'
 import logo from './assets/Codetopia Academy - Logo Black.png'
+import labsLogo from './assets/codetopia-labs.png'
 
 const email = 'codetopiaacademy@gmail.com'
+// DUMMY: swap for the Labs website if there is one
+const labsUrl = 'https://github.com/codetopialabs'
 
 const socialIcons = [
   { icon: FaYoutube, href: 'https://www.youtube.com/@codetopiaacademy', label: 'YouTube' },
@@ -36,7 +39,7 @@ const socialIcons = [
   { icon: FaGithub, href: 'https://github.com/codetopiaacademy', label: 'GitHub' },
 ]
 
-const linkClass = 'font-inter text-sm text-zinc-500 transition-colors hover:text-black'
+const linkClass = 'font-inter text-sm text-zinc-600 transition-colors hover:text-black'
 
 function Wordmark() {
   const ref = useRef<HTMLParagraphElement>(null)
@@ -82,7 +85,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col gap-16 px-6 py-20 md:flex-row md:justify-between">
         <div className="flex flex-col gap-8">
           <img src={logo} alt="Codetopia Academy" className="h-auto w-44 self-start" />
-          <p className="font-mono text-sm tracking-[0.2em] text-zinc-500">
+          <p className="font-mono text-sm tracking-[0.2em] text-zinc-600">
             THINK. BUILD. <span className="font-bold text-black">SOLVE.</span>
           </p>
           <div className="flex flex-wrap gap-4">
@@ -93,7 +96,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="text-zinc-500 transition-colors hover:text-black"
+                className="text-zinc-600 transition-colors hover:text-black"
               >
                 <social.icon className="h-4 w-4" />
               </a>
@@ -107,7 +110,7 @@ export function Footer() {
             <a href={`mailto:${email}`} className={linkClass}>
               {email}
             </a>
-            <span className="font-inter text-sm text-zinc-500">Accra, Ghana</span>
+            <span className="font-inter text-sm text-zinc-600">Accra, Ghana</span>
           </div>
           <div className="flex flex-col gap-3">
             <p className="mb-2 text-sm font-black tracking-tight uppercase">Codetopia</p>
@@ -133,10 +136,13 @@ export function Footer() {
 
       <div>
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 md:flex-row md:items-center md:justify-between">
-          <p className="font-inter text-xs text-zinc-500">
-            &copy; {new Date().getFullYear()} Codetopia Academy. All rights reserved.
+          <p className="font-inter text-xs text-zinc-600">
+            &copy; {new Date().getFullYear()} Codetopia Academy. All rights reserved.{' '}
+            <a href="/privacy/" className="underline transition-colors hover:text-black">
+              Privacy
+            </a>
           </p>
-          <p className="text-xs font-black tracking-widest text-zinc-500 uppercase">
+          <p className="text-xs font-black tracking-widest text-zinc-600 uppercase">
             A{' '}
             <a
               href="https://codetopia.org"
@@ -148,6 +154,23 @@ export function Footer() {
             </a>{' '}
             Initiative
           </p>
+        </div>
+        <div className="mx-auto flex max-w-6xl justify-center border-t border-zinc-200 px-6 py-6">
+          {/* builder's credit: quiet grey, full colour on hover */}
+          <a
+            href={labsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Developed with love by Codetopia Labs"
+            className="font-inter group flex items-center gap-1.5 text-xs text-zinc-600 transition-colors hover:text-black"
+          >
+            Developed with love by
+            <img
+              src={labsLogo}
+              alt=""
+              className="h-6 w-auto opacity-60 grayscale transition group-hover:opacity-100 group-hover:grayscale-0"
+            />
+          </a>
         </div>
       </div>
     </footer>
