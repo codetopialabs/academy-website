@@ -83,7 +83,7 @@ function App() {
               by trained tutors who know every learner by name.
             </p>
             <div className="mt-10 flex items-center gap-4 sm:gap-5">
-              <RegisterButton className={`${button('kids')} shrink-0 whitespace-nowrap`} />
+              <RegisterButton className={`${button('kids')} shrink-0 whitespace-nowrap`} noteAlign="start" />
               <PriceTag amount={priceAmount} per={pricePer} intro />
             </div>
             <p className="font-inter mt-6 text-zinc-700">{startLine}</p>

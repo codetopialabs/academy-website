@@ -6,10 +6,13 @@ import { registerLabel, registerUrl, registrationOpen, registrationSoon } from '
 export function RegisterButton({
   className,
   notePlacement = 'above',
+  noteAlign = 'center',
   fullOnMobile = false,
 }: {
   className: string
   notePlacement?: 'above' | 'below'
+  // which edge the note lines up with, so it never runs off the screen
+  noteAlign?: 'start' | 'center' | 'end'
   fullOnMobile?: boolean
 }) {
   const [showNote, setShowNote] = useState(false)
@@ -40,7 +43,9 @@ export function RegisterButton({
       </button>
       <span
         role="status"
-        className={`font-inter absolute left-1/2 z-30 w-64 -translate-x-1/2 rounded-xl bg-black px-4 py-3 text-center text-sm text-white shadow-lg transition ${
+        className={`font-inter absolute z-30 w-64 max-w-[calc(100vw-2rem)] rounded-xl bg-black px-4 py-3 text-center text-sm text-white shadow-lg transition ${
+          noteAlign === 'start' ? 'left-0' : noteAlign === 'end' ? 'right-0' : 'left-1/2 -translate-x-1/2'
+        } ${
           notePlacement === 'above' ? 'bottom-full mb-3' : 'top-full mt-3'
         } ${showNote ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
       >

@@ -38,7 +38,7 @@ export function Adults() {
               trained tutors, in groups of about five.
             </p>
             <div className="mt-10 flex items-center gap-4 sm:gap-5">
-              <RegisterButton className={`${button('adults')} shrink-0 whitespace-nowrap`} />
+              <RegisterButton className={`${button('adults')} shrink-0 whitespace-nowrap`} noteAlign="start" />
               <PriceTag amount={adultPriceAmount} per={pricePer} />
             </div>
             <p className="font-inter mt-6 text-zinc-700">{startLine}</p>

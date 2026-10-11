@@ -76,7 +76,7 @@ export function Header({ look }: { look: Look }) {
             <span className="sm:hidden">{other.short}</span>
             <span className="hidden sm:inline">{other.text}</span>
           </a>
-          <RegisterButton className={`${button(look)} !py-2`} notePlacement="below" />
+          <RegisterButton className={`${button(look)} !py-2`} notePlacement="below" noteAlign="end" />
         </nav>
       </div>
     </header>
