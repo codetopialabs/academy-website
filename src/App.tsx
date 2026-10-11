@@ -10,12 +10,13 @@ type Icon = { name: Idea; color: string }
 
 // icons in the empty page margins, wide screens only
 const edgeIcons: { name: Idea; top: string; side: string; color: string }[] = [
-  { name: 'loop', top: 'top-[18%]', side: 'left-3 -rotate-12', color: 'text-sky-400' },
-  { name: 'binary', top: 'top-[30%]', side: 'right-3 rotate-6', color: 'text-orange-400' },
-  { name: 'bug', top: 'top-[46%]', side: 'left-3 rotate-12', color: 'text-emerald-400' },
-  { name: 'blocks', top: 'top-[58%]', side: 'right-3 -rotate-6', color: 'text-yellow-400' },
-  { name: 'cursor', top: 'top-[72%]', side: 'left-3 -rotate-6', color: 'text-orange-400' },
-  { name: 'controller', top: 'top-[84%]', side: 'right-3 rotate-12', color: 'text-sky-400' },
+  { name: 'gear', top: 'top-[16%]', side: 'left-3 -rotate-12', color: 'text-sky-400' },
+  { name: 'camera', top: 'top-[27%]', side: 'right-3 rotate-6', color: 'text-orange-400' },
+  { name: 'bug', top: 'top-[39%]', side: 'left-3 rotate-12', color: 'text-emerald-400' },
+  { name: 'blocks', top: 'top-[50%]', side: 'right-3 -rotate-6', color: 'text-yellow-400' },
+  { name: 'cursor', top: 'top-[62%]', side: 'left-3 -rotate-6', color: 'text-orange-400' },
+  { name: 'ifelse', top: 'top-[73%]', side: 'right-3 rotate-12', color: 'text-sky-400' },
+  { name: 'loop', top: 'top-[85%]', side: 'left-3 rotate-6', color: 'text-emerald-400' },
 ]
 
 // sizes and tilts for the cluster under a section title
@@ -118,14 +119,14 @@ function App() {
             <IdeaIcon name="controller" className="absolute -top-8 -left-8 h-20 w-20 -rotate-12 text-sky-400" />
             <IdeaIcon name="bulb" className="absolute -top-10 right-4 h-16 w-16 rotate-12 text-yellow-400" />
             <IdeaIcon name="robot" className="absolute -right-8 -bottom-8 h-24 w-24 rotate-6 text-orange-400" />
-            <IdeaIcon name="bug" className="absolute -bottom-6 -left-6 h-16 w-16 -rotate-12 text-emerald-400" />
-            <IdeaIcon name="braces" className="absolute top-1/3 -right-7 h-14 w-14 rotate-12 text-emerald-400" />
-            <IdeaIcon name="cursor" className="absolute top-1/2 -left-7 h-14 w-14 -rotate-12 text-orange-400" />
+            <IdeaIcon name="flag" className="absolute -bottom-6 -left-6 h-16 w-16 -rotate-12 text-emerald-400" />
+            <IdeaIcon name="keyboard" className="absolute top-1/3 -right-7 h-14 w-14 rotate-12 text-emerald-400" />
+            <IdeaIcon name="mouse" className="absolute top-1/2 -left-7 h-14 w-14 -rotate-12 text-orange-400" />
           </div>
         </section>
         </div>
 
-        <Section title="How it works" icons={[{ name: 'laptop', color: 'text-sky-400' }, { name: 'cursor', color: 'text-orange-400' }, { name: 'loop', color: 'text-emerald-400' }]}>
+        <Section title="How it works" icons={[{ name: 'chat', color: 'text-sky-400' }, { name: 'globe', color: 'text-emerald-400' }, { name: 'laptop', color: 'text-orange-400' }]}>
           <div className="font-inter max-w-2xl space-y-5 text-lg text-zinc-700">
             <p>
               Every class is live on video, cameras on, with a tutor who knows each child by name.
@@ -140,7 +141,7 @@ function App() {
 
         <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
           <div className="grid gap-8 border-t border-zinc-200 pt-10 md:grid-cols-[1fr_2fr] md:gap-12">
-            <SectionTitle title="Find your child's group" icons={[{ name: 'binary', color: 'text-emerald-400' }, { name: 'controller', color: 'text-yellow-400' }, { name: 'robot', color: 'text-orange-400' }]} />
+            <SectionTitle title="Find your child's group" icons={[{ name: 'puzzle', color: 'text-emerald-400' }, { name: 'dice', color: 'text-yellow-400' }, { name: 'binary', color: 'text-orange-400' }]} />
             <p className="font-inter max-w-2xl text-lg text-zinc-700">
               Children are grouped by age, so everyone learns with others at their level. Tap a group
               name to see what it means.
@@ -151,7 +152,7 @@ function App() {
           <AgePicker />
         </div>
 
-        <Section title="What they learn" icons={[{ name: 'blocks', color: 'text-orange-400' }, { name: 'bulb', color: 'text-yellow-400' }, { name: 'ifelse', color: 'text-sky-400' }]}>
+        <Section title="What they learn" icons={[{ name: 'brush', color: 'text-orange-400' }, { name: 'chip', color: 'text-sky-400' }, { name: 'music', color: 'text-emerald-400' }]}>
           <p className="font-inter text-lg text-zinc-700">
             Six areas. Every learner gets to try them all.
           </p>
@@ -166,7 +167,7 @@ function App() {
           </ul>
         </Section>
 
-        <Section title="Who teaches" icons={[{ name: 'bulb', color: 'text-yellow-400' }, { name: 'robot', color: 'text-sky-400' }, { name: 'braces', color: 'text-orange-400' }]}>
+        <Section title="Who teaches" icons={[{ name: 'star', color: 'text-yellow-400' }, { name: 'search', color: 'text-sky-400' }, { name: 'chat', color: 'text-orange-400' }]}>
           <p className="font-inter max-w-2xl text-lg text-zinc-700">
             We choose and train our own tutors, and check every one before they teach.
           </p>
@@ -181,7 +182,7 @@ function App() {
           </ul>
         </Section>
 
-        <Section title="For parents" icons={[{ name: 'braces', color: 'text-emerald-400' }, { name: 'bug', color: 'text-orange-400' }, { name: 'controller', color: 'text-sky-400' }]}>
+        <Section title="For parents" icons={[{ name: 'shield', color: 'text-emerald-400' }, { name: 'lock', color: 'text-sky-400' }, { name: 'heart', color: 'text-orange-400' }]}>
           <h3 className="font-bold">Keeping your child safe</h3>
           <ul className="font-inter mt-4 list-disc space-y-2 pl-5 text-zinc-700 marker:text-zinc-400">
             {forParents.map((line) => (
