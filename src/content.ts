@@ -216,13 +216,6 @@ export const faq = [
   { q: 'How much does it cost?', a: fees },
 ]
 
-// What happens in one 4-month module
-export const moduleParts = [
-  { title: 'Mini projects', text: 'Small things they build along the way.' },
-  { title: 'One big project', text: 'Everything comes together at the end.' },
-  { title: 'The showcase', text: 'Family and friends come to see it.' },
-]
-
 // DUMMY: real tutors, photos and lines
 export const tutors = [
   { name: 'Tutor name', role: 'Orion tutor', line: 'One line about who they are.' },
