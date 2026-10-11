@@ -216,13 +216,11 @@ export const faq = [
   { q: 'How much does it cost?', a: fees },
 ]
 
-// One module runs 4 months
-export const moduleSteps = [
-  { when: 'Month 1', what: 'Mini project' },
-  { when: 'Month 2', what: 'Mini project' },
-  { when: 'Month 3', what: 'Mini project' },
-  { when: 'Month 4', what: 'End-of-module project' },
-  { when: 'Showcase', what: 'Family and friends come to see it' },
+// What happens in one 4-month module
+export const moduleParts = [
+  { title: 'Mini projects', text: 'Small things they build along the way.' },
+  { title: 'One big project', text: 'Everything comes together at the end.' },
+  { title: 'The showcase', text: 'Family and friends come to see it.' },
 ]
 
 // DUMMY: real tutors, photos and lines

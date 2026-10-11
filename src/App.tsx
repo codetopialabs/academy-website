@@ -3,7 +3,7 @@ import { Ending, Header, Label, Marker } from './components'
 import {
   faq,
   forParents,
-  moduleSteps,
+  moduleParts,
   registerLabel,
   registerUrl,
   startDate,
@@ -16,7 +16,6 @@ import {
   Check,
   Loop,
   Note,
-  Path,
   Scribbled,
   Sparkle,
   Squiggle,
@@ -139,29 +138,26 @@ function App() {
               </>
             }
           >
-            <div className="relative">
-              <Path className="absolute top-5 left-0 hidden h-6 w-full text-black/50 sm:block" />
-              <ol className="relative grid gap-8 sm:grid-cols-5 sm:gap-4">
-                {moduleSteps.map((step, i) => {
-                  const last = i === moduleSteps.length - 1
-                  return (
-                    <li key={step.when} className="flex gap-4 sm:flex-col sm:gap-3">
-                      {last ? (
-                        <Star className="h-14 w-14 shrink-0 -rotate-6 text-black" fillClass="fill-yellow-300" />
-                      ) : (
-                        <span className="font-hand flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-black bg-white text-2xl font-bold">
-                          {i + 1}
-                        </span>
-                      )}
-                      <div>
-                        <p className="font-bold">{step.when}</p>
-                        <p className="font-inter text-zinc-800">{step.what}</p>
-                      </div>
-                    </li>
-                  )
-                })}
-              </ol>
-            </div>
+            <ol className="grid gap-6 md:grid-cols-3 md:gap-10">
+              {moduleParts.map((part, i) => (
+                <li key={part.title} className="relative flex items-center gap-5 md:flex-col md:items-start">
+                  {i === 1 ? (
+                    <Star className="h-16 w-16 shrink-0 -rotate-6 text-black" fillClass="fill-yellow-300" />
+                  ) : i === 2 ? (
+                    <Sparkle className="h-16 w-16 shrink-0 text-black" />
+                  ) : (
+                    <Squiggle className="h-16 w-16 shrink-0 text-black" />
+                  )}
+                  <div>
+                    <p className="font-display text-2xl font-bold">{part.title}</p>
+                    <p className="font-inter mt-1 text-zinc-800">{part.text}</p>
+                  </div>
+                  {i < moduleParts.length - 1 && (
+                    <Arrow className="absolute top-2 -right-10 hidden h-12 w-14 -rotate-[30deg] text-black md:block" />
+                  )}
+                </li>
+              ))}
+            </ol>
             <div className="mt-14 flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
               <div className="font-inter space-y-2 text-lg text-zinc-900">
                 <p>8 live sessions a month, twice a week, cameras on.</p>

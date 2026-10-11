@@ -143,10 +143,9 @@ export function Explorer() {
               <span className="font-bold text-black">{category.name}.</span> {category.about}
             </p>
             <ol className="mt-6 grid gap-3 md:grid-cols-4 md:gap-4">
-              {plan.courses.map((course, i) => (
-                <li key={course} className="relative rounded-2xl border-2 border-black/10 bg-white p-4">
-                  <span className="font-hand text-xl text-zinc-500">month {i + 1}</span>
-                  <p className="mt-1 font-bold">{course}</p>
+              {plan.courses.map((course) => (
+                <li key={course} className="relative flex items-center rounded-2xl border-2 border-black/10 bg-white p-4">
+                  <p className="font-bold">{course}</p>
                   <span aria-hidden="true" className="font-hand absolute top-1/2 -right-4 z-10 hidden -translate-y-1/2 text-3xl md:block">
                     →
                   </span>
@@ -154,7 +153,7 @@ export function Explorer() {
               ))}
               <li className={`rounded-2xl border-2 border-black p-4 ${group.accent}`}>
                 <span className="font-hand flex items-center gap-1 text-xl">
-                  <Star className="h-5 w-5" fillClass="fill-white" /> month 4: they build
+                  <Star className="h-5 w-5" fillClass="fill-white" /> they build
                 </span>
                 <p className="mt-1 font-bold">{plan.make}</p>
               </li>
