@@ -32,26 +32,6 @@ export type Group = {
 // DUMMY: courses and which groups open on 7 Nov
 export const groups: Group[] = [
   {
-    id: 'orion',
-    name: 'Orion',
-    meaning: {
-      origin: 'Greek',
-      means: 'One of the brightest groups of stars in the sky.',
-      why: 'This is where learners start to shine and build their first real things.',
-    },
-    ages: '9 to 11',
-    about: 'First real steps in coding, through games and animation.',
-    open: true,
-    shape: 'square',
-    color: 'fill-sky-300',
-    tint: 'bg-sky-50',
-    courses: [
-      { name: 'Game Making with Scratch', about: 'Loops, controls, scores and collisions.', make: 'A game they can play' },
-      { name: 'Animation and Stories', about: 'Scenes, timing and characters that talk.', make: 'A short animated film' },
-      { name: 'Intro to Python', about: 'Their first lines of real code.', make: 'A small text game' },
-    ],
-  },
-  {
     id: 'nova',
     name: 'Nova',
     meaning: {
@@ -69,6 +49,26 @@ export const groups: Group[] = [
       { name: 'Computer Basics', about: 'Using a mouse, typing and saving work.', make: 'A typed and saved story' },
       { name: 'Logic Puzzles', about: 'Solving puzzles one step at a time.', make: 'A puzzle for a friend to solve' },
       { name: 'First Animations', about: 'Moving characters in Scratch.', make: 'An animated story' },
+    ],
+  },
+  {
+    id: 'orion',
+    name: 'Orion',
+    meaning: {
+      origin: 'Greek',
+      means: 'One of the brightest groups of stars in the sky.',
+      why: 'This is where learners start to shine and build their first real things.',
+    },
+    ages: '9 to 11',
+    about: 'First real steps in coding, through games and animation.',
+    open: true,
+    shape: 'square',
+    color: 'fill-sky-300',
+    tint: 'bg-sky-50',
+    courses: [
+      { name: 'Game Making with Scratch', about: 'Loops, controls, scores and collisions.', make: 'A game they can play' },
+      { name: 'Animation and Stories', about: 'Scenes, timing and characters that talk.', make: 'A short animated film' },
+      { name: 'Intro to Python', about: 'Their first lines of real code.', make: 'A small text game' },
     ],
   },
   {
