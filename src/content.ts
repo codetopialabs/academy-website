@@ -9,7 +9,7 @@ export const registerUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSf2AqEnWfDA
 export const registerLabel = 'Register'
 
 // true: a thin note at the top of every page says the site is still being built
-export const underDevelopment = true
+export const underDevelopment = false
 
 // false: Register buttons show a 'registration opens soon' note instead of going to the form
 export const registrationOpen = true
