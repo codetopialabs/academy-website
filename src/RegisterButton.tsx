@@ -25,7 +25,7 @@ export function RegisterButton({
 
   if (registrationOpen) {
     return (
-      <a href={registerUrl} className={`${className} ${fullOnMobile ? 'w-full sm:w-auto' : ''}`}>
+      <a href={registerUrl} target="_blank" rel="noopener noreferrer" className={`${className} ${fullOnMobile ? 'w-full sm:w-auto' : ''}`}>
         {registerLabel}
       </a>
     )

@@ -3,8 +3,8 @@
 // Next start date: set it in schedule.ts
 export { classStarted, startDate, startLine } from './schedule'
 
-// DUMMY: Google Form link from Barbara
-export const registerUrl = '#register'
+// Registration Google Form
+export const registerUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSf2AqEnWfDAmVChqHUDUSAhKUZ0rXuhQROCQbTTSXbPVhqyOg/viewform'
 // DUMMY: label may become 'Book a free taster'
 export const registerLabel = 'Register'
 
@@ -12,7 +12,7 @@ export const registerLabel = 'Register'
 export const underDevelopment = true
 
 // false: Register buttons show a 'registration opens soon' note instead of going to the form
-export const registrationOpen = false
+export const registrationOpen = true
 export const registrationSoon = "Registration opens soon. Message us on WhatsApp and we'll keep you posted."
 
 export const email = 'codetopiaacademy@gmail.com'
