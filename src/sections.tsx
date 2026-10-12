@@ -112,9 +112,9 @@ export function AreaCards({ audience }: { audience: 'kids' | 'adults' }) {
 
 // Big portrait card like the community site: photo goes from grey to colour on hover,
 // and the name slides up on hover, keyboard focus or tap
-function TutorCard({ tutor, copy = false, onOpen }: { tutor: Tutor; copy?: boolean; onOpen: (tutor: Tutor) => void }) {
+function TutorCard({ tutor, copy = false, className = '', onOpen }: { tutor: Tutor; copy?: boolean; className?: string; onOpen: (tutor: Tutor) => void }) {
   return (
-    <li aria-hidden={copy || undefined}>
+    <li className={className} aria-hidden={copy || undefined}>
       <div
         role="button"
         tabIndex={copy ? -1 : 0}
@@ -163,15 +163,29 @@ export function TutorsHeading({ icon }: { icon?: Icon }) {
   )
 }
 
-// Tutor cards, each shown once in a grid that wraps, so nothing is cut off at the edge.
-// The looping marquee styles in index.css can come back once there are enough tutors
+// Small screens: the cards slide right to left on their own, shown twice so the loop is seamless.
+// It stops while hovered, tapped or a profile is open. Wide screens: all cards sit in a grid
 export function TutorCarousel() {
   const [openTutor, setOpenTutor] = useState<Tutor | null>(null)
   const closeTutor = useCallback(() => setOpenTutor(null), [])
   return (
     <>
-      <div className="mx-auto mt-10 max-w-7xl px-4 pb-16 sm:px-6 md:mt-12 md:pb-24">
-        <ul className="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3">
+      <div className={`marquee-wrap mt-10 overflow-hidden pb-16 md:mt-12 md:pb-24 lg:hidden ${openTutor ? 'paused' : ''}`}>
+        {/* about 6 seconds per tutor keeps the speed the same however many there are */}
+        <ul className="marquee flex" style={{ animationDuration: `${tutors.length * 6}s` }}>
+          {[...tutors, ...tutors].map((tutor, i) => (
+            <TutorCard
+              key={i}
+              tutor={tutor}
+              copy={i >= tutors.length}
+              className="w-72 shrink-0 pl-4 sm:w-80 md:pl-6"
+              onOpen={setOpenTutor}
+            />
+          ))}
+        </ul>
+      </div>
+      <div className="mx-auto mt-12 hidden max-w-7xl px-6 pb-24 lg:block">
+        <ul className="grid grid-cols-3 gap-6">
           {tutors.map((tutor) => (
             <TutorCard key={tutor.name} tutor={tutor} onOpen={setOpenTutor} />
           ))}
