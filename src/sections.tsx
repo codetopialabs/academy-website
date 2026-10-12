@@ -1,4 +1,4 @@
-import { useCallback, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { categories, tutors, type Tutor } from './content'
 import { CategoryIcon, IdeaIcon, type Idea } from './doodles'
 import { TutorModal } from './TutorModal'
@@ -163,16 +163,109 @@ export function TutorsHeading({ icon }: { icon?: Icon }) {
   )
 }
 
-// Small screens: the cards slide right to left on their own, shown twice so the loop is seamless.
-// It stops while hovered, tapped or a profile is open. Wide screens: all cards sit in a grid
+// Small screens: a row that slides right to left on its own. People can swipe, scroll or
+// drag it either way; when left alone for 2 seconds it carries on. It stops while a profile is open.
+// The cards are shown twice so the loop is seamless: past either end it jumps by one set.
+// Wide screens: all cards sit still in a grid
+function useAutoScroll(paused: boolean) {
+  const ref = useRef<HTMLDivElement>(null)
+  const pausedRef = useRef(paused)
+  useEffect(() => {
+    pausedRef.current = paused
+  }, [paused])
+
+  useEffect(() => {
+    const row = ref.current
+    if (!row) return
+    const autoScroll = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    let pos = row.scrollLeft
+    let last = performance.now()
+    let waitUntil = 0
+    let drag: { x: number; start: number; moved: boolean } | null = null
+    let frame = 0
+
+    const step = (now: number) => {
+      const half = row.scrollWidth / 2
+      if (!autoScroll || pausedRef.current || drag || now < waitUntil) {
+        pos = row.scrollLeft
+      } else {
+        // about 6 seconds per tutor keeps the speed the same however many there are
+        pos += (half / (tutors.length * 6000)) * (now - last)
+        if (pos >= half) pos -= half
+        row.scrollLeft = pos
+      }
+      last = now
+      frame = requestAnimationFrame(step)
+    }
+    frame = requestAnimationFrame(step)
+
+    // after someone scrolls or drags, wait 2 seconds before sliding again
+    const wait = () => (waitUntil = performance.now() + 2000)
+
+    // a scroll this code didn't make is the person scrolling, or still gliding after a swipe.
+    // Going past either end wraps round to the other copy, so it can go either way forever
+    const onScroll = () => {
+      if (Math.abs(row.scrollLeft - pos) > 2) wait()
+      const half = row.scrollWidth / 2
+      const shift = row.scrollLeft <= 0 ? half : row.scrollLeft >= half * 2 - row.clientWidth ? -half : 0
+      if (shift) {
+        row.scrollLeft += shift
+        pos = row.scrollLeft
+        if (drag) drag.start += shift
+      }
+    }
+
+    // mouse drag (touch screens already swipe natively)
+    const down = (e: PointerEvent) => {
+      wait()
+      if (e.pointerType === 'mouse') drag = { x: e.clientX, start: row.scrollLeft, moved: false }
+    }
+    const move = (e: PointerEvent) => {
+      if (!drag) return
+      const dx = e.clientX - drag.x
+      if (Math.abs(dx) > 5) drag.moved = true
+      row.scrollLeft = drag.start - dx
+    }
+    const up = () => {
+      if (!drag) return
+      const moved = drag.moved
+      drag = null
+      wait()
+      // a drag shouldn't also count as a click that opens a profile
+      if (moved) row.addEventListener('click', (e) => e.stopPropagation(), { capture: true, once: true })
+    }
+    const noImageDrag = (e: DragEvent) => e.preventDefault()
+
+    row.addEventListener('pointerdown', down)
+    window.addEventListener('pointermove', move)
+    window.addEventListener('pointerup', up)
+    row.addEventListener('touchstart', wait, { passive: true })
+    row.addEventListener('wheel', wait, { passive: true })
+    row.addEventListener('scroll', onScroll, { passive: true })
+    row.addEventListener('dragstart', noImageDrag)
+    return () => {
+      cancelAnimationFrame(frame)
+      row.removeEventListener('pointerdown', down)
+      window.removeEventListener('pointermove', move)
+      window.removeEventListener('pointerup', up)
+      row.removeEventListener('touchstart', wait)
+      row.removeEventListener('wheel', wait)
+      row.removeEventListener('scroll', onScroll)
+      row.removeEventListener('dragstart', noImageDrag)
+    }
+  }, [])
+
+  return ref
+}
+
 export function TutorCarousel() {
   const [openTutor, setOpenTutor] = useState<Tutor | null>(null)
   const closeTutor = useCallback(() => setOpenTutor(null), [])
+  const rowRef = useAutoScroll(openTutor !== null)
   return (
     <>
-      <div className={`marquee-wrap mt-10 overflow-hidden pb-16 md:mt-12 md:pb-24 lg:hidden ${openTutor ? 'paused' : ''}`}>
-        {/* about 6 seconds per tutor keeps the speed the same however many there are */}
-        <ul className="marquee flex" style={{ animationDuration: `${tutors.length * 6}s` }}>
+      <div ref={rowRef} className="no-scrollbar mt-10 cursor-grab overflow-x-auto pb-16 select-none active:cursor-grabbing md:mt-12 md:pb-24 lg:hidden">
+        <ul className="flex w-max">
           {[...tutors, ...tutors].map((tutor, i) => (
             <TutorCard
               key={i}

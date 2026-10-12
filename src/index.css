@@ -39,34 +39,12 @@ body {
   background: #fff;
 }
 
-/* Tutor carousel: slides right to left, pauses on hover or when a card is tapped */
-@keyframes marquee-left {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+/* Tutor row on small screens: swipeable, with the scrollbar hidden */
+.no-scrollbar {
+  scrollbar-width: none;
 }
-
-.marquee {
-  width: max-content;
-  animation: marquee-left 45s linear infinite;
-}
-
-.marquee-wrap:hover .marquee,
-.marquee-wrap:focus-within .marquee,
-.marquee-wrap.paused .marquee {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee {
-    animation: none;
-  }
-  .marquee-wrap {
-    overflow-x: auto;
-  }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 /* Small animations. Only for people who haven't asked their device to reduce motion */
