@@ -192,39 +192,38 @@ export const faq = [
   { q: 'What do we need at home?', a: 'A laptop, desktop or tablet, and an internet connection. A phone is not enough.' },
 ]
 
-// DUMMY: real tutors and photos. group is the id of the age group they teach.
-// socials: add only the ones a tutor wants shown
+// Tutors. socials: add only the ones a tutor wants shown
 export type Tutor = {
   name: string
-  group: string
   photo?: string
   bio?: string
-  socials?: { linkedin?: string; x?: string; instagram?: string; github?: string; website?: string }
+  socials?: { linkedin?: string; x?: string; instagram?: string; github?: string; portal?: string; website?: string }
 }
 
 export const tutors: Tutor[] = [
-  // DUMMY photos from Unsplash (free licence), for preview only. Replace with the real tutors before launch.
-  // dummy-1: Gabriel Ogulu (AZ1Bqm1GJQ0), dummy-2: Vitaly Gariev (TOuMSV0Nqjk), dummy-3: Adewale Shobaloju (4kDtZ_rJMS4)
   {
-    name: 'Tutor name',
-    group: 'nova',
-    photo: '/tutors/dummy-1.jpg',
-    bio: 'A short bio: who they are, what they love building, and why they teach.',
-    socials: { linkedin: '#', instagram: '#' },
+    name: 'Barbara Asiamah',
+    photo: '/tutors/barbara-asiamah.jpg',
+    bio: "Barbara is a project manager, data analyst and Python teacher in Ghana. For over 6 years she has built and run beginner tech programmes, especially for women and young people. She has organised and mentored at community events like Django Girls Koforidua, and teaches Python, web development and data skills in workshops. She wants everyone to feel that tech is for them.",
+    socials: { linkedin: 'https://www.linkedin.com/in/barbara-asiamah', x: 'https://x.com/BarbaraAsiamah5', github: 'https://github.com/barbara99', instagram: 'https://www.instagram.com/barbara_asiamah/' },
   },
   {
-    name: 'Tutor name',
-    group: 'orion',
-    photo: '/tutors/dummy-2.jpg',
-    bio: 'A short bio: who they are, what they love building, and why they teach.',
-    socials: { linkedin: '#', x: '#', website: '#' },
+    name: 'Juliet Asiedu',
+    photo: '/tutors/juliet-asiedu.jpg',
+    bio: 'Juliet is a registered midwife who loves tech. She cares about technology, healthcare and making a difference in her community. As a Community Manager at Codetopia Community, she helps the community grow by bringing people together to learn and build.',
+    socials: {
+      linkedin: 'https://linkedin.com/in/julietasiedu',
+      x: 'https://x.com/ama_jollof',
+      github: 'https://github.com/AJ-254',
+      instagram: 'https://instagram.com/ama_jollof',
+      portal: 'https://portal.community.codetopia.org/@juliet',
+    },
   },
   {
-    name: 'Tutor name',
-    group: 'nyota',
-    photo: '/tutors/dummy-3.jpg',
-    bio: 'A short bio: who they are, what they love building, and why they teach.',
-    socials: { linkedin: '#', github: '#' },
+    name: 'Larry Tetteh Quao',
+    photo: '/tutors/larry-tetteh-quao.jpg',
+    bio: 'Larry is a UI/UX designer and frontend developer from Ghana. He designs and builds websites and apps that are easy and enjoyable to use, taking ideas from first sketch to working product. As Director of Mentorship at Codetopia, he helps new developers grow by learning together and building real things.',
+    socials: { linkedin: 'https://www.linkedin.com/in/lawrence-quao-0579912b2', x: 'https://x.com/quaoLarry', github: 'https://github.com/larryQuao' },
   },
 ]
 

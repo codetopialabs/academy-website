@@ -114,7 +114,7 @@ export function AreaCards({ audience }: { audience: 'kids' | 'adults' }) {
 // and the name slides up on hover, keyboard focus or tap
 function TutorCard({ tutor, copy = false, onOpen }: { tutor: Tutor; copy?: boolean; onOpen: (tutor: Tutor) => void }) {
   return (
-    <li className="w-72 shrink-0 sm:w-80 lg:w-96" aria-hidden={copy || undefined}>
+    <li aria-hidden={copy || undefined}>
       <div
         role="button"
         tabIndex={copy ? -1 : 0}
@@ -150,10 +150,6 @@ function TutorCard({ tutor, copy = false, onOpen }: { tutor: Tutor; copy?: boole
   )
 }
 
-// enough cards to fill wide screens, then the whole set twice so the loop is seamless
-const tutorSet = Array.from({ length: Math.max(1, Math.ceil(8 / tutors.length)) }, () => tutors).flat()
-const carousel = [...tutorSet, ...tutorSet]
-
 // Big 'Who teaches' heading that sits right above the tutor carousel
 export function TutorsHeading({ icon }: { icon?: Icon }) {
   const ref = useReveal<HTMLElement>()
@@ -167,16 +163,17 @@ export function TutorsHeading({ icon }: { icon?: Icon }) {
   )
 }
 
-// Carousel: moves right to left in a loop, stops while hovered, tapped or a profile is open
+// Tutor cards, each shown once in a grid that wraps, so nothing is cut off at the edge.
+// The looping marquee styles in index.css can come back once there are enough tutors
 export function TutorCarousel() {
   const [openTutor, setOpenTutor] = useState<Tutor | null>(null)
   const closeTutor = useCallback(() => setOpenTutor(null), [])
   return (
     <>
-      <div className={`marquee-wrap mt-10 overflow-hidden pb-16 md:mt-12 md:pb-24 ${openTutor ? 'paused' : ''}`}>
-        <ul className="marquee flex gap-4 md:gap-6">
-          {carousel.map((tutor, i) => (
-            <TutorCard key={i} tutor={tutor} copy={i >= tutors.length} onOpen={setOpenTutor} />
+      <div className="mx-auto mt-10 max-w-7xl px-4 pb-16 sm:px-6 md:mt-12 md:pb-24">
+        <ul className="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3">
+          {tutors.map((tutor) => (
+            <TutorCard key={tutor.name} tutor={tutor} onOpen={setOpenTutor} />
           ))}
         </ul>
       </div>

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { FaGithub, FaGlobe, FaInstagram, FaLinkedinIn, FaXmark, FaXTwitter } from 'react-icons/fa6'
+import { FaGithub, FaGlobe, FaInstagram, FaLinkedinIn, FaUserGroup, FaXmark, FaXTwitter } from 'react-icons/fa6'
 import type { Tutor } from './content'
 
 const socialIcons = {
@@ -7,6 +7,7 @@ const socialIcons = {
   x: { icon: FaXTwitter, label: 'X' },
   instagram: { icon: FaInstagram, label: 'Instagram' },
   github: { icon: FaGithub, label: 'GitHub' },
+  portal: { icon: FaUserGroup, label: 'Codetopia Community profile' },
   website: { icon: FaGlobe, label: 'Website' },
 }
 
