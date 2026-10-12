@@ -16,8 +16,8 @@ export const registrationOpen = false
 export const registrationSoon = "Registration opens soon. Message us on WhatsApp and we'll keep you posted."
 
 export const email = 'codetopiaacademy@gmail.com'
-// WhatsApp number in international format, no plus sign (+233 50 710 5617)
-export const whatsapp = '233507105617'
+// WhatsApp number in international format, no plus sign (+233 53 264 6232)
+export const whatsapp = '233532646232'
 
 export const fees = 'Fees are shared after you register.'
 
