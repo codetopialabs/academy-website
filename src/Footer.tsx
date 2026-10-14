@@ -15,8 +15,7 @@ import logo from './assets/Codetopia Academy - Logo Black.png'
 import labsLogo from './assets/codetopia-labs.png'
 
 const email = 'codetopiaacademy@gmail.com'
-// DUMMY: swap for the Labs website if there is one
-const labsUrl = 'https://github.com/codetopialabs'
+const labsUrl = 'https://labs.codetopia.org'
 
 const socialIcons = [
   { icon: FaYoutube, href: 'https://www.youtube.com/@codetopiaacademy', label: 'YouTube' },
