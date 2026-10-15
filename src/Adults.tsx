@@ -1,21 +1,24 @@
-import { Ending, Header, Marker, NameWithMeaning } from './components'
+import { DealSticker, Ending, Header, Marker, NameWithMeaning } from './components'
 import {
   adultAges,
   adultFaq,
   adultMeaning,
   adultName,
   adultPriceAmount,
+  adultSaveLink,
   adultWho,
   classStarted,
   email,
   pricePer,
+  referralDiscount,
+  saveTitle,
   startDate,
   startLine,
   whatsapp,
 } from './content'
 import { Footer } from './Footer'
 import { RegisterButton } from './RegisterButton'
-import { AreaCards, PriceTag, Questions, Section, TutorCarousel, TutorsHeading } from './sections'
+import { AreaCards, DiscountCards, PriceTag, Questions, Section, TutorCarousel, TutorsHeading } from './sections'
 import { button } from './styles'
 
 // Same layout and feel as the children's page, without the kids' doodles
@@ -42,6 +45,7 @@ export function Adults() {
               <PriceTag amount={adultPriceAmount} per={pricePer} />
             </div>
             <p className="font-inter mt-6 text-zinc-700">{startLine}</p>
+            <DealSticker label={adultSaveLink} />
             <a
               href={`https://wa.me/${whatsapp}`}
               target="_blank"
@@ -74,6 +78,12 @@ export function Adults() {
             </p>
           </div>
         </Section>
+
+        <div className="bg-orange-50">
+          <Section title={saveTitle} id="save">
+            <DiscountCards items={[referralDiscount]} />
+          </Section>
+        </div>
 
         <Section title="Who it's for">
           <dl className="grid gap-8 sm:grid-cols-2">

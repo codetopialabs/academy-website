@@ -24,6 +24,36 @@ export const fees = 'Fees are shared after you register.'
 export const priceAmount = 'GHS 500'
 export const pricePer = 'a month'
 
+// Discounts. DUMMY: confirm wording with the team
+export type Discount = { amount: string; title: string; about: string; tint: string }
+
+export const saveTitle = 'Better together'
+export const deal = '50% OFF'
+export const saveLink = 'for families and friends'
+export const adultSaveLink = 'when you bring a friend'
+
+// Bar at the top of every page, above the header, after a 50% OFF badge. short: phones
+export const promo = {
+  kids: { text: 'your third child, and your next month when a friend joins.', short: 'for families and friends.' },
+  adults: { text: 'your next month when you bring a friend.', short: 'when you bring a friend.' },
+}
+
+export const siblingDiscount: Discount = {
+  amount: '50% off',
+  title: 'your third child',
+  about:
+    'Learning is more fun with brothers and sisters. When three of your children join, your third gets 50% off every month, for as long as they all learn with us.',
+  tint: 'bg-sky-100',
+}
+
+export const referralDiscount: Discount = {
+  amount: '50% off',
+  title: 'your next month',
+  about:
+    "Know someone who would love it here? Invite them along. Once they join, you get 50% off your next month, and every friend who joins earns you another 50% off. Just ask them to mention your name when they register.",
+  tint: 'bg-yellow-100',
+}
+
 export type Shape = 'circle' | 'square' | 'triangle' | 'diamond' | 'hexagon'
 // say: easy written pronunciation
 export type Meaning = { origin: string; means: string; why: string; say: string }

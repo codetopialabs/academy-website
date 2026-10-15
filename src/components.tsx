@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react'
 import { FaWhatsapp } from 'react-icons/fa6'
 import logo from './assets/Codetopia Academy - Logo Black.png'
-import { email, whatsapp, type Meaning, type Shape } from './content'
+import { deal, email, promo, whatsapp, type Meaning, type Shape } from './content'
 import { DevBanner } from './DevBanner'
 import { RegisterButton } from './RegisterButton'
-import { IdeaIcon } from './doodles'
+import { IdeaIcon, SaleTag } from './doodles'
 import { button, type Look } from './styles'
 
 export function Marker({ children }: { children: ReactNode }) {
@@ -60,12 +60,46 @@ export function NameWithMeaning({ name, meaning, className = '' }: { name: strin
   )
 }
 
+// The discount itself, in black so it is the first thing the eye lands on
+function DealBadge() {
+  return <span className="font-display shrink-0 rounded-md bg-black px-2 py-0.5 tracking-wide whitespace-nowrap text-white">{deal}</span>
+}
+
+// Discounts at the very top, so every visitor sees them first
+function PromoBar({ look }: { look: Look }) {
+  const { text, short } = promo[look]
+  return (
+    <a href="#save" className="font-inter flex items-center justify-center gap-2 bg-sun px-4 py-2 text-center text-sm font-bold text-black hover:bg-yellow-300">
+      <SaleTag className="hidden h-6 w-6 shrink-0 sm:block" />
+      <DealBadge />
+      <span className="sm:hidden">{short}</span>
+      <span className="hidden sm:inline">{text}</span>
+      <span className="shrink-0 underline underline-offset-4">See how</span>
+    </a>
+  )
+}
+
+// Sticker next to the price that jumps to the discounts
+export function DealSticker({ label }: { label: string }) {
+  return (
+    <a
+      href="#save"
+      className="sticker font-inter mt-5 flex w-fit rotate-1 items-center gap-2 rounded-lg border-2 border-black bg-orange-300 py-1.5 pr-3 pl-1.5 text-sm font-bold shadow-[2px_2px_0_0_#000]"
+    >
+      <DealBadge />
+      {label}
+      <SaleTag className="h-6 w-6 shrink-0" />
+    </a>
+  )
+}
+
 export function Header({ look }: { look: Look }) {
   const other = look === 'kids' ? { href: '/adults/', short: 'Adults', text: 'Classes for adults' } : { href: '/', short: 'Children', text: 'Classes for children' }
   return (
     // banner and header stick to the top together, so the note stays visible while scrolling
     <div className="sticky top-0 z-20">
     <DevBanner />
+    <PromoBar look={look} />
     <header className="border-b border-zinc-200 bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <a href="/">

@@ -120,3 +120,21 @@ body {
   .gift-lid { animation: gift-lid 3500ms ease-in-out 600ms infinite; }
   .gift-bit { animation: gift-bit 3500ms ease-out infinite backwards; }
 }
+
+/* Discount tag: swings from its string like a shop tag while sparkles twinkle in turn.
+   One swing is 2.4s; a sparkle pops for a moment every 1.35s */
+.sale-tag { transform-box: view-box; transform-origin: 20px -3px; }
+.sale-sparkle { transform-box: view-box; }
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes sale-swing {
+    0%, 100% { transform: rotate(-14deg); }
+    50% { transform: rotate(14deg); }
+  }
+  @keyframes sale-sparkle {
+    0%, 60%, 100% { opacity: 0; transform: scale(0.3); }
+    25% { opacity: 1; transform: scale(1.1); }
+  }
+  .sale-tag { animation: sale-swing 2400ms ease-in-out infinite; }
+  .sale-sparkle { animation: sale-sparkle 1350ms ease-out infinite; }
+}

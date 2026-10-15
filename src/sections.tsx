@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
-import { categories, tutors, type Tutor } from './content'
+import { categories, tutors, type Discount, type Tutor } from './content'
 import { CategoryIcon, IdeaIcon, type Idea } from './doodles'
 import { TutorModal } from './TutorModal'
 import { endIntro, useReveal } from './motion'
@@ -24,11 +24,11 @@ export function SectionTitle({ title, icon }: { title: string; icon?: Icon }) {
 }
 
 // The other icons go in the empty padding: top right above the line, and bottom right below the content
-export function Section({ title, icons = [], children }: { title: string; icons?: Icon[]; children: ReactNode }) {
+export function Section({ title, id, icons = [], children }: { title: string; id?: string; icons?: Icon[]; children: ReactNode }) {
   const [first, top, bottom] = icons
   const ref = useReveal<HTMLElement>()
   return (
-    <section ref={ref} className="reveal relative mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+    <section ref={ref} id={id} className="reveal relative mx-auto max-w-6xl scroll-mt-24 px-4 py-16 sm:px-6 md:py-24">
       {top && <IdeaIcon name={top.name} className={`absolute top-4 right-6 hidden h-16 w-16 rotate-12 md:block ${top.color}`} />}
       {bottom && (
         <IdeaIcon name={bottom.name} className={`absolute right-[22%] bottom-2 hidden h-16 w-16 -rotate-12 md:block ${bottom.color}`} />
@@ -89,6 +89,24 @@ export function PriceTag({ amount, per, intro = false }: { amount: string; per: 
       <span className="font-display text-2xl font-bold tracking-tight sm:text-4xl">{amount}</span>
       <span className="font-display ml-1.5 text-lg font-bold tracking-tight sm:ml-2 sm:text-2xl">{per}</span>
     </p>
+  )
+}
+
+// Discounts as sticker cards, tilted like the price tag: the saving first, then how it works
+export function DiscountCards({ items }: { items: Discount[] }) {
+  return (
+    <ul className="grid gap-6 sm:grid-cols-2">
+      {items.map((item, i) => (
+        <li
+          key={item.title}
+          className={`sticker rounded-2xl border-2 border-black p-6 shadow-[4px_4px_0_0_#000] ${i % 2 ? 'rotate-1' : '-rotate-1'} ${item.tint}`}
+        >
+          <p className="font-display text-5xl font-bold tracking-tight sm:text-6xl">{item.amount}</p>
+          <p className="font-display mt-1 text-xl leading-tight font-bold">{item.title}</p>
+          <p className="font-inter mt-4 text-zinc-700">{item.about}</p>
+        </li>
+      ))}
+    </ul>
   )
 }
 

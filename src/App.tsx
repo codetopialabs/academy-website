@@ -1,10 +1,10 @@
-import { Ending, Header, Marker } from './components'
-import { email, faq, forParents, priceAmount, pricePer, startDate, startLine, classStarted, whatsapp } from './content'
+import { DealSticker, Ending, Header, Marker } from './components'
+import { email, faq, forParents, priceAmount, pricePer, referralDiscount, saveLink, saveTitle, siblingDiscount, startDate, startLine, classStarted, whatsapp } from './content'
 import { GiftBox, IdeaIcon, type Idea } from './doodles'
 import { AgePicker } from './Explorer'
 import { RegisterButton } from './RegisterButton'
 import { endIntro } from './motion'
-import { AreaCards, PriceTag, TutorsHeading, Questions, Section, SectionTitle, TutorCarousel } from './sections'
+import { AreaCards, DiscountCards, PriceTag, TutorsHeading, Questions, Section, SectionTitle, TutorCarousel } from './sections'
 import { Footer } from './Footer'
 import { button } from './styles'
 
@@ -87,6 +87,7 @@ function App() {
               <PriceTag amount={priceAmount} per={pricePer} intro />
             </div>
             <p className="font-inter mt-6 text-zinc-700">{startLine}</p>
+            <DealSticker label={saveLink} />
             <a
               href={`https://wa.me/${whatsapp}`}
               target="_blank"
@@ -126,6 +127,12 @@ function App() {
             </p>
           </div>
         </Section>
+
+        <div className="bg-orange-50">
+          <Section title={saveTitle} id="save" icons={[{ name: 'tag', color: 'text-orange-400' }, { name: 'heart', color: 'text-sky-400' }, { name: 'star', color: 'text-yellow-400' }]}>
+            <DiscountCards items={[siblingDiscount, referralDiscount]} />
+          </Section>
+        </div>
 
         <AgePicker>
           <SectionTitle title="Find your child's group" icon={{ name: 'puzzle', color: 'text-emerald-500' }} />

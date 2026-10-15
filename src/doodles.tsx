@@ -143,6 +143,12 @@ const ideaPaths: Record<string, string[]> = {
     'M20 11 C 14 3, 7 8, 13 11',
     'M20 11 C 26 3, 33 8, 27 11',
   ],
+  tag: [
+    'M20 3 L31 12 L30.5 36 L9.5 35.5 L9 12.5 Z',
+    'M25 19 L15 31',
+    'M15.5 18 C 17.5 18, 17.5 21, 15.5 21 C 13.5 21, 13.5 18, 15.5 18 Z',
+    'M24.5 28 C 26.5 28, 26.5 31, 24.5 31 C 22.5 31, 22.5 28, 24.5 28 Z',
+  ],
 }
 
 export type Idea = keyof typeof ideaPaths
@@ -220,6 +226,40 @@ export function GiftBox({ className }: { className: string }) {
           <path d="M20 11 L20 17" vectorEffect="non-scaling-stroke" />
           <path d="M20 11 C 14 3, 7 8, 13 11" vectorEffect="non-scaling-stroke" />
           <path d="M20 11 C 26 3, 33 8, 27 11" vectorEffect="non-scaling-stroke" />
+        </g>
+      </g>
+    </svg>
+  )
+}
+
+// Sparkles around the discount tag: x, y in the 40 by 40 box
+const sparkles = [
+  { x: 4, y: 8 },
+  { x: 36, y: 14 },
+  { x: 35, y: 34 },
+]
+
+// Discount tag: hangs from its string and swings, with sparkles twinkling around it.
+// Its own look, so it never gets mixed up with the welcome pack gift
+export function SaleTag({ className }: { className: string }) {
+  return (
+    <svg viewBox="0 0 40 40" overflow="visible" aria-hidden="true" className={className}>
+      <g {...stroke} strokeWidth={3} vectorEffect="non-scaling-stroke">
+        {sparkles.map((p, i) => (
+          <path
+            key={i}
+            d={`M${p.x - 3} ${p.y} L${p.x + 3} ${p.y} M${p.x} ${p.y - 3} L${p.x} ${p.y + 3}`}
+            strokeWidth={2}
+            vectorEffect="non-scaling-stroke"
+            className="sale-sparkle"
+            style={{ transformOrigin: `${p.x}px ${p.y}px`, animationDelay: `${i * 450}ms` }}
+          />
+        ))}
+        <g className="sale-tag" strokeWidth={2}>
+          <path d="M20 -3 L20 3" vectorEffect="non-scaling-stroke" />
+          {ideaPaths.tag.map((d) => (
+            <path key={d} d={d} vectorEffect="non-scaling-stroke" />
+          ))}
         </g>
       </g>
     </svg>
