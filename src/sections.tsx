@@ -184,7 +184,7 @@ export function TutorsHeading({ icon }: { icon?: Icon }) {
 // Small screens: a row that slides right to left on its own. People can swipe, scroll or
 // drag it either way; when left alone for 2 seconds it carries on. It stops while a profile is open.
 // The cards are shown twice so the loop is seamless: past either end it jumps by one set.
-// Wide screens: all cards sit still in a two-column grid, so each photo stays big
+// Wide screens: all cards sit still, three per row
 function useAutoScroll(paused: boolean) {
   const ref = useRef<HTMLDivElement>(null)
   const pausedRef = useRef(paused)
@@ -295,10 +295,11 @@ export function TutorCarousel() {
           ))}
         </ul>
       </div>
-      <div className="mx-auto mt-12 hidden max-w-3xl px-6 pb-24 lg:block">
-        <ul className="grid grid-cols-2 gap-6">
+      <div className="mx-auto mt-12 hidden max-w-6xl px-6 pb-24 lg:block">
+        {/* three per row; a short last row sits in the middle */}
+        <ul className="flex flex-wrap justify-center gap-6">
           {tutors.map((tutor) => (
-            <TutorCard key={tutor.name} tutor={tutor} onOpen={setOpenTutor} />
+            <TutorCard key={tutor.name} tutor={tutor} className="w-[calc((100%-3rem)/3)]" onOpen={setOpenTutor} />
           ))}
         </ul>
       </div>

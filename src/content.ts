@@ -255,6 +255,16 @@ export const tutors: Tutor[] = [
     },
   },
   {
+    name: 'Kephas Tetteh',
+    photo: '/tutors/kephas-tetteh.jpg',
+    bio: 'Kephas is an AWS-certified backend developer who mentors new developers and teaches them to build with Java, Python and the cloud. As Technical Operations Manager at Codetopia Community, he keeps its systems running and builds the apps the community runs on.',
+    socials: {
+      linkedin: 'https://www.linkedin.com/in/kephas-tetteh-45755131a/',
+      github: 'https://github.com/ichigo-k',
+      portal: 'https://portal.community.codetopia.org/kephas',
+    },
+  },
+  {
     name: 'Larry Tetteh Quao',
     photo: '/tutors/larry-tetteh-quao.jpg',
     bio: 'Larry is a UI/UX designer and frontend developer from Ghana. He designs and builds websites and apps that are easy and enjoyable to use, taking ideas from first sketch to working product. As Director of Mentorship at Codetopia, he helps new developers grow by learning together and building real things.',
