@@ -273,7 +273,7 @@ export const tutors: Tutor[] = [
   {
     name: 'Seth Mensah',
     photo: '/tutors/seth-mensah.jpg',
-    bio: 'Seth is the CEO of Codetopia, and he still teaches beginners himself, breaking hard tech ideas down into simple steps anyone can follow. He also leads the Codetopia Community and co-founded OSSAfrica, which supports open-source projects across Africa.',
+    bio: "Seth loves teaching, and he's at his best making hard things look easy. He leads the Codetopia Community and co-founded OSSAfrica, and in his classes even the trickiest tech ideas start to click.",
     socials: {
       linkedin: 'https://www.linkedin.com/in/cerebrocerberus',
       x: 'https://x.com/cerebrocerberus',
