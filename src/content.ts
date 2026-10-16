@@ -257,7 +257,7 @@ export const tutors: Tutor[] = [
   {
     name: 'Kephas Tetteh',
     photo: '/tutors/kephas-tetteh.jpg',
-    bio: 'Kephas is an AWS-certified software engineer who mentors new developers and teaches them to build with Java, Python and the cloud. As Technical Operations Manager at Codetopia Community, he keeps its systems running and builds the apps the community runs on.',
+    bio: 'Kephas builds the apps that power Codetopia Community, and he teaches beginners to build their own. An AWS-certified software engineer, he mentors new developers in Java, Python and the cloud, the same tools he uses every day.',
     socials: {
       linkedin: 'https://www.linkedin.com/in/kephas-tetteh-45755131a/',
       github: 'https://github.com/ichigo-k',
@@ -273,7 +273,7 @@ export const tutors: Tutor[] = [
   {
     name: 'Seth Mensah',
     photo: '/tutors/seth-mensah.jpg',
-    bio: 'Seth is a software engineer in Ghana who teaches and mentors beginners, breaking hard tech ideas down into simple steps anyone can follow. He helps grow the Codetopia Community and co-founded OSSAfrica, which supports open-source projects across Africa.',
+    bio: 'Seth is the CEO of Codetopia, and he still teaches beginners himself, breaking hard tech ideas down into simple steps anyone can follow. He also leads the Codetopia Community and co-founded OSSAfrica, which supports open-source projects across Africa.',
     socials: {
       linkedin: 'https://www.linkedin.com/in/cerebrocerberus',
       x: 'https://x.com/cerebrocerberus',
