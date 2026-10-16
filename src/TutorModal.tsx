@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { FaGithub, FaGlobe, FaInstagram, FaLinkedinIn, FaUserGroup, FaXmark, FaXTwitter } from 'react-icons/fa6'
+import logo from './assets/Codetopia Academy - Logo Variant 1.png'
 import type { Tutor } from './content'
 
 const socialIcons = {
@@ -33,7 +34,7 @@ export function TutorModal({ tutor, onClose }: { tutor: Tutor; onClose: () => vo
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <button type="button" aria-label="Close profile" onClick={onClose} className="absolute inset-0 cursor-default bg-black/60" />
+      <button type="button" aria-label="Close profile" onClick={onClose} className="absolute inset-0 cursor-default bg-black/75" />
       <div
         role="dialog"
         aria-modal="true"
@@ -50,9 +51,14 @@ export function TutorModal({ tutor, onClose }: { tutor: Tutor; onClose: () => vo
           <FaXmark aria-hidden="true" />
         </button>
 
-        <div className="aspect-[4/5] bg-zinc-100 md:aspect-auto md:h-full">
+        <div className="relative aspect-[4/5] bg-zinc-100 md:aspect-auto md:h-full">
           {tutor.photo ? (
-            <img src={tutor.photo} alt={tutor.name} className="h-full w-full object-cover" />
+            <>
+              <img src={tutor.photo} alt={tutor.name} className="h-full w-full object-cover" />
+              {/* academy logo in the corner, over a soft fade so it reads on light photos */}
+              <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent" />
+              <img src={logo} alt="" className="absolute bottom-5 left-5 h-auto w-36 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)] sm:w-44" />
+            </>
           ) : (
             <div className="font-inter flex h-full items-center justify-center text-sm text-zinc-400">Tutor photo</div>
           )}
