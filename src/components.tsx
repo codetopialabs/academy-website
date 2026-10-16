@@ -118,7 +118,7 @@ export function Header({ look }: { look: Look }) {
   )
 }
 
-export function Ending({ look, title, shapes = false, band = '' }: { look: Look; title: ReactNode; shapes?: boolean; band?: string }) {
+export function Ending({ look, title, note, shapes = false, band = '' }: { look: Look; title: ReactNode; note?: ReactNode; shapes?: boolean; band?: string }) {
   return (
     <section
       id="register"
@@ -133,6 +133,7 @@ export function Ending({ look, title, shapes = false, band = '' }: { look: Look;
         </>
       )}
       <h2 className="font-display relative text-4xl font-bold tracking-tight sm:text-6xl">{title}</h2>
+      {note && <p className="font-inter relative mt-4 text-lg text-zinc-700">{note}</p>}
       <div className="relative mt-10 flex flex-col justify-center gap-3 sm:flex-row">
         <RegisterButton className={button(look)} fullOnMobile />
         <a

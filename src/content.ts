@@ -19,6 +19,9 @@ export const email = 'codetopiaacademy@gmail.com'
 // WhatsApp number in international format, no plus sign (+233 53 264 6232)
 export const whatsapp = '233532646232'
 
+// Weekly time, shown under the next start date on the children's page
+export const classTimes = 'Saturdays and Sundays, after 1:00 PM GMT'
+
 export const fees = 'Fees are shared after you register.'
 
 export const priceAmount = 'GHS 500'
@@ -214,12 +217,14 @@ export const categories: Category[] = [
 
 // DUMMY: confirm answers with the team
 export const faq = [
+  { q: 'How do the classes work?', a: 'Live online, 1.5 hours a class, in small groups of about five, every Saturday and Sunday. We set the class time, always after 1:00 PM GMT.' },
   { q: 'My child has never used a computer much. Is that okay?', a: 'Yes. Everyone starts at the beginning, and there is a short device check before the first class.' },
   { q: 'What happens as my child gets older?', a: 'They move up to the next group. The six areas stay the same, but the courses go deeper.' },
   { q: 'How will I know how my child is doing?', a: 'You get a short progress note every month.' },
   { q: 'Do they get a certificate?', a: 'Yes. At the end of every 4-month module, each learner gets a certificate for what they learned and built.' },
   { q: 'What is the showcase?', a: 'At the end of each 4-month module, learners present their project. Family and friends are invited.' },
   { q: 'What do we need at home?', a: 'A laptop, desktop or tablet, and an internet connection. A phone is not enough.' },
+  { q: 'How do I pay?', a: 'Monthly, so you pay as you go. Payment details are on the registration form, and you can email or WhatsApp us for more information.' },
 ]
 
 // Tutors. socials: add only the ones a tutor wants shown
@@ -280,11 +285,12 @@ export const adultPriceAmount = 'GHS 750'
 // DUMMY: confirm answers with the team
 export const adultFaq = [
   { q: "I've never coded. Is that okay?", a: 'Yes. Everyone starts at the beginning and goes at a pace that suits them.' },
-  { q: 'When are the classes?', a: 'Twice a week. Choose evenings or weekends, whichever fits your schedule.' },
-  { q: 'Can I have more or fewer lessons?', a: 'Yes. We can add or reduce lessons to fit around your work and life.' },
+  { q: 'When are the classes?', a: 'Twice a week. Choose evenings or weekends, whichever fits your schedule. Each class is 1.5 hours.' },
+  { q: 'Can I have more or fewer lessons?', a: 'Yes. We agree a schedule with you when you register.' },
   { q: 'What will I have at the end?', a: 'A project every month, and a bigger one every four months for your portfolio. You present it at our showcase.' },
   { q: 'Do I get a certificate?', a: 'Yes. At the end of every 4-month module, you get a certificate for what you learned and built.' },
   { q: 'What do I need?', a: 'A laptop, desktop or tablet, and an internet connection. There is a short device check before your first class.' },
+  { q: 'How do I pay?', a: 'Monthly, so you pay as you go. Payment details are on the registration form, and you can email or WhatsApp us for more information.' },
 ]
 
 export const adultWho = [

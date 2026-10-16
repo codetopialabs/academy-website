@@ -1,5 +1,5 @@
 import { DealSticker, Ending, Header, Marker } from './components'
-import { email, faq, forParents, priceAmount, pricePer, referralDiscount, saveLink, saveTitle, siblingDiscount, startDate, startLine, classStarted, whatsapp } from './content'
+import { classTimes, email, faq, forParents, priceAmount, pricePer, referralDiscount, saveLink, saveTitle, siblingDiscount, startDate, startLine, classStarted, whatsapp } from './content'
 import { GiftBox, IdeaIcon, type Idea } from './doodles'
 import { AgePicker } from './Explorer'
 import { RegisterButton } from './RegisterButton'
@@ -176,6 +176,7 @@ function App() {
           look="kids"
           shapes
           band="bg-yellow-100"
+          note={classTimes}
           title={
             <>
               {classStarted ? (
