@@ -296,7 +296,7 @@ export function TutorCarousel() {
         </ul>
       </div>
       <div className="mx-auto mt-12 hidden max-w-7xl px-6 pb-24 lg:block">
-        <ul className="grid grid-cols-3 gap-6">
+        <ul className="grid grid-cols-4 gap-6">
           {tutors.map((tutor) => (
             <TutorCard key={tutor.name} tutor={tutor} onOpen={setOpenTutor} />
           ))}
