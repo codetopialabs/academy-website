@@ -193,7 +193,7 @@ function App() {
         />
       </main>
 
-      <Footer />
+      <Footer doodles />
     </div>
   )
 }

@@ -153,6 +153,41 @@ const ideaPaths: Record<string, string[]> = {
 
 export type Idea = keyof typeof ideaPaths
 
+// A repeating tile of coloured doodles, as a CSS background image. Used inside the footer wordmark.
+// Icons sit on a grid but each is nudged, turned and coloured by a fixed pseudo-random sequence,
+// so the tile is big and irregular enough that the repeat is hard to spot
+const tileNames: Idea[] = ['braces', 'chip', 'robot', 'globe', 'gear', 'controller', 'laptop', 'loop']
+const tileColors = ['#38bdf8', '#ffdf20', '#34d399', '#fb923c']
+const tileCells = 6
+const tileCell = 56
+export const doodleTileSize = tileCells * tileCell
+
+// same numbers on every load, so the pattern never changes between visits
+function seeded(seed: number) {
+  return () => {
+    seed = (seed * 1103515245 + 12345) % 2147483648
+    return seed / 2147483648
+  }
+}
+
+export function doodleTile() {
+  const random = seeded(7)
+  const icons: string[] = []
+  for (let row = 0; row < tileCells; row++) {
+    for (let col = 0; col < tileCells; col++) {
+      const name = tileNames[Math.floor(random() * tileNames.length)]
+      const color = tileColors[(row * tileCells + col + row) % tileColors.length]
+      const x = col * tileCell + 4 + random() * 16
+      const y = row * tileCell + 4 + random() * 16
+      const turn = Math.round(random() * 40 - 20)
+      const paths = ideaPaths[name].map((d) => `<path d="${d}"/>`).join('')
+      icons.push(`<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${turn} 16 16) scale(0.8)" stroke="${color}">${paths}</g>`)
+    }
+  }
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${doodleTileSize}" height="${doodleTileSize}" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">${icons.join('')}</svg>`
+  return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`
+}
+
 export function IdeaIcon({ name, className }: { name: Idea; className: string }) {
   return (
     <svg viewBox="0 0 40 40" aria-hidden="true" className={`pointer-events-none ${className}`}>

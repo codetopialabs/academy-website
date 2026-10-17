@@ -13,6 +13,7 @@ import {
 import { SiBluesky } from 'react-icons/si'
 import logo from './assets/Codetopia Academy - Logo Black.png'
 import labsLogo from './assets/codetopia-labs.png'
+import { doodleTile } from './doodles'
 
 const email = 'codetopiaacademy@gmail.com'
 const labsUrl = 'https://labs.codetopia.org'
@@ -40,45 +41,58 @@ const socialIcons = [
 
 const linkClass = 'font-inter text-sm text-zinc-600 transition-colors hover:text-black'
 
-function Wordmark() {
+// Built once: the tile never changes
+const doodleBackground = `${doodleTile()}, linear-gradient(#18181b, #18181b)`
+
+// doodles: coloured techie icons drift inside the letters (children's page).
+// They only move while the word is on screen, and rush past while a mouse is over it
+function Wordmark({ doodles }: { doodles: boolean }) {
   const ref = useRef<HTMLParagraphElement>(null)
   const [visible, setVisible] = useState(false)
+  const [onScreen, setOnScreen] = useState(false)
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true)
-          observer.disconnect()
-        }
+        setOnScreen(entry.isIntersecting)
+        if (entry.intersectionRatio >= 0.3) setVisible(true)
       },
-      { threshold: 0.3 },
+      { threshold: [0, 0.3] },
     )
     observer.observe(el)
     return () => observer.disconnect()
   }, [])
 
+  // speed the drift up or back down smoothly, without the pattern jumping
+  const setDriftSpeed = (rate: number) => {
+    for (const animation of ref.current?.getAnimations() ?? []) {
+      if (animation instanceof CSSAnimation && animation.animationName === 'doodle-drift') animation.updatePlaybackRate(rate)
+    }
+  }
+
   return (
     <p
       ref={ref}
       aria-hidden="true"
-      className={`font-display pointer-events-none text-center leading-[0.8] font-bold tracking-tight text-black/15 uppercase select-none motion-safe:transition-all motion-safe:duration-1000 motion-safe:ease-out ${
-        visible ? 'translate-y-0 opacity-100' : 'motion-safe:translate-y-1/2 motion-safe:opacity-0'
-      }`}
-      style={{ fontSize: '19vw' }}
+      onPointerEnter={doodles ? (e) => e.pointerType === 'mouse' && setDriftSpeed(5) : undefined}
+      onPointerLeave={doodles ? () => setDriftSpeed(1) : undefined}
+      className={`font-display text-center leading-[0.8] font-bold tracking-tight uppercase select-none ${
+        doodles ? `wordmark-doodles ${onScreen ? 'is-drifting' : ''}` : 'pointer-events-none text-black/15 motion-safe:transition-all motion-safe:duration-1000 motion-safe:ease-out'
+      } ${visible ? 'translate-y-0 opacity-100' : 'motion-safe:translate-y-1/2 motion-safe:opacity-0'}`}
+      style={doodles ? { fontSize: '19vw', backgroundImage: doodleBackground } : { fontSize: '19vw' }}
     >
       Academy
     </p>
   )
 }
 
-export function Footer() {
+export function Footer({ doodles = false }: { doodles?: boolean }) {
   return (
     <footer className="overflow-hidden bg-white text-black">
       <div className="pt-16">
-        <Wordmark />
+        <Wordmark doodles={doodles} />
       </div>
 
       <div className="mx-auto flex max-w-6xl flex-col gap-16 px-6 py-20 md:flex-row md:justify-between">

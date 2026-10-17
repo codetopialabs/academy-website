@@ -39,6 +39,14 @@ body {
   background: #fff;
 }
 
+/* Footer wordmark on the children's page: doodles show through the letters */
+.wordmark-doodles {
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 1.2em 1.2em, auto; /* scales with the word */
+}
+
 /* Tutor row on small screens: swipeable, with the scrollbar hidden */
 .no-scrollbar {
   scrollbar-width: none;
@@ -73,6 +81,18 @@ body {
   /* on arrival the stickers wiggle twice to catch the eye: warning first, then the price */
   .intro-wiggle { animation: wiggle 400ms ease-in-out 700ms 2; }
   .intro-wiggle-2 { animation-delay: 1100ms; }
+
+  /* the doodles inside the footer wordmark drift slowly, paused while it is off screen.
+     Hovering speeds them up (in Footer.tsx) and lifts the word a little */
+  @keyframes doodle-drift {
+    to { background-position: 1.2em -1.2em, 0 0; }
+  }
+  .wordmark-doodles {
+    animation: doodle-drift 24s linear infinite paused;
+    transition: opacity 1000ms ease-out, translate 1000ms ease-out, scale 300ms ease-out, filter 300ms ease-out;
+  }
+  .wordmark-doodles.is-drifting { animation-play-state: running; }
+  .wordmark-doodles:hover { scale: 1.03; filter: saturate(1.4) brightness(1.15); }
 
   /* sections fade up the first time they scroll into view */
   .reveal { opacity: 0; transform: translateY(16px); transition: opacity 600ms ease-out, transform 600ms ease-out; }
