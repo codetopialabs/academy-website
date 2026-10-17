@@ -3,7 +3,7 @@ import { classTimes, email, faq, forParents, priceAmount, pricePer, referralDisc
 import { GiftBox, IdeaIcon, type Idea } from './doodles'
 import { AgePicker } from './Explorer'
 import { RegisterButton } from './RegisterButton'
-import { endIntro } from './motion'
+import { endIntro, usePauseOffscreen } from './motion'
 import { AreaCards, DiscountCards, PriceTag, TutorsHeading, Questions, Section, SectionTitle, TutorCarousel } from './sections'
 import { Footer } from './Footer'
 import { button } from './styles'
@@ -49,8 +49,9 @@ function TileColumn({ tiles, direction }: { tiles: HeroTile[]; direction: 'up' |
 
 // Two columns of tiles in the hero: the left scrolls up, the right scrolls down
 function HeroGrid() {
+  const columnsRef = usePauseOffscreen<HTMLDivElement>()
   return (
-    <div aria-hidden="true" className="photo-columns grid aspect-[4/5] grid-cols-2 gap-3 overflow-hidden rounded-2xl">
+    <div ref={columnsRef} aria-hidden="true" className="photo-columns grid aspect-[4/5] grid-cols-2 gap-3 overflow-hidden rounded-2xl">
       <TileColumn tiles={leftTiles} direction="up" />
       <TileColumn tiles={rightTiles} direction="down" />
     </div>

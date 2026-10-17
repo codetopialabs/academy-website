@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 import type { CategoryId, Shape } from './content'
+import { usePauseOffscreen } from './motion'
 
 // Hand-drawn group shapes: coloured fill with a wobbly outline
 
@@ -245,8 +246,9 @@ const confetti = [
 ]
 
 export function GiftBox({ className }: { className: string }) {
+  const ref = usePauseOffscreen<SVGSVGElement>()
   return (
-    <svg viewBox="0 0 40 40" overflow="visible" aria-hidden="true" className={className}>
+    <svg ref={ref} viewBox="0 0 40 40" overflow="visible" aria-hidden="true" className={className}>
       <g {...stroke} strokeWidth={3} vectorEffect="non-scaling-stroke">
         {confetti.map((c, i) => (
           <path
@@ -278,28 +280,32 @@ const sparkles = [
 ]
 
 // Discount tag: hangs from its string and swings, with sparkles twinkling around it.
-// Its own look, so it never gets mixed up with the welcome pack gift
+// Its own look, so it never gets mixed up with the welcome pack gift.
+// The tag and each sparkle are separate pieces moved with CSS transforms, so the graphics card
+// animates them without repainting (it sits in the sticky header, so it is always on screen)
 export function SaleTag({ className }: { className: string }) {
+  const ref = usePauseOffscreen<HTMLSpanElement>()
   return (
-    <svg viewBox="0 0 40 40" overflow="visible" aria-hidden="true" className={className}>
-      <g {...stroke} strokeWidth={3} vectorEffect="non-scaling-stroke">
-        {sparkles.map((p, i) => (
-          <path
-            key={i}
-            d={`M${p.x - 3} ${p.y} L${p.x + 3} ${p.y} M${p.x} ${p.y - 3} L${p.x} ${p.y + 3}`}
-            strokeWidth={2}
-            vectorEffect="non-scaling-stroke"
-            className="sale-sparkle"
-            style={{ transformOrigin: `${p.x}px ${p.y}px`, animationDelay: `${i * 450}ms` }}
-          />
-        ))}
-        <g className="sale-tag" strokeWidth={2}>
+    <span ref={ref} aria-hidden="true" className={`relative ${className}`}>
+      {sparkles.map((p, i) => (
+        <svg
+          key={i}
+          viewBox="-4 -4 8 8"
+          overflow="visible"
+          className="sale-sparkle absolute h-[20%] w-[20%]"
+          style={{ left: `${((p.x - 4) / 40) * 100}%`, top: `${((p.y - 4) / 40) * 100}%`, animationDelay: `${i * 450}ms` }}
+        >
+          <path d="M-3 0 L3 0 M0 -3 L0 3" {...stroke} strokeWidth={2} vectorEffect="non-scaling-stroke" />
+        </svg>
+      ))}
+      <svg viewBox="0 0 40 40" overflow="visible" className="sale-tag absolute inset-0 h-full w-full">
+        <g {...stroke} strokeWidth={2} vectorEffect="non-scaling-stroke">
           <path d="M20 -3 L20 3" vectorEffect="non-scaling-stroke" />
           {ideaPaths.tag.map((d) => (
             <path key={d} d={d} vectorEffect="non-scaling-stroke" />
           ))}
         </g>
-      </g>
-    </svg>
+      </svg>
+    </span>
   )
 }
