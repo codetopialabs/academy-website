@@ -265,9 +265,9 @@ export const tutors: Tutor[] = [
     },
   },
   {
-    name: 'Larry Tetteh Quao',
-    photo: '/tutors/larry-tetteh-quao.jpg',
-    bio: 'Larry is a UI/UX designer and frontend developer from Ghana. He designs and builds websites and apps that are easy and enjoyable to use, taking ideas from first sketch to working product. As Director of Mentorship at Codetopia, he helps new developers grow by learning together and building real things.',
+    name: 'Lawrence Tetteh Quao',
+    photo: '/tutors/lawrence-tetteh-quao.jpg',
+    bio: 'Lawrence is a UI/UX designer and frontend developer from Ghana. He designs and builds websites and apps that are easy and enjoyable to use, taking ideas from first sketch to working product. As Director of Mentorship at Codetopia, he helps new developers grow by learning together and building real things.',
     socials: { linkedin: 'https://www.linkedin.com/in/lawrence-quao-0579912b2', x: 'https://x.com/quaoLarry', github: 'https://github.com/larryQuao' },
   },
   {
