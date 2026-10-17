@@ -43,7 +43,7 @@ const linkClass = 'font-inter text-sm text-zinc-600 transition-colors hover:text
 
 // Two layers of doodles, built once: big ones in front drifting slowly, small faint ones behind
 // drifting faster. Together they give depth and hide the repeat
-const frontDoodles = doodleTile({ cells: 4, size: 38, seed: 7 })
+const frontDoodles = doodleTile({ cells: 4, size: 38, line: 2.2, seed: 7 })
 const backDoodles = doodleTile({ cells: 6, size: 20, opacity: 0.45, seed: 3 })
 
 const word = 'Academy'

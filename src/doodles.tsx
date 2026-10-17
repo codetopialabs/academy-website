@@ -168,8 +168,15 @@ function seeded(seed: number) {
   }
 }
 
-// cells: icons per row and column. size: icon size in tile units. opacity: fainter for the back layer
-export function doodleTile({ cells, size, opacity = 1, seed }: { cells: number; size: number; opacity?: number; seed: number }) {
+// cells: icons per row and column. size: icon size and line: line thickness, in tile units.
+// opacity: fainter for the back layer
+export function doodleTile({
+  cells,
+  size,
+  line = 3.2,
+  opacity = 1,
+  seed,
+}: { cells: number; size: number; line?: number; opacity?: number; seed: number }) {
   const random = seeded(seed)
   const cell = 56
   const tile = cells * cell
@@ -188,7 +195,7 @@ export function doodleTile({ cells, size, opacity = 1, seed }: { cells: number; 
       )
     }
   }
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${tile}" height="${tile}" fill="none" stroke-width="${(3.2 / scale).toFixed(2)}" stroke-linecap="round" stroke-linejoin="round" opacity="${opacity}">${icons.join('')}</svg>`
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${tile}" height="${tile}" fill="none" stroke-width="${(line / scale).toFixed(2)}" stroke-linecap="round" stroke-linejoin="round" opacity="${opacity}">${icons.join('')}</svg>`
   return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`
 }
 
