@@ -39,22 +39,28 @@ body {
   background: #fff;
 }
 
-/* Footer wordmark on the children's page: doodles show through each letter.
-   --drift-front and --drift-back move the two doodle layers; --x and --y line each letter's
-   slice of the pattern up with the rest of the word (set in Footer.tsx) */
-@property --drift-front { syntax: '<length>'; inherits: true; initial-value: 0px; }
-@property --drift-back { syntax: '<length>'; inherits: true; initial-value: 0px; }
+/* Looping decorations pause while off screen (usePauseOffscreen in motion.ts) */
+[data-offscreen],
+[data-offscreen] * {
+  animation-play-state: paused !important;
+}
 
+/* Footer wordmark on the children's page: two doodle layers slide behind a stencil of the word
+   (see Footer.tsx). Each layer is one loop's distance bigger than the word, so it can slide that
+   far and jump back without a visible seam */
+.wordmark-doodles .doodle-layer {
+  position: absolute;
+  top: 0;
+  left: calc(-1 * var(--loop));
+  right: 0;
+  bottom: calc(-1 * var(--loop));
+  background-size: var(--tile) var(--tile);
+  will-change: transform;
+}
+.wordmark-doodles .doodle-front { --tile: 1.2em; --loop: 1.2em; }
+.wordmark-doodles .doodle-back { --tile: 0.9em; --loop: 1.8em; }
 .wordmark-letter {
   display: inline-block;
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-  background-size: 1.2em 1.2em, 0.9em 0.9em, auto; /* scales with the word */
-  background-position:
-    calc(var(--x, 0px) + var(--drift-front)) calc(var(--y, 0px) - var(--drift-front)),
-    calc(var(--x, 0px) + var(--drift-back)) calc(var(--y, 0px) - var(--drift-back)),
-    0 0;
   cursor: default;
 }
 
@@ -93,13 +99,18 @@ body {
   .intro-wiggle { animation: wiggle 400ms ease-in-out 700ms 2; }
   .intro-wiggle-2 { animation-delay: 1100ms; }
 
-  /* the doodle layers drift while the word is on screen: the back one faster, for depth.
-     Each layer moves exactly one tile per loop, so the loop is seamless */
-  @keyframes doodle-drift {
-    to { --drift-front: 1.2em; --drift-back: 1.8em; }
+  /* the doodle layers slide while the word is on screen: the back one faster, for depth.
+     Only transform changes, with plain values (no var()), so the graphics card does the work.
+     Each distance matches that layer's --loop */
+  @keyframes doodle-drift-front {
+    to { transform: translate3d(1.2em, -1.2em, 0); }
   }
-  .wordmark-doodles { animation: doodle-drift 30s linear infinite paused; }
-  .wordmark-doodles.is-drifting { animation-play-state: running; }
+  @keyframes doodle-drift-back {
+    to { transform: translate3d(1.8em, -1.8em, 0); }
+  }
+  .wordmark-doodles .doodle-front { animation: doodle-drift-front 30s linear infinite paused; }
+  .wordmark-doodles .doodle-back { animation: doodle-drift-back 30s linear infinite paused; }
+  .wordmark-doodles.is-drifting .doodle-layer { animation-play-state: running; }
 
   /* a letter hops when pointed at or tapped, like a key being pressed */
   @keyframes letter-hop {
@@ -160,8 +171,7 @@ body {
 
 /* Discount tag: swings from its string like a shop tag while sparkles twinkle in turn.
    One swing is 2.4s; a sparkle pops for a moment every 1.35s */
-.sale-tag { transform-box: view-box; transform-origin: 20px -3px; }
-.sale-sparkle { transform-box: view-box; }
+.sale-tag { transform-origin: 50% -7.5%; } /* the top of its string */
 
 @media (prefers-reduced-motion: no-preference) {
   @keyframes sale-swing {

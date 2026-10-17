@@ -42,20 +42,18 @@ const socialIcons = [
 const linkClass = 'font-inter text-sm text-zinc-600 transition-colors hover:text-black'
 
 // Two layers of doodles, built once: big ones in front drifting slowly, small faint ones behind
-// drifting faster, over a near-black fill. Together they give depth and hide the repeat
-const doodleBackground = [
-  doodleTile({ cells: 4, size: 38, seed: 7 }),
-  doodleTile({ cells: 6, size: 20, opacity: 0.45, seed: 3 }),
-  'linear-gradient(#18181b, #18181b)',
-].join(', ')
+// drifting faster. Together they give depth and hide the repeat
+const frontDoodles = doodleTile({ cells: 4, size: 38, seed: 7 })
+const backDoodles = doodleTile({ cells: 6, size: 20, opacity: 0.45, seed: 3 })
 
 const word = 'Academy'
 
-// doodles (children's page): each letter is its own piece with doodles flowing through it. The
-// pattern lines up across letters because each one shifts its background by its own position.
+// doodles (children's page): the word is a stencil. Black letters on white sit on top of the
+// sliding doodle layers and blend with 'lighten', so the doodles only show through the letters.
+// The layers only ever move (no repainting), which keeps it smooth on slow phones.
 // Pointing at a letter, or tapping it, makes it hop. Motion only runs while the word is on screen
 function Wordmark({ doodles }: { doodles: boolean }) {
-  const ref = useRef<HTMLParagraphElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
   const [onScreen, setOnScreen] = useState(false)
 
@@ -73,67 +71,53 @@ function Wordmark({ doodles }: { doodles: boolean }) {
     return () => observer.disconnect()
   }, [])
 
-  // tell each letter where it sits, so its slice of the pattern lines up with its neighbours
-  useEffect(() => {
-    const el = ref.current
-    if (!el || !doodles) return
-    const place = () => {
-      for (const letter of el.children) {
-        const span = letter as HTMLElement
-        span.style.setProperty('--x', `${-span.offsetLeft}px`)
-        span.style.setProperty('--y', `${-span.offsetTop}px`)
-      }
-    }
-    place()
-    document.fonts.ready.then(place)
-    const resize = new ResizeObserver(place)
-    resize.observe(el)
-    return () => resize.disconnect()
-  }, [doodles])
-
   const hop = (letter: HTMLElement) => {
     letter.classList.remove('hop')
     void letter.offsetWidth // restart the hop if it was already playing
     letter.classList.add('hop')
   }
 
+  const reveal = `motion-safe:transition-all motion-safe:duration-1000 motion-safe:ease-out ${
+    visible ? 'translate-y-0 opacity-100' : 'motion-safe:translate-y-1/2 motion-safe:opacity-0'
+  }`
+
   if (!doodles) {
     return (
-      <p
-        ref={ref}
-        aria-hidden="true"
-        className={`font-display pointer-events-none text-center leading-[0.8] font-bold tracking-tight text-black/15 uppercase select-none motion-safe:transition-all motion-safe:duration-1000 motion-safe:ease-out ${
-          visible ? 'translate-y-0 opacity-100' : 'motion-safe:translate-y-1/2 motion-safe:opacity-0'
-        }`}
-        style={{ fontSize: '19vw' }}
-      >
-        {word}
-      </p>
+      <div ref={ref}>
+        <p
+          aria-hidden="true"
+          className={`font-display pointer-events-none text-center leading-[0.8] font-bold tracking-tight text-black/15 uppercase select-none ${reveal}`}
+          style={{ fontSize: '19vw' }}
+        >
+          {word}
+        </p>
+      </div>
     )
   }
 
   return (
-    <p
+    <div
       ref={ref}
       aria-hidden="true"
-      className={`wordmark-doodles font-display relative text-center leading-[0.8] font-bold tracking-tight uppercase select-none motion-safe:transition-all motion-safe:duration-1000 motion-safe:ease-out ${
-        onScreen ? 'is-drifting' : ''
-      } ${visible ? 'translate-y-0 opacity-100' : 'motion-safe:translate-y-1/2 motion-safe:opacity-0'}`}
+      className={`wordmark-doodles relative isolate overflow-hidden bg-[#18181b] ${onScreen ? 'is-drifting' : ''} ${reveal}`}
       style={{ fontSize: '19vw' }}
     >
-      {[...word].map((char, i) => (
-        <span
-          key={i}
-          className="wordmark-letter"
-          style={{ backgroundImage: doodleBackground }}
-          onPointerEnter={(e) => e.pointerType === 'mouse' && hop(e.currentTarget)}
-          onPointerDown={(e) => hop(e.currentTarget)}
-          onAnimationEnd={(e) => e.currentTarget.classList.remove('hop')}
-        >
-          {char}
-        </span>
-      ))}
-    </p>
+      <div className="doodle-layer doodle-back" style={{ backgroundImage: backDoodles }} />
+      <div className="doodle-layer doodle-front" style={{ backgroundImage: frontDoodles }} />
+      <p className="font-display relative bg-white pt-[0.12em] text-center leading-[0.8] font-bold tracking-tight text-black uppercase mix-blend-lighten select-none">
+        {[...word].map((char, i) => (
+          <span
+            key={i}
+            className="wordmark-letter"
+            onPointerEnter={(e) => e.pointerType === 'mouse' && hop(e.currentTarget)}
+            onPointerDown={(e) => hop(e.currentTarget)}
+            onAnimationEnd={(e) => e.currentTarget.classList.remove('hop')}
+          >
+            {char}
+          </span>
+        ))}
+      </p>
+    </div>
   )
 }
 
