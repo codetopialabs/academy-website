@@ -41,11 +41,19 @@ const socialIcons = [
 
 const linkClass = 'font-inter text-sm text-zinc-600 transition-colors hover:text-black'
 
-// Built once: the tile never changes
-const doodleBackground = `${doodleTile()}, linear-gradient(#18181b, #18181b)`
+// Two layers of doodles, built once: big ones in front drifting slowly, small faint ones behind
+// drifting faster, over a near-black fill. Together they give depth and hide the repeat
+const doodleBackground = [
+  doodleTile({ cells: 4, size: 38, seed: 7 }),
+  doodleTile({ cells: 6, size: 20, opacity: 0.45, seed: 3 }),
+  'linear-gradient(#18181b, #18181b)',
+].join(', ')
 
-// doodles: coloured techie icons drift inside the letters (children's page).
-// They only move while the word is on screen, and rush past while a mouse is over it
+const word = 'Academy'
+
+// doodles (children's page): each letter is its own piece with doodles flowing through it. The
+// pattern lines up across letters because each one shifts its background by its own position.
+// Pointing at a letter, or tapping it, makes it hop. Motion only runs while the word is on screen
 function Wordmark({ doodles }: { doodles: boolean }) {
   const ref = useRef<HTMLParagraphElement>(null)
   const [visible, setVisible] = useState(false)
@@ -65,25 +73,66 @@ function Wordmark({ doodles }: { doodles: boolean }) {
     return () => observer.disconnect()
   }, [])
 
-  // speed the drift up or back down smoothly, without the pattern jumping
-  const setDriftSpeed = (rate: number) => {
-    for (const animation of ref.current?.getAnimations() ?? []) {
-      if (animation instanceof CSSAnimation && animation.animationName === 'doodle-drift') animation.updatePlaybackRate(rate)
+  // tell each letter where it sits, so its slice of the pattern lines up with its neighbours
+  useEffect(() => {
+    const el = ref.current
+    if (!el || !doodles) return
+    const place = () => {
+      for (const letter of el.children) {
+        const span = letter as HTMLElement
+        span.style.setProperty('--x', `${-span.offsetLeft}px`)
+        span.style.setProperty('--y', `${-span.offsetTop}px`)
+      }
     }
+    place()
+    document.fonts.ready.then(place)
+    const resize = new ResizeObserver(place)
+    resize.observe(el)
+    return () => resize.disconnect()
+  }, [doodles])
+
+  const hop = (letter: HTMLElement) => {
+    letter.classList.remove('hop')
+    void letter.offsetWidth // restart the hop if it was already playing
+    letter.classList.add('hop')
+  }
+
+  if (!doodles) {
+    return (
+      <p
+        ref={ref}
+        aria-hidden="true"
+        className={`font-display pointer-events-none text-center leading-[0.8] font-bold tracking-tight text-black/15 uppercase select-none motion-safe:transition-all motion-safe:duration-1000 motion-safe:ease-out ${
+          visible ? 'translate-y-0 opacity-100' : 'motion-safe:translate-y-1/2 motion-safe:opacity-0'
+        }`}
+        style={{ fontSize: '19vw' }}
+      >
+        {word}
+      </p>
+    )
   }
 
   return (
     <p
       ref={ref}
       aria-hidden="true"
-      onPointerEnter={doodles ? (e) => e.pointerType === 'mouse' && setDriftSpeed(5) : undefined}
-      onPointerLeave={doodles ? () => setDriftSpeed(1) : undefined}
-      className={`font-display text-center leading-[0.8] font-bold tracking-tight uppercase select-none ${
-        doodles ? `wordmark-doodles ${onScreen ? 'is-drifting' : ''}` : 'pointer-events-none text-black/15 motion-safe:transition-all motion-safe:duration-1000 motion-safe:ease-out'
+      className={`wordmark-doodles font-display relative text-center leading-[0.8] font-bold tracking-tight uppercase select-none motion-safe:transition-all motion-safe:duration-1000 motion-safe:ease-out ${
+        onScreen ? 'is-drifting' : ''
       } ${visible ? 'translate-y-0 opacity-100' : 'motion-safe:translate-y-1/2 motion-safe:opacity-0'}`}
-      style={doodles ? { fontSize: '19vw', backgroundImage: doodleBackground } : { fontSize: '19vw' }}
+      style={{ fontSize: '19vw' }}
     >
-      Academy
+      {[...word].map((char, i) => (
+        <span
+          key={i}
+          className="wordmark-letter"
+          style={{ backgroundImage: doodleBackground }}
+          onPointerEnter={(e) => e.pointerType === 'mouse' && hop(e.currentTarget)}
+          onPointerDown={(e) => hop(e.currentTarget)}
+          onAnimationEnd={(e) => e.currentTarget.classList.remove('hop')}
+        >
+          {char}
+        </span>
+      ))}
     </p>
   )
 }

@@ -153,14 +153,11 @@ const ideaPaths: Record<string, string[]> = {
 
 export type Idea = keyof typeof ideaPaths
 
-// A repeating tile of coloured doodles, as a CSS background image. Used inside the footer wordmark.
+// Repeating tiles of coloured doodles, as CSS background images. Used inside the footer wordmark.
 // Icons sit on a grid but each is nudged, turned and coloured by a fixed pseudo-random sequence,
-// so the tile is big and irregular enough that the repeat is hard to spot
+// so a tile is irregular enough that the repeat is hard to spot
 const tileNames: Idea[] = ['braces', 'chip', 'robot', 'globe', 'gear', 'controller', 'laptop', 'loop']
 const tileColors = ['#38bdf8', '#ffdf20', '#34d399', '#fb923c']
-const tileCells = 6
-const tileCell = 56
-export const doodleTileSize = tileCells * tileCell
 
 // same numbers on every load, so the pattern never changes between visits
 function seeded(seed: number) {
@@ -170,21 +167,27 @@ function seeded(seed: number) {
   }
 }
 
-export function doodleTile() {
-  const random = seeded(7)
+// cells: icons per row and column. size: icon size in tile units. opacity: fainter for the back layer
+export function doodleTile({ cells, size, opacity = 1, seed }: { cells: number; size: number; opacity?: number; seed: number }) {
+  const random = seeded(seed)
+  const cell = 56
+  const tile = cells * cell
+  const scale = size / 40
   const icons: string[] = []
-  for (let row = 0; row < tileCells; row++) {
-    for (let col = 0; col < tileCells; col++) {
+  for (let row = 0; row < cells; row++) {
+    for (let col = 0; col < cells; col++) {
       const name = tileNames[Math.floor(random() * tileNames.length)]
-      const color = tileColors[(row * tileCells + col + row) % tileColors.length]
-      const x = col * tileCell + 4 + random() * 16
-      const y = row * tileCell + 4 + random() * 16
+      const color = tileColors[(row * cells + col + row) % tileColors.length]
+      const x = col * cell + random() * (cell - size)
+      const y = row * cell + random() * (cell - size)
       const turn = Math.round(random() * 40 - 20)
       const paths = ideaPaths[name].map((d) => `<path d="${d}"/>`).join('')
-      icons.push(`<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${turn} 16 16) scale(0.8)" stroke="${color}">${paths}</g>`)
+      icons.push(
+        `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${scale.toFixed(3)}) rotate(${turn} 20 20)" stroke="${color}">${paths}</g>`,
+      )
     }
   }
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${doodleTileSize}" height="${doodleTileSize}" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">${icons.join('')}</svg>`
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${tile}" height="${tile}" fill="none" stroke-width="${(3.2 / scale).toFixed(2)}" stroke-linecap="round" stroke-linejoin="round" opacity="${opacity}">${icons.join('')}</svg>`
   return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`
 }
 
