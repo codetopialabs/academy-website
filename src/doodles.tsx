@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 import type { CategoryId, Shape } from './content'
+import { usePauseOffscreen } from './motion'
 
 // Hand-drawn group shapes: coloured fill with a wobbly outline
 
@@ -153,6 +154,51 @@ const ideaPaths: Record<string, string[]> = {
 
 export type Idea = keyof typeof ideaPaths
 
+// Repeating tiles of coloured doodles, as CSS background images. Used inside the footer wordmark.
+// Icons sit on a grid but each is nudged, turned and coloured by a fixed pseudo-random sequence,
+// so a tile is irregular enough that the repeat is hard to spot
+const tileNames: Idea[] = ['braces', 'chip', 'robot', 'globe', 'gear', 'controller', 'laptop', 'loop']
+const tileColors = ['#38bdf8', '#ffdf20', '#34d399', '#fb923c']
+
+// same numbers on every load, so the pattern never changes between visits
+function seeded(seed: number) {
+  return () => {
+    seed = (seed * 1103515245 + 12345) % 2147483648
+    return seed / 2147483648
+  }
+}
+
+// cells: icons per row and column. size: icon size and line: line thickness, in tile units.
+// opacity: fainter for the back layer
+export function doodleTile({
+  cells,
+  size,
+  line = 3.2,
+  opacity = 1,
+  seed,
+}: { cells: number; size: number; line?: number; opacity?: number; seed: number }) {
+  const random = seeded(seed)
+  const cell = 56
+  const tile = cells * cell
+  const scale = size / 40
+  const icons: string[] = []
+  for (let row = 0; row < cells; row++) {
+    for (let col = 0; col < cells; col++) {
+      const name = tileNames[Math.floor(random() * tileNames.length)]
+      const color = tileColors[(row * cells + col + row) % tileColors.length]
+      const x = col * cell + random() * (cell - size)
+      const y = row * cell + random() * (cell - size)
+      const turn = Math.round(random() * 40 - 20)
+      const paths = ideaPaths[name].map((d) => `<path d="${d}"/>`).join('')
+      icons.push(
+        `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${scale.toFixed(3)}) rotate(${turn} 20 20)" stroke="${color}">${paths}</g>`,
+      )
+    }
+  }
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${tile}" height="${tile}" fill="none" stroke-width="${(line / scale).toFixed(2)}" stroke-linecap="round" stroke-linejoin="round" opacity="${opacity}">${icons.join('')}</svg>`
+  return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`
+}
+
 export function IdeaIcon({ name, className }: { name: Idea; className: string }) {
   return (
     <svg viewBox="0 0 40 40" aria-hidden="true" className={`pointer-events-none ${className}`}>
@@ -207,8 +253,9 @@ const confetti = [
 ]
 
 export function GiftBox({ className }: { className: string }) {
+  const ref = usePauseOffscreen<SVGSVGElement>()
   return (
-    <svg viewBox="0 0 40 40" overflow="visible" aria-hidden="true" className={className}>
+    <svg ref={ref} viewBox="0 0 40 40" overflow="visible" aria-hidden="true" className={className}>
       <g {...stroke} strokeWidth={3} vectorEffect="non-scaling-stroke">
         {confetti.map((c, i) => (
           <path
@@ -240,28 +287,32 @@ const sparkles = [
 ]
 
 // Discount tag: hangs from its string and swings, with sparkles twinkling around it.
-// Its own look, so it never gets mixed up with the welcome pack gift
+// Its own look, so it never gets mixed up with the welcome pack gift.
+// The tag and each sparkle are separate pieces moved with CSS transforms, so the graphics card
+// animates them without repainting (it sits in the sticky header, so it is always on screen)
 export function SaleTag({ className }: { className: string }) {
+  const ref = usePauseOffscreen<HTMLSpanElement>()
   return (
-    <svg viewBox="0 0 40 40" overflow="visible" aria-hidden="true" className={className}>
-      <g {...stroke} strokeWidth={3} vectorEffect="non-scaling-stroke">
-        {sparkles.map((p, i) => (
-          <path
-            key={i}
-            d={`M${p.x - 3} ${p.y} L${p.x + 3} ${p.y} M${p.x} ${p.y - 3} L${p.x} ${p.y + 3}`}
-            strokeWidth={2}
-            vectorEffect="non-scaling-stroke"
-            className="sale-sparkle"
-            style={{ transformOrigin: `${p.x}px ${p.y}px`, animationDelay: `${i * 450}ms` }}
-          />
-        ))}
-        <g className="sale-tag" strokeWidth={2}>
+    <span ref={ref} aria-hidden="true" className={`relative ${className}`}>
+      {sparkles.map((p, i) => (
+        <svg
+          key={i}
+          viewBox="-4 -4 8 8"
+          overflow="visible"
+          className="sale-sparkle absolute h-[20%] w-[20%]"
+          style={{ left: `${((p.x - 4) / 40) * 100}%`, top: `${((p.y - 4) / 40) * 100}%`, animationDelay: `${i * 450}ms` }}
+        >
+          <path d="M-3 0 L3 0 M0 -3 L0 3" {...stroke} strokeWidth={2} vectorEffect="non-scaling-stroke" />
+        </svg>
+      ))}
+      <svg viewBox="0 0 40 40" overflow="visible" className="sale-tag absolute inset-0 h-full w-full">
+        <g {...stroke} strokeWidth={2} vectorEffect="non-scaling-stroke">
           <path d="M20 -3 L20 3" vectorEffect="non-scaling-stroke" />
           {ideaPaths.tag.map((d) => (
             <path key={d} d={d} vectorEffect="non-scaling-stroke" />
           ))}
         </g>
-      </g>
-    </svg>
+      </svg>
+    </span>
   )
 }

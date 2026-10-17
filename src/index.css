@@ -39,6 +39,31 @@ body {
   background: #fff;
 }
 
+/* Looping decorations pause while off screen (usePauseOffscreen in motion.ts) */
+[data-offscreen],
+[data-offscreen] * {
+  animation-play-state: paused !important;
+}
+
+/* Footer wordmark on the children's page: two doodle layers slide behind a stencil of the word
+   (see Footer.tsx). Each layer is one loop's distance bigger than the word, so it can slide that
+   far and jump back without a visible seam */
+.wordmark-doodles .doodle-layer {
+  position: absolute;
+  top: 0;
+  left: calc(-1 * var(--loop));
+  right: 0;
+  bottom: calc(-1 * var(--loop));
+  background-size: var(--tile) var(--tile);
+  will-change: transform;
+}
+.wordmark-doodles .doodle-front { --tile: 1.2em; --loop: 1.2em; }
+.wordmark-doodles .doodle-back { --tile: 0.9em; --loop: 1.8em; }
+.wordmark-letter {
+  display: inline-block;
+  cursor: default;
+}
+
 /* Tutor row on small screens: swipeable, with the scrollbar hidden */
 .no-scrollbar {
   scrollbar-width: none;
@@ -73,6 +98,29 @@ body {
   /* on arrival the stickers wiggle twice to catch the eye: warning first, then the price */
   .intro-wiggle { animation: wiggle 400ms ease-in-out 700ms 2; }
   .intro-wiggle-2 { animation-delay: 1100ms; }
+
+  /* the doodle layers slide while the word is on screen: the back one faster, for depth.
+     Only transform changes, with plain values (no var()), so the graphics card does the work.
+     Each distance matches that layer's --loop */
+  @keyframes doodle-drift-front {
+    to { transform: translate3d(1.2em, -1.2em, 0); }
+  }
+  @keyframes doodle-drift-back {
+    to { transform: translate3d(1.8em, -1.8em, 0); }
+  }
+  .wordmark-doodles .doodle-front { animation: doodle-drift-front 30s linear infinite paused; }
+  .wordmark-doodles .doodle-back { animation: doodle-drift-back 30s linear infinite paused; }
+  .wordmark-doodles.is-drifting .doodle-layer { animation-play-state: running; }
+
+  /* a letter hops when pointed at or tapped, like a key being pressed */
+  @keyframes letter-hop {
+    0% { transform: none; }
+    35% { transform: translateY(-14%) rotate(-3deg); }
+    60% { transform: translateY(3%) rotate(1deg); }
+    80% { transform: translateY(-3%); }
+    100% { transform: none; }
+  }
+  .wordmark-letter.hop { animation: letter-hop 650ms cubic-bezier(0.3, 0.7, 0.4, 1); }
 
   /* sections fade up the first time they scroll into view */
   .reveal { opacity: 0; transform: translateY(16px); transition: opacity 600ms ease-out, transform 600ms ease-out; }
@@ -123,8 +171,7 @@ body {
 
 /* Discount tag: swings from its string like a shop tag while sparkles twinkle in turn.
    One swing is 2.4s; a sparkle pops for a moment every 1.35s */
-.sale-tag { transform-box: view-box; transform-origin: 20px -3px; }
-.sale-sparkle { transform-box: view-box; }
+.sale-tag { transform-origin: 50% -7.5%; } /* the top of its string */
 
 @media (prefers-reduced-motion: no-preference) {
   @keyframes sale-swing {

@@ -215,7 +215,16 @@ function useAutoScroll(paused: boolean) {
       last = now
       frame = requestAnimationFrame(step)
     }
-    frame = requestAnimationFrame(step)
+
+    // only slide while the row is on screen (and shown), so it costs nothing elsewhere on the page
+    const visibility = new IntersectionObserver(([entry]) => {
+      cancelAnimationFrame(frame)
+      if (entry.isIntersecting) {
+        last = performance.now()
+        frame = requestAnimationFrame(step)
+      }
+    })
+    visibility.observe(row)
 
     // after someone scrolls or drags, wait 2 seconds before sliding again
     const wait = () => (waitUntil = performance.now() + 2000)
@@ -262,6 +271,7 @@ function useAutoScroll(paused: boolean) {
     row.addEventListener('scroll', onScroll, { passive: true })
     row.addEventListener('dragstart', noImageDrag)
     return () => {
+      visibility.disconnect()
       cancelAnimationFrame(frame)
       row.removeEventListener('pointerdown', down)
       window.removeEventListener('pointermove', move)
