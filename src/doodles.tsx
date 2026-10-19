@@ -243,7 +243,7 @@ export function CategoryIcon({ id, className = 'h-9 w-9' }: { id: CategoryId; cl
   )
 }
 
-// The welcome pack gift: every few seconds the lid lifts and a few bits of confetti pop out
+// The welcome pack gift: when it comes into view the lid lifts once and a few bits of confetti pop out
 const confetti = [
   { d: 'M0 0 L0 0.1', x: -22, y: -22, color: 'text-sky-400' },
   { d: 'M-2.5 0 L2.5 0 M0 -2.5 L0 2.5', x: -7, y: -34, color: 'text-yellow-400' },

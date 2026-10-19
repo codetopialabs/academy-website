@@ -95,7 +95,7 @@ body {
   .answer { animation: fade-up 250ms ease-out; }
   .sticker:hover { animation: wiggle 400ms ease-in-out; }
 
-  /* on arrival the stickers wiggle twice to catch the eye: warning first, then the price */
+  /* on arrival the price tag wiggles twice to catch the eye */
   .intro-wiggle { animation: wiggle 400ms ease-in-out 700ms 2; }
   .intro-wiggle-2 { animation-delay: 1100ms; }
 
@@ -127,7 +127,7 @@ body {
   .reveal.is-visible { opacity: 1; transform: none; }
 }
 
-/* Hero photo columns: left scrolls up, right scrolls down, pause on hover.
+/* Hero photo columns: still until hovered, then the left scrolls up and the right scrolls down.
    The soft fade at the top and bottom edges is a mask, not a colour gradient */
 .photo-columns {
   mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
@@ -142,14 +142,14 @@ body {
     from { transform: translateY(-50%); }
     to { transform: translateY(0); }
   }
-  .scroll-up { animation: column-up 32s linear infinite; }
-  .scroll-down { animation: column-down 32s linear infinite; }
+  .scroll-up { animation: column-up 32s linear infinite paused; }
+  .scroll-down { animation: column-down 32s linear infinite paused; }
   .photo-columns:hover .scroll-up,
-  .photo-columns:hover .scroll-down { animation-play-state: paused; }
+  .photo-columns:hover .scroll-down { animation-play-state: running; }
 }
 
 /* Welcome pack gift: lid hinges open at its left edge, confetti pops up out of the box.
-   One loop is 3.5s: the lid opens, then the confetti pops, then the lid closes and rests */
+   It plays once (3.5s): the lid opens, then the confetti pops, then the lid closes and rests */
 .gift-lid { transform-box: view-box; transform-origin: 5px 17px; }
 .gift-bit { opacity: 0; transform: translate(20px, 22px); }
 
@@ -165,12 +165,12 @@ body {
     20% { opacity: 1; transform: translate(calc(20px + var(--x)), calc(22px + var(--y))) scale(1); }
     29%, 100% { opacity: 0; transform: translate(calc(20px + var(--x)), calc(26px + var(--y))) scale(1); }
   }
-  .gift-lid { animation: gift-lid 3500ms ease-in-out 600ms infinite; }
-  .gift-bit { animation: gift-bit 3500ms ease-out infinite backwards; }
+  .gift-lid { animation: gift-lid 3500ms ease-in-out 600ms; }
+  .gift-bit { animation: gift-bit 3500ms ease-out backwards; }
 }
 
 /* Discount tag: swings from its string like a shop tag while sparkles twinkle in turn.
-   One swing is 2.4s; a sparkle pops for a moment every 1.35s */
+   One swing is 2.4s; a sparkle pops for a moment every 1.35s. The only thing that keeps moving up top */
 .sale-tag { transform-origin: 50% -7.5%; } /* the top of its string */
 
 @media (prefers-reduced-motion: no-preference) {
