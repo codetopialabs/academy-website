@@ -6,6 +6,7 @@ import { RegisterButton } from './RegisterButton'
 import { usePauseOffscreen } from './motion'
 import { AreaCards, DiscountCards, PriceTag, TutorsHeading, Questions, Section, SectionTitle, TutorCarousel, WaysToLearn } from './sections'
 import { Footer } from './Footer'
+import { Outings } from './Outings'
 import { button } from './styles'
 
 // Abstract tiles for now: a brand colour with a big hand-drawn icon. Swap for real class photos later
@@ -92,6 +93,7 @@ function App() {
         </section>
         </div>
 
+
         <Section title="Ways to learn">
           <WaysToLearn items={kidWays} />
         </Section>
@@ -116,6 +118,8 @@ function App() {
           </div>
         </Section>
 
+        <Outings />
+
         <div className="bg-orange-50">
           <Section title={saveTitle} id="save">
             <DiscountCards items={[siblingDiscount, referralDiscount]} />
@@ -136,6 +140,7 @@ function App() {
           </p>
           <AreaCards audience="kids" />
         </Section>
+
 
         <div className="bg-mist">
           <TutorsHeading />

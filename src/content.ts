@@ -1,5 +1,7 @@
 // All site content lives here. Items marked DUMMY are placeholders until the team confirms them.
 
+import outingKoforidua from './assets/outing-koforidua.jpg'
+
 // Next start date: set it in schedule.ts
 export { classStarted, startDate, startLine } from './schedule'
 
@@ -293,6 +295,21 @@ export const forParents = [
   'Tutors never contact children privately. Everything goes through you.',
   'Every session is recorded, and you are told so.',
   "We never use your child's photo or name without your written consent.",
+]
+
+// Where Codetopia Academy has been. Newest first. album is optional: the link only shows when it is set
+export type Outing = { title: string; about: string; place: string; date: string; photo: string; video: string; length: string; album?: string }
+
+export const outings: Outing[] = [
+  {
+    title: 'BarCamp Koforidua 2026',
+    about: 'Juliet Asiedu, our administrator, mentored at BarCamp Koforidua on how technology can make you better at whatever you do.',
+    place: 'Koforidua Technical University',
+    date: '14 November 2026',
+    photo: outingKoforidua,
+    video: 'XQGLR9fFHYs',
+    length: '0:27',
+  },
 ]
 
 // Adults page
