@@ -6,6 +6,7 @@ import {
   adultName,
   adultPriceAmount,
   adultSaveLink,
+  adultWays,
   adultWho,
   classStarted,
   email,
@@ -18,7 +19,7 @@ import {
 } from './content'
 import { Footer } from './Footer'
 import { RegisterButton } from './RegisterButton'
-import { AreaCards, DiscountCards, PriceTag, Questions, Section, TutorCarousel, TutorsHeading } from './sections'
+import { AreaCards, DiscountCards, PriceTag, Questions, Section, TutorCarousel, TutorsHeading, WaysToLearn } from './sections'
 import { button } from './styles'
 
 // Same layout and feel as the children's page, without the kids' doodles
@@ -42,7 +43,7 @@ export function Adults() {
             </p>
             <div className="mt-10 flex items-center gap-4 sm:gap-5">
               <RegisterButton className={`${button('adults')} shrink-0 whitespace-nowrap`} noteAlign="start" />
-              <PriceTag amount={adultPriceAmount} per={pricePer} />
+              <PriceTag amount={adultPriceAmount} per={pricePer} label="You pay" />
             </div>
             <p className="font-inter mt-6 text-zinc-700">{startLine}</p>
             <DealSticker label={adultSaveLink} />
@@ -64,6 +65,10 @@ export function Adults() {
             />
           </div>
         </section>
+
+        <Section title="Ways to learn">
+          <WaysToLearn items={adultWays} />
+        </Section>
 
         <Section title="How it works">
           <div className="font-inter max-w-2xl space-y-5 text-lg text-zinc-700">

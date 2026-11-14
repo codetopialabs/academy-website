@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
-import { categories, tutors, type Discount, type Tutor } from './content'
+import { categories, tutors, whatsapp, type Discount, type Tutor, type Way } from './content'
 import { CategoryIcon, IdeaIcon, type Idea } from './doodles'
 import { TutorModal } from './TutorModal'
 import { endIntro, useReveal } from './motion'
@@ -80,12 +80,13 @@ export function PhotoSpace({ label, className = '' }: { label: string; className
 
 // Yellow price tag next to the Register button. Both parts big so the price reads at a glance.
 // Wiggles on hover like the warning sticker
-export function PriceTag({ amount, per, intro = false }: { amount: string; per: string; intro?: boolean }) {
+export function PriceTag({ amount, per, label, intro = false }: { amount: string; per: string; label?: string; intro?: boolean }) {
   return (
     <p
       onAnimationEnd={endIntro}
       className={`sticker -rotate-2 rounded-lg bg-sun px-4 py-2 whitespace-nowrap shadow-[3px_3px_0_0_#000] ${intro ? 'intro-wiggle intro-wiggle-2' : ''}`}
     >
+      {label && <span className="block font-mono text-xs font-bold tracking-wide uppercase">{label}</span>}
       <span className="font-display text-2xl font-bold tracking-tight sm:text-4xl">{amount}</span>
       <span className="font-display ml-1.5 text-lg font-bold tracking-tight sm:ml-2 sm:text-2xl">{per}</span>
     </p>
@@ -104,6 +105,35 @@ export function DiscountCards({ items }: { items: Discount[] }) {
           <p className="font-display text-5xl font-bold tracking-tight sm:text-6xl">{item.amount}</p>
           <p className="font-display mt-1 text-xl leading-tight font-bold">{item.title}</p>
           <p className="font-inter mt-4 text-zinc-700">{item.about}</p>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+// Group price next to one-to-one, so the group price reads as per person
+export function WaysToLearn({ items }: { items: Way[] }) {
+  return (
+    <ul className="grid gap-6 sm:grid-cols-2">
+      {items.map((way, i) => (
+        <li
+          key={way.name}
+          className={`sticker rounded-2xl border-2 border-black p-6 shadow-[4px_4px_0_0_#000] ${i % 2 ? 'rotate-1' : '-rotate-1'} ${way.tint}`}
+        >
+          <p className="font-display text-xl leading-tight font-bold">{way.name}</p>
+          <p className="font-inter mt-2 text-zinc-700">{way.about}</p>
+          <p className="font-display mt-6 text-4xl font-bold tracking-tight">{way.price}</p>
+          <p className="font-inter mt-1 text-zinc-700">{way.per}</p>
+          {i === 1 && (
+            <a
+              href={`https://wa.me/${whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-inter mt-4 inline-block font-bold underline underline-offset-4"
+            >
+              Message us on WhatsApp
+            </a>
+          )}
         </li>
       ))}
     </ul>
