@@ -224,7 +224,13 @@ export const faq = [
   { q: 'Do they get a certificate?', a: 'Yes. At the end of every 4-month module, each learner gets a certificate for what they learned and built.' },
   { q: 'What is the showcase?', a: 'At the end of each 4-month module, learners present their project. Family and friends are invited.' },
   { q: 'What do we need at home?', a: 'A laptop, desktop or tablet, and an internet connection. A phone is not enough.' },
+  { q: 'Can my child learn one-to-one?', a: 'Yes. GHS 500 a month is what you pay for each child in group classes. Private lessons are a special arrangement, so we agree on the price and terms with you. Email or WhatsApp us to talk it through.' },
   { q: 'How do I pay?', a: 'Monthly, so you pay as you go. Payment details are on the registration form, and you can email or WhatsApp us for more information.' },
+]
+
+export const kidWays: Way[] = [
+  { name: 'Group classes', about: 'Learn with about five other children, every Saturday and Sunday.', price: 'GHS 500', per: 'a month, for each child', tint: 'bg-sun' },
+  { name: 'One-to-one', about: 'Just your child and their tutor.', price: "Let's talk", per: 'Terms and conditions apply', tint: 'bg-white' },
 ]
 
 // Tutors. socials: add only the ones a tutor wants shown
@@ -302,6 +308,12 @@ export const adultAges = '21+'
 
 
 export const adultPriceAmount = 'GHS 750'
+export type Way = { name: string; about: string; price: string; per: string; tint: string }
+
+export const adultWays: Way[] = [
+  { name: 'Group classes', about: 'Learn with about five other people, twice a week.', price: 'GHS 750', per: 'a month, for each person', tint: 'bg-sun' },
+  { name: 'One-to-one', about: 'Just you and your tutor.', price: "Let's talk", per: 'Terms and conditions apply', tint: 'bg-white' },
+]
 
 // DUMMY: confirm answers with the team
 export const adultFaq = [
@@ -311,6 +323,7 @@ export const adultFaq = [
   { q: 'What will I have at the end?', a: 'A project every month, and a bigger one every four months for your portfolio. You present it at our showcase.' },
   { q: 'Do I get a certificate?', a: 'Yes. At the end of every 4-month module, you get a certificate for what you learned and built.' },
   { q: 'What do I need?', a: 'A laptop, desktop or tablet, and an internet connection. There is a short device check before your first class.' },
+  { q: 'Can I learn one-to-one?', a: 'Yes. GHS 750 a month is what each person pays for group classes. Private lessons are a special arrangement, so we agree on the price and terms with you. Email or WhatsApp us to talk it through.' },
   { q: 'How do I pay?', a: 'Monthly, so you pay as you go. Payment details are on the registration form, and you can email or WhatsApp us for more information.' },
 ]
 

@@ -1,10 +1,10 @@
 import { DealSticker, Ending, Header, Marker } from './components'
-import { classTimes, email, faq, forParents, priceAmount, pricePer, referralDiscount, saveLink, saveTitle, siblingDiscount, startDate, startLine, classStarted, whatsapp } from './content'
+import { classTimes, email, faq, forParents, kidWays, priceAmount, pricePer, referralDiscount, saveLink, saveTitle, siblingDiscount, startDate, startLine, classStarted, whatsapp } from './content'
 import { GiftBox, IdeaIcon, type Idea } from './doodles'
 import { AgePicker } from './Explorer'
 import { RegisterButton } from './RegisterButton'
 import { usePauseOffscreen } from './motion'
-import { AreaCards, DiscountCards, PriceTag, TutorsHeading, Questions, Section, SectionTitle, TutorCarousel } from './sections'
+import { AreaCards, DiscountCards, PriceTag, TutorsHeading, Questions, Section, SectionTitle, TutorCarousel, WaysToLearn } from './sections'
 import { Footer } from './Footer'
 import { button } from './styles'
 
@@ -71,7 +71,7 @@ function App() {
             </p>
             <div className="mt-10 flex items-center gap-4 sm:gap-5">
               <RegisterButton className={`${button('kids')} shrink-0 whitespace-nowrap`} noteAlign="start" />
-              <PriceTag amount={priceAmount} per={pricePer} intro />
+              <PriceTag amount={priceAmount} per={pricePer} label="You pay" intro />
             </div>
             <p className="font-inter mt-6 text-zinc-700">{startLine}</p>
             <DealSticker label={saveLink} />
@@ -91,6 +91,10 @@ function App() {
           </div>
         </section>
         </div>
+
+        <Section title="Ways to learn">
+          <WaysToLearn items={kidWays} />
+        </Section>
 
         <Section title="How it works">
           <div className="font-inter max-w-2xl space-y-5 text-lg text-zinc-700">
