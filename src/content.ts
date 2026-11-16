@@ -3,7 +3,7 @@
 import outingKoforidua from './assets/outing-koforidua.jpg'
 
 // Next start date: set it in schedule.ts
-export { startDate, startLine } from './schedule'
+export { classStarted, startDate, startLine } from './schedule'
 
 // Registration Google Form
 export const registerUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSf2AqEnWfDAmVChqHUDUSAhKUZ0rXuhQROCQbTTSXbPVhqyOg/viewform'
