@@ -1,44 +1,27 @@
-// When classes start. Change these two values to move the schedule.
+// Classes run every weekend (Saturday and Sunday).
 export const classStart = {
-  first: '2026-11-07', // the very first class (YYYY-MM-DD)
-  weekday: 6, // new classes start on the first one of these each month: 0 Sunday ... 6 Saturday
-  keepDays: 7, // keep showing a start date for this many days after it, then move to the next one
-}
-
-function firstWeekdayOf(year: number, month: number) {
-  const first = new Date(year, month, 1)
-  const offset = (classStart.weekday - first.getDay() + 7) % 7
-  return new Date(year, month, 1 + offset)
+  first: '2026-11-07', // the very first class (YYYY-MM-DD); nothing earlier is shown
 }
 
 function addDays(date: Date, days: number) {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate() + days)
 }
 
-// The start date to show today
+// The class date to show today: today on Saturday or Sunday, otherwise the coming Saturday
 export function nextClassDate(today = new Date()) {
   const day = new Date(today.getFullYear(), today.getMonth(), today.getDate())
+  const weekday = day.getDay() // 0 Sunday ... 6 Saturday
+  const next = weekday === 0 || weekday === 6 ? day : addDays(day, 6 - weekday)
+
   const [y, m, d] = classStart.first.split('-').map(Number)
   const first = new Date(y, m - 1, d)
-  if (day <= addDays(first, classStart.keepDays)) return first
-
-  const thisMonth = firstWeekdayOf(day.getFullYear(), day.getMonth())
-  return day <= addDays(thisMonth, classStart.keepDays)
-    ? thisMonth
-    : firstWeekdayOf(day.getFullYear(), day.getMonth() + 1)
+  return next < first ? first : next
 }
 
-// e.g. "Saturday 7 November" (the next start is never more than about 5 weeks away, so no year)
+// e.g. "Saturday 21 November" (the next class is never more than a week away, so no year)
 export function formatClassDate(date: Date) {
   return date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })
 }
 
-const today = new Date()
-const shown = nextClassDate(today)
-
-export const startDate = formatClassDate(shown)
-// true during the extra days after a start date, when people can still join
-export const classStarted = new Date(today.getFullYear(), today.getMonth(), today.getDate()) > shown
-export const startLine = classStarted
-  ? `Classes started ${startDate}. You can still join this week.`
-  : `Next class starts on ${startDate}.`
+export const startDate = formatClassDate(nextClassDate())
+export const startLine = `Next class starts on ${startDate}.`
