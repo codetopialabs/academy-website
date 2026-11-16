@@ -8,7 +8,6 @@ import {
   adultSaveLink,
   adultWays,
   adultWho,
-  classStarted,
   email,
   pricePer,
   referralDiscount,
@@ -123,15 +122,7 @@ export function Adults() {
         <Ending
           look="adults"
           title={
-            classStarted ? (
-              <>
-                You can still join <Marker>this week.</Marker>
-              </>
-            ) : (
-              <>
-                Next class starts on <Marker>{startDate}.</Marker>
-              </>
-            )
+            <>Next class starts on <Marker>{startDate}.</Marker></>
           }
         />
       </main>
