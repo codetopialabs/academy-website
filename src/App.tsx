@@ -1,5 +1,5 @@
 import { DealSticker, Ending, Header, Marker } from './components'
-import { classTimes, email, faq, forParents, kidWays, priceAmount, pricePer, referralDiscount, saveLink, saveTitle, siblingDiscount, startDate, startLine, whatsapp } from './content'
+import { classTimes, email, faq, forParents, kidWays, priceAmount, pricePer, referralDiscount, saveLink, saveTitle, siblingDiscount, startDate, startLine, classStarted, whatsapp } from './content'
 import { GiftBox, IdeaIcon, type Idea } from './doodles'
 import { AgePicker } from './Explorer'
 import { RegisterButton } from './RegisterButton'
@@ -171,7 +171,15 @@ function App() {
           note={classTimes}
           title={
             <>
-              Next class starts on <Marker>{startDate}.</Marker>
+              {classStarted ? (
+                <>
+                  You can still join <Marker>this week.</Marker>
+                </>
+              ) : (
+                <>
+                  Next class starts on <Marker>{startDate}.</Marker>
+                </>
+              )}
             </>
           }
         />
